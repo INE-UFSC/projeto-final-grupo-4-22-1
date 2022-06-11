@@ -2,8 +2,6 @@ from TelaJogo import TelaJogo
 import pygame
 from pygame.locals import *
 from sapo import Sapo
-from player import Player
-from personagem import Personagem
 
 
 class GameController:
