@@ -2,7 +2,7 @@ from TelaJogo import TelaJogo
 import pygame
 from pygame.locals import *
 from sapo import Sapo
-
+from cobra import Cobra
 
 class GameController:
     def __init__(self):
@@ -11,12 +11,13 @@ class GameController:
 
     def iniciar(self):
         jogador = Sapo()
+        cobra = Cobra()
         self.__tela.iniciar()
         rodando = True
         while rodando:
             self.__clock.tick(40)
             self.__tela.colorir()
-            self.__tela.desenhar(jogador)
+            self.__tela.desenhar(jogador, cobra)
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()

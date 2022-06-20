@@ -1,8 +1,5 @@
 import pygame, random
 
-#largura = 700
-#altura = 420
-
 #site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
 PRETO = (0, 0, 0)
 # o jogador será branco
@@ -42,8 +39,9 @@ class TelaJogo:
     def colorir(self):
         self.__tela.fill(VERDE_CLARO)
 
-    def desenhar(self, jogador):
+    def desenhar(self, jogador, inimigo):
         pygame.draw.rect(self.__tela, BRANCO, pygame.Rect(jogador.coordenadax, jogador.coordenaday, jogador.altura, jogador.largura))
+        pygame.draw.rect(self.__tela, VERMELHO, pygame.Rect(inimigo.coordenadax, inimigo.coordenaday, inimigo.altura, inimigo.largura))
 
     def ler(self):
         return pygame.event.get()
