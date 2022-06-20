@@ -1,6 +1,5 @@
 from player import Player
 
-
 altura_do_sapo = 30
 largura_do_sapo = 30
 vidas_do_sapo = 3
