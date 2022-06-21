@@ -1,4 +1,4 @@
-from inimigo import Inimigo
+from inimigos.inimigo import Inimigo
 
 altura_cobra = 50
 largura_cobra = 30

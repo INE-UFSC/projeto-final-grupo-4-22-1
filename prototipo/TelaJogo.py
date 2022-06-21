@@ -39,9 +39,10 @@ class TelaJogo:
     def colorir(self):
         self.__tela.fill(VERDE_CLARO)
 
-    def desenhar(self, jogador, inimigo):
+    def desenhar(self, jogador, cobra, jacare):
         pygame.draw.rect(self.__tela, BRANCO, pygame.Rect(jogador.coordenadax, jogador.coordenaday, jogador.altura, jogador.largura))
-        pygame.draw.rect(self.__tela, VERMELHO, pygame.Rect(inimigo.coordenadax, inimigo.coordenaday, inimigo.altura, inimigo.largura))
+        pygame.draw.rect(self.__tela, VERMELHO, pygame.Rect(cobra.coordenadax, cobra.coordenaday, cobra.altura, cobra.largura))
+        pygame.draw.rect(self.__tela, VERDE_ESCURO, pygame.Rect(jacare.coordenadax, jacare.coordenaday, jacare.altura, jacare.largura))
 
     def ler(self):
         return pygame.event.get()
