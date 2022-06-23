@@ -7,7 +7,7 @@ coordenadax_jacare = 150
 coordenaday_jacare = 190
 velocidade_jacare = 5
 dano = 3
-terreno = 'terrestre'
+terreno = 'aquatico'
 
 class Jacare(Inimigo, pygame.sprite.Sprite):
     def __init__(self):
