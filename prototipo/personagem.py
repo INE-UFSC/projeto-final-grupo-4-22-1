@@ -1,11 +1,17 @@
+import pygame
 
-class Personagem:
-    def __init__(self, altura, largura, coordenadax, coordenaday, velocidade):
+class Personagem(pygame.sprite.Sprite):
+    def __init__(self, altura, largura, coordenadax, coordenaday, velocidade, COR):
         self.__altura = altura
         self.__largura = largura
         self.__coordenadax = coordenadax
         self.__coordenaday = coordenaday
         self.__velocidade = velocidade
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface([altura, largura])
+        self.image.fill(COR)
+        self.rect = self.image.get_rect()
+        self.rect.center = [coordenadax, coordenaday]
 
     @property
     def altura(self):

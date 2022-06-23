@@ -1,8 +1,8 @@
 from personagem import Personagem
 
 class Player(Personagem):
-    def __init__(self, altura, largura, vida, coordenadax, coordenaday, velocidade):
-        super().__init__(altura, largura, coordenadax, coordenaday, velocidade)
+    def __init__(self, altura, largura, vida, coordenadax, coordenaday, velocidade, COR):
+        super().__init__(altura, largura, coordenadax, coordenaday, velocidade, COR)
         self.__vida = vida
 
     @property

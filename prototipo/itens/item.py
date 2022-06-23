@@ -1,13 +1,18 @@
 from abc import ABC, abstractmethod
+import pygame
 
-
-class Item(ABC):
-    def __init__(self, nome, largura, altura, coordenadax, coordenaday):
+class Item(ABC, pygame.sprite.Sprite):
+    def __init__(self, nome, largura, altura, coordenadax, coordenaday, COR):
         self.__nome = nome
         self.__largura = largura
         self.__altura = altura
         self.__coordenadax = coordenadax
         self.__coordenaday = coordenaday
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface([altura, largura])
+        self.image.fill(COR)
+        self.rect = self.image.get_rect()
+        self.rect.center = [coordenadax, coordenaday]
 
     @property
     def nome(self):
@@ -29,6 +34,6 @@ class Item(ABC):
     def coordenaday(self):
         return self.__coordenaday
 
-    @abstractmethod
+    '''@abstractmethod
     def criar(self, coordenadax, coordenaday):
-        pass
+        pass'''

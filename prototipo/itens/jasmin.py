@@ -7,9 +7,10 @@ altura_jasmin = 10
 coordenadax_jasmin = 100  # randomizar coordenadas para aparecimento do girassol
 coordenaday_jasmin = 50
 peso_jasmin = 1
+branco = (255,255,255)
 
 
 class Girassol(Coletaveis):
     def __init__(self):
         super().__init__(nome, largura_jasmin, altura_jasmin,
-                         coordenadax_jasmin, coordenaday_jasmin, peso_jasmin)
+                         coordenadax_jasmin, coordenaday_jasmin, peso_jasmin, branco)
