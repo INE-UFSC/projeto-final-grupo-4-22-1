@@ -7,6 +7,7 @@ class Personagem(pygame.sprite.Sprite):
         self.__coordenadax = coordenadax
         self.__coordenaday = coordenaday
         self.__velocidade = velocidade
+        self.__flores = []
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface([altura, largura])
         self.image.fill(COR)
@@ -32,6 +33,17 @@ class Personagem(pygame.sprite.Sprite):
     @property
     def velocidade(self):
         return self.__velocidade
+
+    @property
+    def flores(self):
+        return self.__flores
+
+    @flores.setter
+    def flores(self, flor):
+        self.__flores.append(flor)
+
+    def carry(self):
+        self.__velocidade -= 1
 
     def moverx(self, velocidade):
         self.__coordenadax += velocidade

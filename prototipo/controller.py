@@ -14,6 +14,7 @@ class GameController:
         self.__lista_jacares = pygame.sprite.Group()
         self.__lista_players = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
+        self.__lista_girassois = pygame.sprite.Group()
 
     def iniciar(self):
         jogador = Sapo()
@@ -23,6 +24,7 @@ class GameController:
         self.__lista_players.add(jogador)
         self.__lista_cobras.add(cobra)
         self.__lista_jacares.add(jacare)
+        self.__lista_girassois.add(girassol)
         self.__all_sprites.add(jogador)
         self.__all_sprites.add(cobra)
         self.__all_sprites.add(jacare)
@@ -59,3 +61,5 @@ class GameController:
     def colisoes(self, jogador):
         colisoes_cobras = pygame.sprite.spritecollide(jogador, self.__lista_cobras, True)
         colisoes_jacare = pygame.sprite.spritecollide(jogador, self.__lista_jacares, True)
+        jogador.flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
+        #colisoes_flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
