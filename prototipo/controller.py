@@ -20,7 +20,11 @@ class GameController:
         self.__clock = pygame.time.Clock()
         
         self.__lista_cobras = pygame.sprite.Group()
+        self.__colisoes_cobra = None
+
         self.__lista_jacares = pygame.sprite.Group()
+        self.__colisoes_jacare = None
+
         self.__lista_players = pygame.sprite.Group()
         self.__lista_girassois = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
@@ -34,16 +38,16 @@ class GameController:
         girassol = Girassol()
         aquatico = Aquatico()
         
+        self.__lista_terreno_aquatico.add(aquatico)
         self.__lista_players.add(jogador)
         self.__lista_cobras.add(cobra)
         self.__lista_jacares.add(jacare)
         self.__lista_girassois.add(girassol)
-        self.__lista_terreno_aquatico.add(aquatico)
         
+        self.__all_sprites.add(aquatico)
         self.__all_sprites.add(jogador)
         self.__all_sprites.add(cobra)
         self.__all_sprites.add(girassol)
-        self.__all_sprites.add(aquatico)
         self.__all_sprites.add(jacare)
         
         self.__tela.iniciar()
@@ -53,7 +57,16 @@ class GameController:
             self.__clock.tick(40)
             self.__tela.colorir()
             self.__tela.desenhar(self.__all_sprites)
+            
             self.colisoes(jogador)
+            
+            if self.__colisoes_cobra:
+                print("A cobra te pegou!")
+                break
+            elif self.__colisoes_jacare:
+                print("O jacaré te pegou!")
+                break
+
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
@@ -66,6 +79,7 @@ class GameController:
                         jogador.rect.y += (-jogador.velocidade)
                     if event.key == K_DOWN and self.__tela.altura - jogador.altura >= jogador.rect.y:
                         jogador.rect.y += (jogador.velocidade)
+
             if pygame.key.get_pressed()[K_LEFT] and 0 <= jogador.rect.x:
                 jogador.rect.x += (-jogador.velocidade)
             if pygame.key.get_pressed()[K_RIGHT] and self.__tela.largura - jogador.largura >= jogador.rect.x:
@@ -74,11 +88,12 @@ class GameController:
                 jogador.rect.y += (-jogador.velocidade)
             if pygame.key.get_pressed()[K_DOWN] and self.__tela.altura - jogador.altura >= jogador.rect.y:
                 jogador.rect.y += (jogador.velocidade)
+
             self.__tela.update()
 
     def colisoes(self, jogador):
-        colisoes_cobras = pygame.sprite.spritecollide(jogador, self.__lista_cobras, True)
-        colisoes_jacare = pygame.sprite.spritecollide(jogador, self.__lista_jacares, True)
+        self.__colisoes_cobra = pygame.sprite.spritecollide(jogador, self.__lista_cobras, False)
+        self.__colisoes_jacare = pygame.sprite.spritecollide(jogador, self.__lista_jacares, False)
         #jogador.flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
         colisoes_flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
-        colisoes_terreno_aquatico = pygame.sprite.spritecollide(jogador, self.__lista_terreno_aquatico, True)
+        colisoes_terreno_aquatico = pygame.sprite.spritecollide(jogador, self.__lista_terreno_aquatico, False)
