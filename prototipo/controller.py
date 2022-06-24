@@ -75,8 +75,8 @@ class GameController:
                 print("Perdeu! O jacaré te pegou!")
                 break
             elif self.__colisoes_flores:
-                print("aaaaa", self.__colisoes_flores, dir(self.__colisoes_flores))
-                #self.__jogador.carry()
+                peso = self.__colisoes_flores[0].peso
+                self.__jogador.carry(peso)
 
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
