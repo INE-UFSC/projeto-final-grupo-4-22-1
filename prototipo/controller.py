@@ -4,6 +4,7 @@ from pygame.locals import *
 
 from terreno.aquatico import Aquatico
 from sapo import Sapo
+from ra import Ra
 
 from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
@@ -20,8 +21,11 @@ class GameController:
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
         
-        self.__lista_players = pygame.sprite.Group()
+        self.__lista_player = pygame.sprite.Group()
         self.__jogador = None
+
+        self.__lista_parceiro = pygame.sprite.Group()
+        self.__colisoes_parceiro = None
 
         self.__lista_cobras = pygame.sprite.Group()
         self.__colisoes_cobra = None
@@ -38,6 +42,8 @@ class GameController:
         
     def iniciar(self):
         self.__jogador = Sapo()
+        ra = Ra()
+
         cobra = Cobra()
         jacare = Jacare()
         
@@ -47,16 +53,14 @@ class GameController:
         aquatico = Aquatico()
         
         self.__lista_terreno_aquatico.add(aquatico)
-        self.__lista_players.add(self.__jogador)
+        self.__lista_player.add(self.__jogador)
+        self.__lista_parceiro.add(ra)
         self.__lista_cobras.add(cobra)
         self.__lista_jacares.add(jacare)
         self.__lista_flores.add(girassol, jasmin)
         
-        self.__all_sprites.add(aquatico)
-        self.__all_sprites.add(self.__jogador)
-        self.__all_sprites.add(cobra)
+        self.__all_sprites.add(self.__jogador, ra, aquatico, cobra, jacare)
         self.__all_sprites.add(girassol, jasmin)
-        self.__all_sprites.add(jacare)
         
         self.__tela.iniciar()
         rodando = True
