@@ -1,13 +1,18 @@
 from itens.coletaveis import Coletaveis
-#from random import randint
+import random
 
-nome = "girassol"  # pq nome para o item??
+#FIXME: pq nome para o item??
+nome = "girassol"
+
 largura_girassol = 20
 altura_girassol = 15
-coordenadax_girassol = 150  # randomizar coordenadas para aparecimento do girassol
-coordenaday_girassol = 130
+
+# coordenadas aleatórias do girassol
+coordenadax_girassol = random.randint(0, 1000)
+coordenaday_girassol = random.randint(0, 700)
+
 peso_girassol = 3
-amarelo = (255,255,0)
+amarelo = (255, 255, 0)
 
 
 class Girassol(Coletaveis):
