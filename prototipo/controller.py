@@ -42,9 +42,9 @@ class GameController:
         
         self.__all_sprites.add(jogador)
         self.__all_sprites.add(cobra)
-        self.__all_sprites.add(jacare)
         self.__all_sprites.add(girassol)
         self.__all_sprites.add(aquatico)
+        self.__all_sprites.add(jacare)
         
         self.__tela.iniciar()
         rodando = True

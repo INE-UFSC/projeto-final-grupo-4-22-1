@@ -1,10 +1,14 @@
 from inimigos.inimigo import Inimigo
 import pygame
+import random
 
 altura_jacare = 70
 largura_jacare = 40
-coordenadax_jacare = 600
-coordenaday_jacare = 190
+
+#
+coordenadax_jacare = random.randint(490, 710) #-150+40 <- 600 -> +150-40
+coordenaday_jacare = random.randint(0, 800)
+
 velocidade_jacare = 5
 dano = 3
 terreno = 'aquatico'
