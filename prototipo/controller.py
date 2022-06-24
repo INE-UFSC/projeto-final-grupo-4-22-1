@@ -18,27 +18,33 @@ class GameController:
     def __init__(self):
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
+        
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
         self.__lista_players = pygame.sprite.Group()
-        self.__all_sprites = pygame.sprite.Group()
         self.__lista_girassois = pygame.sprite.Group()
-
+        self.__lista_terreno_aquatico = pygame.sprite.Group()
+        
+        self.__all_sprites = pygame.sprite.Group()
+        
     def iniciar(self):
         jogador = Sapo()
         cobra = Cobra()
         jacare = Jacare()
         girassol = Girassol()
+        aquatico = Aquatico()
         
         self.__lista_players.add(jogador)
         self.__lista_cobras.add(cobra)
         self.__lista_jacares.add(jacare)
         self.__lista_girassois.add(girassol)
+        self.__lista_terreno_aquatico.add(aquatico)
         
         self.__all_sprites.add(jogador)
         self.__all_sprites.add(cobra)
         self.__all_sprites.add(jacare)
         self.__all_sprites.add(girassol)
+        self.__all_sprites.add(aquatico)
         
         self.__tela.iniciar()
         rodando = True
@@ -73,5 +79,6 @@ class GameController:
     def colisoes(self, jogador):
         colisoes_cobras = pygame.sprite.spritecollide(jogador, self.__lista_cobras, True)
         colisoes_jacare = pygame.sprite.spritecollide(jogador, self.__lista_jacares, True)
-        jogador.flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
-        #colisoes_flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
+        #jogador.flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
+        colisoes_flores = pygame.sprite.spritecollide(jogador, self.__lista_girassois, True)
+        colisoes_terreno_aquatico = pygame.sprite.spritecollide(jogador, self.__lista_terreno_aquatico, True)

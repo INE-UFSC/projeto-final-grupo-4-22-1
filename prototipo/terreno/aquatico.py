@@ -1,13 +1,14 @@
 import pygame
 
 altura = 800
-largura = 200
-coordenadax = 500
-coordenaday = 0
+largura = 300
+
+coordenadax = 600
+coordenaday = 400
 AZUL = (0, 191, 255)
 
 class Aquatico(pygame.sprite.Sprite):
-    def __init__(self, altura, largura, coordenadax, coordenaday, AZUL):
+    def __init__(self):#, altura, largura, coordenadax, coordenaday, AZUL):
         self.__altura = altura
         self.__largura = largura
         self.__coordenadax = coordenadax
@@ -16,10 +17,10 @@ class Aquatico(pygame.sprite.Sprite):
 
         self.__vitorias_regias = []
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface([altura, largura])
+        self.image = pygame.Surface([largura, altura])
         self.image.fill(self.__cor)
         self.rect = self.image.get_rect()
-        self.rect.center = [coordenadax, coordenaday]
+        self.rect.center = [self.__coordenadax, self.__coordenaday]
 
     @property
     def altura(self):
