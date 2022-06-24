@@ -20,3 +20,9 @@ class Player(Personagem):
                 self.__velocidade -= v
             else:
                 self.__velocidade -= 1
+    
+    def aumenta_velocidade(self, v):
+        if v:
+            self.__velocidade += v
+        else:
+            self.__velocidade += 1

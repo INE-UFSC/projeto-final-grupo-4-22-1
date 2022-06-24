@@ -37,8 +37,11 @@ class GameController:
         self.__colisoes_flores = None
 
         self.__lista_terreno_aquatico = pygame.sprite.Group()
+        self.__colisoes_terreno_aquatico = None
         
         self.__all_sprites = pygame.sprite.Group()
+        
+        self.__flores_coletadas = []
         
     def iniciar(self):
         self.__jogador = Sapo()
@@ -59,8 +62,7 @@ class GameController:
         self.__lista_jacares.add(jacare)
         self.__lista_flores.add(girassol, jasmin)
         
-        self.__all_sprites.add(self.__jogador, ra, aquatico, cobra, jacare)
-        self.__all_sprites.add(girassol, jasmin)
+        self.__all_sprites.add(aquatico, self.__jogador, ra, cobra, jacare, girassol, jasmin)
         
         self.__tela.iniciar()
         rodando = True
@@ -79,8 +81,13 @@ class GameController:
                 print("Perdeu! O jacaré te pegou!")
                 break
             elif self.__colisoes_flores:
-                peso = self.__colisoes_flores[0].peso
-                self.__jogador.carry(peso)
+                flor = self.__colisoes_flores[0]
+                self.__flores_coletadas.append(flor)
+                self.__jogador.carry(flor.peso)
+            elif self.__colisoes_parceiro:
+                for flor in self.__flores_coletadas:
+                    self.__jogador.aumenta_velocidade(flor.peso)
+                    self.__flores_coletadas.remove(flor)
 
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
@@ -111,4 +118,5 @@ class GameController:
         self.__colisoes_jacare = pygame.sprite.spritecollide(self.__jogador, self.__lista_jacares, False)
         #jogador.flores = pygame.sprite.spritecollide(self.__jogador, self.__lista_girassois, True)
         self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__lista_flores, True)
-        colisoes_terreno_aquatico = pygame.sprite.spritecollide(self.__jogador, self.__lista_terreno_aquatico, False)
+        self.__colisoes_terreno_aquatico = pygame.sprite.spritecollide(self.__jogador, self.__lista_terreno_aquatico, False)
+        self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__lista_parceiro, False)
