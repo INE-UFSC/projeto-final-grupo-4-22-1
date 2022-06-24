@@ -42,8 +42,11 @@ class Personagem(pygame.sprite.Sprite):
     def flores(self, flor):
         self.__flores.append(flor)
 
-    def carry(self):
-        self.__velocidade -= 1
+    def carry(self, v):
+        if v:
+            self.__velocidade -= v
+        else:
+            self.__velocidade -= 1
 
     def moverx(self, velocidade):
         self.__coordenadax += velocidade
