@@ -1,9 +1,13 @@
 from TelaJogo import TelaJogo
 import pygame
 from pygame.locals import *
+
+from terreno.aquatico import Aquatico
 from sapo import Sapo
+
 from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
+
 from itens.girassol import Girassol
 
 
