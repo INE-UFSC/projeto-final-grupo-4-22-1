@@ -21,7 +21,7 @@ class TelaJogo:
     def __init__(self, controller):
         self.__controlador = controller
         self.__largura = 1200
-        self.__altura = 800
+        self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
 
