@@ -47,7 +47,7 @@ class GameController:
     def iniciar(self):
         self.__jogador = Sapo()
         ra = Ra()
-        cobra = Cobra(50,30,200,200,5,2,'terrestre')
+        cobra = Cobra(50,30,100,100,5,2,'terrestre')
 
         jacare = Jacare()
         girassol = Girassol()
