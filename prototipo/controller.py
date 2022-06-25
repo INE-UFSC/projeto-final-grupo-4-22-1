@@ -43,15 +43,11 @@ class GameController:
         self.__all_sprites = pygame.sprite.Group()
         
         self.__flores_coletadas = []
-        self.__cobra = Cobra(50,30,200,200,5,2,'terrestre')
-    @property
-    def cobra(self):
-        return self.__cobra
-            
+
     def iniciar(self):
         self.__jogador = Sapo()
         ra = Ra()
-        cobra = self.cobra
+        cobra = Cobra(50,30,200,200,5,2,'terrestre')
 
         jacare = Jacare()
         girassol = Girassol()
@@ -67,7 +63,7 @@ class GameController:
         self.__lista_jacares.add(jacare)
         self.__lista_flores.add(girassol, jasmin)
         
-        self.__all_sprites.add(aquatico, self.__jogador, ra, cobra, jacare, girassol, jasmin)
+        self.__all_sprites.add(aquatico, self.__jogador, ra, jacare, girassol, jasmin)
         
         self.__tela.iniciar()
         rodando = True
@@ -77,8 +73,6 @@ class GameController:
             self.__tela.colorir()
             self.__tela.desenhar(self.__all_sprites)
             self.colisoes()
-            #falta atualizar a imagem provavelmente 
-            #criar uma imagem exclusiva pra ela na função movimento
             cobra.movimento()
             
             
