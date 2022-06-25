@@ -29,18 +29,18 @@ class Cobra(Inimigo):
         distance = 50
 
         if self.counter >= 0 and self.counter <= distance:
-               self.coordenadax += self.velocidade
+               self.rect.x += self.velocidade
         elif self.counter >= distance and self.counter <= distance*2:
-            self.coordenadax -= self.velocidade
+            self.rect.x -= self.velocidade
         else:
             self.counter = 0
             
         self.counter += 1
         self.atualiza()
-        print(self.coordenadax)
+        print(self.rect.x)
     
     def atualiza(self):
-        self.tamanho_ponto("prototipo\Imagens\cobra_teste.png",self.altura,self.largura, self.coordenadax,self.coordenaday)
+        self.tamanho_ponto("prototipo\Imagens\cobra_teste.png",self.altura,self.largura, self.rect.x,self.coordenaday)
     
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
