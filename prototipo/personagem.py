@@ -24,6 +24,9 @@ class Personagem(pygame.sprite.Sprite):
     @property
     def coordenadax(self):
         return self.__coordenadax
+    @coordenadax.setter
+    def coordenadax(self, coordenadax):
+        self.__coordenadax = coordenadax
 
     @property
     def coordenaday(self):

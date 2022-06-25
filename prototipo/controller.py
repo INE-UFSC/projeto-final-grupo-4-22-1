@@ -1,3 +1,4 @@
+from operator import index
 from TelaJogo import TelaJogo
 import pygame
 from pygame.locals import *
@@ -42,18 +43,22 @@ class GameController:
         self.__all_sprites = pygame.sprite.Group()
         
         self.__flores_coletadas = []
-        
+        self.__cobra = Cobra(50,30,200,200,5,2,'terrestre')
+    @property
+    def cobra(self):
+        return self.__cobra
+            
     def iniciar(self):
         self.__jogador = Sapo()
         ra = Ra()
+        cobra = self.cobra
 
-        cobra = Cobra()
         jacare = Jacare()
-        
         girassol = Girassol()
         jasmin = Jasmin()
         
         aquatico = Aquatico()
+
         
         self.__lista_terreno_aquatico.add(aquatico)
         self.__lista_player.add(self.__jogador)
@@ -71,8 +76,11 @@ class GameController:
             self.__clock.tick(40)
             self.__tela.colorir()
             self.__tela.desenhar(self.__all_sprites)
-            
             self.colisoes()
+            #falta atualizar a imagem provavelmente 
+            #criar uma imagem exclusiva pra ela na função movimento
+            cobra.movimento()
+            
             
             if self.__colisoes_cobra:
                 print("Perdeu! A cobra te pegou!")

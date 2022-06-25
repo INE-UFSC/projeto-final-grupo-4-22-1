@@ -1,33 +1,32 @@
 from inimigos.inimigo import Inimigo
+from TelaJogo import TelaJogo
 import pygame
 
-altura_cobra = 50
-largura_cobra = 30
-coordenadax_cobra = 200
-coordenaday_cobra = 200
-velocidade_cobra = 5
-dano = 2
-terreno = 'terrestre'
-VERMELHO = 	(139, 0, 0)
-caminho = [[240, 150],[240, 450],[360, 450],[360, 150]]
-                      
+VERMELHO = 	(139, 0, 0)                      
 
 class Cobra(Inimigo):
-    def __init__(self):
-        super().__init__(altura_cobra, largura_cobra, coordenadax_cobra, coordenaday_cobra, velocidade_cobra, dano, terreno, VERMELHO)
-        self.__caminho = caminho
-
-    #def mudaCoord(self,nCaminho):
-
-    def calculaDistancia(self, coordenax, coordenay):
-        return ((self.coordenadax - coordenax)**2 + (self.coordenaday - coordenay)**2)**0.5
+    def __init__(self,altura_cobra:int, largura_cobra:int, coordenadax:int, coordenaday_cobra:int, velocidade_cobra:int, dano:int, terreno:str):
+        super().__init__(altura_cobra, largura_cobra, coordenadax, coordenaday_cobra, velocidade_cobra, dano, terreno, VERMELHO)
+        self.__counter = 0
+        self.__tela = TelaJogo(self)
     
-    """@staticmethod
-    def versorEntreCoordenadas(coordX0, coordY0,coordX1, coordY1):
-        x = coordX1 - coordX0
-        y = coordY1 - coordY0
-        modulo = (x**2 + y**2)**0.5
-        if modulo == 0:
-            return (0,0)
+    @property
+    def counter(self):
+        return self.__counter
+    
+    @counter.setter
+    def counter(self, counter):
+        self.__counter = counter
+
+    def movimento(self):
+        distance = 400
+
+        if self.counter >= 0 and self.counter <= distance:
+               self.coordenadax += self.velocidade
+        elif self.counter >= distance and self.counter <= distance*2:
+            self.coordenadax -= self.velocidade
         else:
-            return (x/modulo, y/modulo)"""
+            self.counter = 0
+            
+        self.counter += 1
+        print(self.coordenadax)
