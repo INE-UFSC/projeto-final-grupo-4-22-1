@@ -81,9 +81,10 @@ class GameController:
         
         for cons in range(0,10):
             maca = Maca()
+            espinho = Espinho()
 
-            self.__lista_consumiveis.add(maca)
-            self.__all_sprites.add(maca)
+            self.__lista_consumiveis.add(maca, espinho)
+            self.__all_sprites.add(maca, espinho)
         
         print(self.__all_sprites)
         self.__tela.iniciar()
