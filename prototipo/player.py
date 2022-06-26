@@ -15,7 +15,7 @@ class Player(Personagem):
         return self.__velocidade
     
     def carry(self, v):
-        if self.__velocidade > 1:
+        if self.__velocidade - v > 1:
             if v:
                 self.__velocidade -= v
                 return True
