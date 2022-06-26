@@ -43,7 +43,8 @@ class GameController:
         
         self.__all_sprites = pygame.sprite.Group()
         
-        self.__flores_coletadas = []
+        #chave é o objeto flor e o valor é bool p/ saber se seu peso foi ou não descontado da velocidade do sapo
+        self.__flores_coletadas = {}
 
     def iniciar(self):
         self.__jogador = Sapo()
@@ -51,21 +52,28 @@ class GameController:
         cobra = Cobra(50,30,100,100,5,2,'terrestre')
 
         jacare = Jacare(70,40,500,60,10,3,'aquatico')
-        girassol = Girassol()
-        jasmin = Jasmin()
         
         aquatico = Aquatico()
 
-        
         self.__lista_terreno_aquatico.add(aquatico)
         self.__lista_player.add(self.__jogador)
         self.__lista_parceiro.add(ra)
         self.__lista_cobras.add(cobra)
         self.__lista_jacares.add(jacare)
-        self.__lista_flores.add(girassol, jasmin)
         
-        self.__all_sprites.add(aquatico, self.__jogador, ra, girassol, jasmin)
+        self.__all_sprites.add(aquatico, self.__jogador, ra)
         
+        #FIXME: só para o mvp, dps isso dependerá da fase (que ainda não foi implementada)
+        for flor in range(0, 10):
+            #print("aaa")
+            #print(self.__all_sprites)
+            girassol = Girassol()
+            jasmin = Jasmin()
+            
+            self.__lista_flores.add(girassol, jasmin)
+            self.__all_sprites.add(girassol, jasmin)
+        
+        print(self.__all_sprites)
         self.__tela.iniciar()
         rodando = True
         
@@ -86,13 +94,14 @@ class GameController:
                 break
             elif self.__colisoes_flores:
                 flor = self.__colisoes_flores[0]
-                self.__flores_coletadas.append(flor)
-                self.__jogador.carry(flor.peso)
+                self.__flores_coletadas[flor] = self.__jogador.carry(flor.peso)
             elif self.__colisoes_parceiro:
+                remove = []
                 for flor in self.__flores_coletadas:
-                    self.__jogador.aumenta_velocidade(flor.peso)
-                    self.__flores_coletadas.remove(flor)
-
+                    if self.__flores_coletadas[flor] == True:
+                        self.__jogador.aumenta_velocidade(flor.peso)
+                self.__flores_coletadas = {}
+            
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
