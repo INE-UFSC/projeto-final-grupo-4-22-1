@@ -10,8 +10,8 @@ altura_espinho = 10
 coordenadax_espinho = random.randint(0, 1000)
 coordenaday_espinho = random.randint(0, 700)
 onus = 5
-cinza = (124, 134, 153)
+marrom = (75, 54, 33)
 
 class Espinho(EfeitoOnus):
-    def __init__(self, nome, largura_espinho, altura_espinho, coordenadax_espinho, coordenaday_espinho, cinza):
-        super().__init__(nome, largura_espinho, altura_espinho, coordenadax_espinho, coordenaday_espinho, cinza)
+    def __init__(self, nome, largura_espinho, altura_espinho, coordenadax_espinho, coordenaday_espinho, marrom):
+        super().__init__(nome, largura_espinho, altura_espinho, coordenadax_espinho, coordenaday_espinho, marrom)

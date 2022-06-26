@@ -13,10 +13,10 @@ coordenaday_cogumelo = random.randint(0, 700)
 # onus= ??? Efeito onus do cogumelo inverte os comandos como ficaria o atrubuto onus(??)
 
 
-marrom = (75, 54, 33)
+cinza = (124, 134, 153)
 
 
 class Cogumelo(EfeitoOnus):
-    def __init__(self, nome, largura_cogumelo, altura_cogumelo, coordenadax_cogumelo, coordenaday_cogumelo, marrom):
+    def __init__(self, nome, largura_cogumelo, altura_cogumelo, coordenadax_cogumelo, coordenaday_cogumelo, cinza):
         super().__init__(nome, largura_cogumelo, altura_cogumelo,
-                         coordenadax_cogumelo, coordenaday_cogumelo, marrom)
+                         coordenadax_cogumelo, coordenaday_cogumelo, cinza)

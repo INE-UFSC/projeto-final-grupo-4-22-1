@@ -13,6 +13,9 @@ import random
 
 from itens.girassol import Girassol
 from itens.jasmin import Jasmin
+from itens.maca import Maca
+from itens.espinho import Espinho
+from itens.cogumelo import Cogumelo
 
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)
@@ -37,6 +40,9 @@ class GameController:
 
         self.__lista_flores = pygame.sprite.Group()
         self.__colisoes_flores = None
+
+        self.__lista_consumiveis = pygame.sprite.Group()
+        self.__colisoes_consumiveis = None
 
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__colisoes_terreno_aquatico = None
@@ -73,6 +79,12 @@ class GameController:
             self.__lista_flores.add(girassol, jasmin)
             self.__all_sprites.add(girassol, jasmin)
         
+        for cons in range(0,10):
+            maca = Maca()
+
+            self.__lista_consumiveis.add(maca)
+            self.__all_sprites.add(maca)
+        
         print(self.__all_sprites)
         self.__tela.iniciar()
         rodando = True
@@ -95,6 +107,8 @@ class GameController:
             elif self.__colisoes_flores:
                 flor = self.__colisoes_flores[0]
                 self.__flores_coletadas[flor] = self.__jogador.carry(flor.peso)
+            elif self.__colisoes_consumiveis:
+                self.__jogador.aumenta_velocidade(5)
             elif self.__colisoes_parceiro:
                 remove = []
                 for flor in self.__flores_coletadas:
@@ -133,3 +147,4 @@ class GameController:
         self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__lista_flores, True)
         self.__colisoes_terreno_aquatico = pygame.sprite.spritecollide(self.__jogador, self.__lista_terreno_aquatico, False)
         self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__lista_parceiro, False)
+        self.__colisoes_consumiveis = pygame.sprite.spritecollide(self.__jogador, self.__lista_consumiveis, True)
