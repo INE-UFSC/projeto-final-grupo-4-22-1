@@ -26,7 +26,7 @@ O jogador (sapo) é representado por um quadrado preto. Seus inimigos (cobra e j
 
 ## Comandos
 
-> **Para cima:** Tecla direcional para cima.
-> **Para baixo:** Tecla direcional para baixo.
-> **Para esquerda:** Tecla direcional para esquerda.
-> **Para direita:** Tecla direcional para direita.
+> **Para cima:** Tecla direcional para cima. <br>
+> **Para baixo:** Tecla direcional para baixo. <br>
+> **Para esquerda:** Tecla direcional para esquerda. <br>
+> **Para direita:** Tecla direcional para direita. <br>
