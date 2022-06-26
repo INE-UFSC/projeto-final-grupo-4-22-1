@@ -25,23 +25,21 @@ class Cobra(Inimigo):
 #falta extensão para o eixo Y
 #pensando em passar função para controller discutir com o grupo
 #rotação de imagem quando implementar eixo Y    
-    def movimento(self):
-        distance = 50
-
-        if self.counter >= 0 and self.counter <= 50:
+    def movimento(self, distancia:int):
+        
+        if self.counter >= 0 and self.counter <= distancia:
                self.rect.x += self.velocidade
-        elif self.counter >= 50 and self.counter <= 120:
+        elif self.counter >= distancia and self.counter <= distancia*2.5:
             self.rect.y += self.velocidade
-        elif self.counter >= 120 and self.counter <= 170:
+        elif self.counter >= distancia*2.5 and self.counter <= distancia*3.5:
                self.rect.x -= self.velocidade
-        elif self.counter >= 170 and self.counter <= 240:
+        elif self.counter >= distancia*3.5 and self.counter <= distancia*5:
             self.rect.y -= self.velocidade
         else:
             self.counter = 0
             
         self.counter += 1
         self.atualiza()
-        print(self.rect.x)
     
     def atualiza(self):
         self.tamanho_ponto("prototipo\Imagens\cobra_teste.png",self.altura,self.largura, self.rect.x,self.rect.y)

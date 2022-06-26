@@ -9,6 +9,7 @@ from ra import Ra
 
 from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
+import random
 
 from itens.girassol import Girassol
 from itens.jasmin import Jasmin
@@ -49,7 +50,7 @@ class GameController:
         ra = Ra()
         cobra = Cobra(50,30,100,100,5,2,'terrestre')
 
-        jacare = Jacare()
+        jacare = Jacare(70,40,500,60,10,3,'aquatico')
         girassol = Girassol()
         jasmin = Jasmin()
         
@@ -63,7 +64,7 @@ class GameController:
         self.__lista_jacares.add(jacare)
         self.__lista_flores.add(girassol, jasmin)
         
-        self.__all_sprites.add(aquatico, self.__jogador, ra, jacare, girassol, jasmin)
+        self.__all_sprites.add(aquatico, self.__jogador, ra, girassol, jasmin)
         
         self.__tela.iniciar()
         rodando = True
@@ -73,7 +74,8 @@ class GameController:
             self.__tela.colorir()
             self.__tela.desenhar(self.__all_sprites)
             self.colisoes()
-            cobra.movimento()
+            cobra.movimento(50)
+            jacare.movimento(15)
             
             
             if self.__colisoes_cobra:
