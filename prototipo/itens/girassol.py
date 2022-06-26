@@ -8,8 +8,8 @@ largura_girassol = 20
 altura_girassol = 15
 
 # coordenadas aleatórias do girassol
-coordenadax_girassol = random.randint(0, 1000)
-coordenaday_girassol = random.randint(0, 700)
+'''coordenadax_girassol = random.randint(0, 1000)
+coordenaday_girassol = random.randint(0, 700)'''
 
 peso_girassol = 3
 amarelo = (255, 255, 0)
@@ -18,4 +18,4 @@ amarelo = (255, 255, 0)
 class Girassol(Coletaveis):
     def __init__(self):
         super().__init__(nome, largura_girassol, altura_girassol,
-                         coordenadax_girassol, coordenaday_girassol, peso_girassol, amarelo)
+                         random.randint(0, 1000), random.randint(0, 700), peso_girassol, amarelo)

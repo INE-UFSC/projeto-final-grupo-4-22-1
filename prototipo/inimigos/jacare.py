@@ -39,7 +39,7 @@ class Jacare(Inimigo):
         self.atualiza()
     
     def atualiza(self):
-        self.tamanho_ponto("Imagens/jacare_teste.png",self.altura,self.largura, self.rect.x,self.rect.y)
+        self.tamanho_ponto("prototipo/Imagens/jacare_teste.png",self.altura,self.largura, self.rect.x,self.rect.y)
     
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
