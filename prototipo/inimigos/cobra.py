@@ -42,7 +42,7 @@ class Cobra(Inimigo):
         self.atualiza()
     
     def atualiza(self):
-        self.tamanho_ponto("prototipo/Imagens/cobra_teste.png",self.altura,self.largura, self.rect.x,self.rect.y)
+        self.tamanho_ponto("Imagens/cobra_teste.png",self.altura,self.largura, self.rect.x,self.rect.y)
     
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
