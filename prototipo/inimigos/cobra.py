@@ -1,6 +1,7 @@
 from inimigos.inimigo import Inimigo
 from TelaJogo import TelaJogo
 import pygame
+import random
 
 VERMELHO = 	(139, 0, 0)                      
 
@@ -27,16 +28,16 @@ class Cobra(Inimigo):
 #rotação de imagem quando implementar eixo Y    
     def movimento(self, distancia:int):
         
-        if self.counter >= 0 and self.counter <= distancia:
+        if self.counter >= 0 and self.counter <= distancia and self.rect.x <= 300:
                self.rect.x += self.velocidade
-        elif self.counter >= distancia and self.counter <= distancia*2.5:
+        elif self.counter >= distancia and self.counter <= distancia*2.5 and self.rect.y <= 550:
             self.rect.y += self.velocidade
-        elif self.counter >= distancia*2.5 and self.counter <= distancia*3.5:
+        elif self.counter >= distancia*2.5 and self.counter <= distancia*3.5 and self.rect.x >= 100:
                self.rect.x -= self.velocidade
-        elif self.counter >= distancia*3.5 and self.counter <= distancia*5:
+        elif self.counter >= distancia*3.5 and self.counter <= distancia*5 and self.rect.y >= 20:
             self.rect.y -= self.velocidade
         else:
-            self.counter = 0
+            self.counter = random.randint(0,250)
             
         self.counter += 1
         self.atualiza()

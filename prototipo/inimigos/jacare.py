@@ -1,3 +1,4 @@
+from cmath import rect
 from inimigos.inimigo import Inimigo
 import pygame
 import random
@@ -24,16 +25,16 @@ class Jacare(Inimigo):
    
     def movimento(self, distancia:int):
         
-        if self.counter >= 0 and self.counter <= distancia:
+        if self.counter >= 0 and self.counter <= distancia and self.rect.x <= 600:
                self.rect.x += self.velocidade
-        elif self.counter >= distancia and self.counter <= distancia*4:
+        elif self.counter >= distancia and self.counter <= distancia*4 and self.rect.y <= 500:
             self.rect.y += self.velocidade
-        elif self.counter >= distancia*4 and self.counter <= distancia*5:
+        elif self.counter >= distancia*4 and self.counter <= distancia*5 and self.rect.x >= 500:
                self.rect.x -= self.velocidade
-        elif self.counter >= distancia*5 and self.counter <= distancia*8:
+        elif self.counter >= distancia*5 and self.counter <= distancia*8 and self.rect.y>=0:
             self.rect.y -= self.velocidade
         else:
-            self.counter = 0
+            self.counter = random.randint(0,80)
             
         self.counter += 1
         self.atualiza()
