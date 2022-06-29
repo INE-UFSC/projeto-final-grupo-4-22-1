@@ -136,11 +136,11 @@ class GameController:
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == K_LEFT and 0 <= self.__jogador.rect.y:
+                    if event.key == K_LEFT and 0 <= self.__jogador.rect.x:
                         self.__jogador.rect.x += (-self.__jogador.velocidade)
                     if event.key == K_RIGHT and self.__tela.largura - self.__jogador.largura >= self.__jogador.rect.x:
                         self.__jogador.rect.x += (self.__jogador.velocidade)
-                    if event.key == K_UP and 0 <= self.__jogador.coordenaday:
+                    if event.key == K_UP and 0 <= self.__jogador.rect.y:
                         self.__jogador.rect.y += (-self.__jogador.velocidade)
                     if event.key == K_DOWN and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
                         self.__jogador.rect.y += (self.__jogador.velocidade)
