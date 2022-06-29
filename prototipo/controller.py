@@ -155,6 +155,48 @@ class GameController:
                 self.__jogador.rect.y += (self.__jogador.velocidade)
 
             self.__tela.update()
+        self.game_over()
+
+    def game_over(self):
+        self.__tela.game_over()
+        game_over = True
+        while game_over:
+            self.__clock.tick(40)
+            self.__tela.update()
+            for event in self.__tela.ler():
+                if event.type == pygame.QUIT:
+                    self.__tela.fechar()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == K_SPACE:
+                        return self.restart()
+
+    def restart(self):
+        self.__lista_player = pygame.sprite.Group()
+        self.__jogador = None
+
+        self.__lista_parceiro = pygame.sprite.Group()
+        self.__colisoes_parceiro = None
+
+        self.__lista_cobras = pygame.sprite.Group()
+        self.__colisoes_cobra = None
+
+        self.__lista_jacares = pygame.sprite.Group()
+        self.__colisoes_jacare = None
+
+        self.__lista_flores = pygame.sprite.Group()
+        self.__colisoes_flores = None
+
+        self.__lista_consumiveis = pygame.sprite.Group()
+        self.__colisoes_consumiveis = None
+
+        self.__lista_terreno_aquatico = pygame.sprite.Group()
+        self.__colisoes_terreno_aquatico = None
+        
+        self.__all_sprites = pygame.sprite.Group()
+        
+        #chave é o objeto flor e o valor é bool p/ saber se seu peso foi ou não descontado da velocidade do sapo
+        self.__flores_coletadas = {}
+        self.iniciar()
 
     def colisoes(self):
         self.__colisoes_cobra = pygame.sprite.spritecollide(self.__jogador, self.__lista_cobras, False)

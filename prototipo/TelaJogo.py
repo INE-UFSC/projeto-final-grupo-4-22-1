@@ -25,6 +25,7 @@ class TelaJogo:
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
         self.__menu = pygame.image.load("Menus e Botões/1.png").convert()
+        self.__game_over = pygame.image.load("Menus e Botões/perdeu.png").convert()
 
     @property
     def largura(self):
@@ -41,6 +42,10 @@ class TelaJogo:
     def menu(self):
         self.__tela.fill(VERDE_CLARO)
         self.__tela.blit(self.__menu, (0,0))
+
+    def game_over(self):
+        self.__tela.fill(BRANCO)
+        self.__tela.blit(self.__game_over, (0,0))
 
     def iniciar(self):
         pygame.init()
