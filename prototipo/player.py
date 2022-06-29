@@ -29,3 +29,15 @@ class Player(Personagem):
             self.__velocidade += v
         else:
             self.__velocidade += 1
+
+    def mover_cima(self):
+        self.rect.y += (-self.velocidade)
+
+    def mover_baixo(self):
+        self.rect.y += (self.velocidade)
+
+    def mover_esquerda(self):
+        self.rect.x += (-self.velocidade)
+
+    def mover_direita(self):
+        self.rect.x += (self.velocidade)

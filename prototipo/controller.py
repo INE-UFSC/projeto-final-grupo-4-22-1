@@ -23,6 +23,7 @@ from itens.cogumelo import Cogumelo
 
 class GameController:
     def __init__(self):
+
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
         
@@ -137,22 +138,22 @@ class GameController:
                     self.__tela.fechar()
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_LEFT and 0 <= self.__jogador.rect.x:
-                        self.__jogador.rect.x += (-self.__jogador.velocidade)
+                        self.__jogador.mover_esquerda()
                     if event.key == K_RIGHT and self.__tela.largura - self.__jogador.largura >= self.__jogador.rect.x:
-                        self.__jogador.rect.x += (self.__jogador.velocidade)
+                        self.__jogador.mover_direita()
                     if event.key == K_UP and 0 <= self.__jogador.rect.y:
-                        self.__jogador.rect.y += (-self.__jogador.velocidade)
+                        self.__jogador.mover_cima()
                     if event.key == K_DOWN and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
-                        self.__jogador.rect.y += (self.__jogador.velocidade)
+                        self.__jogador.mover_baixo()
 
             if pygame.key.get_pressed()[K_LEFT] and 0 <= self.__jogador.rect.x:
-                self.__jogador.rect.x += (-self.__jogador.velocidade)
+                self.__jogador.mover_esquerda()
             if pygame.key.get_pressed()[K_RIGHT] and self.__tela.largura - self.__jogador.largura >= self.__jogador.rect.x:
-                self.__jogador.rect.x += (self.__jogador.velocidade)
+                self.__jogador.mover_direita()
             if pygame.key.get_pressed()[K_UP] and 0 <= self.__jogador.rect.y:
-                self.__jogador.rect.y += (-self.__jogador.velocidade)
+                self.__jogador.mover_cima()
             if pygame.key.get_pressed()[K_DOWN] and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
-                self.__jogador.rect.y += (self.__jogador.velocidade)
+                self.__jogador.mover_baixo()
 
             self.__tela.update()
         self.game_over()
