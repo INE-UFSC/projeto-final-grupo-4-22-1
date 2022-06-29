@@ -2,4 +2,4 @@ from controller import GameController
 
 controlador = GameController()
 
-controlador.iniciar()
+controlador.iniciar_menu()

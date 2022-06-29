@@ -24,6 +24,7 @@ class TelaJogo:
         self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
+        self.__menu = pygame.image.load("Menus e Botões/1.png").convert()
 
     @property
     def largura(self):
@@ -36,6 +37,10 @@ class TelaJogo:
     @property
     def tela(self):
         return self.__tela
+
+    def menu(self):
+        self.__tela.fill(VERDE_CLARO)
+        self.__tela.blit(self.__menu, (0,0))
 
     def iniciar(self):
         pygame.init()

@@ -52,6 +52,21 @@ class GameController:
         #chave é o objeto flor e o valor é bool p/ saber se seu peso foi ou não descontado da velocidade do sapo
         self.__flores_coletadas = {}
 
+    def iniciar_menu(self):
+        self.__tela.iniciar()
+        self.__tela.menu()
+
+        menu = True
+        while menu:
+            self.__clock.tick(40)
+            self.__tela.update()
+            for event in self.__tela.ler():
+                if event.type == pygame.QUIT:
+                    self.__tela.fechar()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == K_SPACE:
+                        return self.iniciar()
+
     def iniciar(self):
         self.__jogador = Sapo()
         ra = Ra()
