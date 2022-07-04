@@ -27,23 +27,35 @@ class Cobra(Inimigo):
 #pensando em passar função para controller discutir com o grupo
 #rotação de imagem quando implementar eixo Y    
     def movimento(self, distancia:int):
-        
+        imagem = 0
         if self.counter >= 0 and self.counter <= distancia and self.rect.x <= 300:
-               self.rect.x += self.velocidade
+            self.rect.x += self.velocidade
         elif self.counter >= distancia and self.counter <= distancia*2.5 and self.rect.y <= 550:
             self.rect.y += self.velocidade
+            imagem = 1
         elif self.counter >= distancia*2.5 and self.counter <= distancia*3.5 and self.rect.x >= 100:
-               self.rect.x -= self.velocidade
+            self.rect.x -= self.velocidade
+            imagem = 2
         elif self.counter >= distancia*3.5 and self.counter <= distancia*5 and self.rect.y >= 20:
             self.rect.y -= self.velocidade
+            imagem = 3
         else:
             self.counter = random.randint(0,250)
             
         self.counter += 1
-        self.atualiza()
+        self.atualiza(imagem)
+
+    def atualiza(self,imagem):
+        if(imagem == 0):
+            self.tamanho_ponto("Prototipo/Imagens/cobra_direita.png",self.altura,self.largura, self.rect.x,self.rect.y)
+        elif(imagem == 1):
+            self.tamanho_ponto("Prototipo/Imagens/cobra_baixo.png",self.altura,self.largura, self.rect.x,self.rect.y)
+        elif(imagem == 2):
+            self.tamanho_ponto("Prototipo/Imagens/cobra_esquerda.png",self.altura,self.largura, self.rect.x,self.rect.y)
+        elif(imagem == 3):
+            self.tamanho_ponto("Prototipo/Imagens/cobra_cima.png",self.altura,self.largura, self.rect.x,self.rect.y)
     
-    def atualiza(self):
-        self.tamanho_ponto("Imagens/cobra_teste.png",self.altura,self.largura, self.rect.x,self.rect.y)
+    
     
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
