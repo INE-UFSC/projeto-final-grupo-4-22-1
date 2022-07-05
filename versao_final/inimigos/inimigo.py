@@ -1,4 +1,7 @@
 from personagem import Personagem
+import random
+from TelaJogo import TelaJogo
+import pygame
 
 class Inimigo(Personagem):
     def __init__(self, altura, largura, coordenadax, coordenaday, velocidade, dano, terreno, COR):
@@ -6,6 +9,11 @@ class Inimigo(Personagem):
         self.__dano = dano
         self.__terreno = terreno
         self.__velocidade = velocidade
+        self.__counter = 0
+        #teste 
+        self.__width = 1200
+        self.__height = 600
+        self.display = pygame.display.set_mode((self.__width, self.__height))
 
     @property
     def dano(self):
@@ -19,9 +27,46 @@ class Inimigo(Personagem):
     def velocidade(self):
         return self.__velocidade
     
-    def carry(self, v):
-        if self.__velocidade > 1:
-            if v:
-                self.__velocidade -= v
-            else:
-                self.__velocidade -= 1
+    @property
+    def counter(self):
+        return self.__counter
+    
+    @counter.setter
+    def counter(self, counter):
+        self.__counter = counter
+
+    def movimento(self, distancia:int,distanciax,distanciay,delimitaxd,delimitayb,delimitaxe,delimitayc,aleatoriedade,direita,baixo,esquerda,cima):
+        imagem = 0
+        if self.counter >= 0 and self.counter <= distancia and self.rect.x <= delimitaxd:
+            self.rect.x += self.velocidade
+        elif self.counter >= distancia and self.counter <= distancia*distanciax and self.rect.y <= delimitayb:
+            self.rect.y += self.velocidade
+            imagem = 1
+        elif self.counter >= distancia*distanciax and self.counter <= distancia*distanciay and self.rect.x >= delimitaxe:
+            self.rect.x -= self.velocidade
+            imagem = 2
+        elif self.counter >= distancia*distanciay and self.counter <= distancia*distanciax*2 and self.rect.y >= delimitayc:
+            self.rect.y -= self.velocidade
+            imagem = 3
+        else:
+            self.counter = random.randint(0,aleatoriedade)
+            
+        self.counter += 1
+        self.atualiza(imagem,direita,baixo,esquerda,cima)
+
+    def atualiza(self,imagem,direita,baixo,esquerda,cima):
+        if(imagem == 0):
+            self.tamanho_ponto(direita,self.altura,self.largura, self.rect.x,self.rect.y)
+        elif(imagem == 1):
+            self.tamanho_ponto(baixo,self.altura,self.largura, self.rect.x,self.rect.y)
+        elif(imagem == 2):
+            self.tamanho_ponto(esquerda,self.altura,self.largura, self.rect.x,self.rect.y)
+        elif(imagem == 3):
+            self.tamanho_ponto(cima,self.altura,self.largura, self.rect.x,self.rect.y)
+    
+    
+    
+    def tamanho_ponto(self, imagem,altura,largura, x, y):
+        imagem = pygame.image.load(imagem)
+        imagem = pygame.transform.scale(imagem,(altura,largura))
+        self.display.blit(imagem, (x, y))

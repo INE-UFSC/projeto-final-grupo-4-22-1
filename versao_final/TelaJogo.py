@@ -24,8 +24,8 @@ class TelaJogo:
         self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
-        self.__menu = pygame.image.load("Menus_botoes/1.png").convert()
-        self.__game_over = pygame.image.load("Menus_botoes/perdeu.png").convert()
+        self.__menu = pygame.image.load("versao_final/Menus_botoes/1.png").convert()
+        self.__game_over = pygame.image.load("versao_final/Menus_botoes/perdeu.png").convert()
 
     @property
     def largura(self):

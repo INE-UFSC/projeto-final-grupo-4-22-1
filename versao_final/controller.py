@@ -112,8 +112,8 @@ class GameController:
             self.__tela.desenhar(self.__all_sprites)
             if self.colisoes() == 'Perdeu!':
                 break
-            cobra.movimento(50)
-            jacare.movimento(15)
+            cobra.movimento(50,2,3,300,550,100,20,250,"versao_final/Imagens/cobra_direita.png","versao_final/Imagens/cobra_baixo.png","versao_final/Imagens/cobra_esquerda.png","versao_final/Imagens/cobra_cima.png")
+            jacare.movimento(15,4,5,600,500,500,0,80,"versao_final/Imagens/jacare_direita.png","versao_final/Imagens/jacare_baixo.png","versao_final/Imagens/jacare_esquerda.png","versao_final/Imagens/jacare_cima.png")
             
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
