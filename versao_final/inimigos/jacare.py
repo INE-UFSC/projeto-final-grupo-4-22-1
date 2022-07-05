@@ -44,13 +44,13 @@ class Jacare(Inimigo):
     
     def atualiza(self,imagem):
         if(imagem == 0):
-            self.tamanho_ponto("prototipo/Imagens/jacare_direita.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/jacare_direita.png",self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 1):
-            self.tamanho_ponto("prototipo/Imagens/jacare_baixo.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/jacare_baixo.png",self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 2):
-            self.tamanho_ponto("prototipo/Imagens/jacare_esquerda.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/jacare_esquerda.png",self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 3):
-            self.tamanho_ponto("prototipo/Imagens/jacare_cima.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/jacare_cima.png",self.altura,self.largura, self.rect.x,self.rect.y)
     
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)

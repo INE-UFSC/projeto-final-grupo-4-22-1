@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import pygame
 
+
 class Item(ABC, pygame.sprite.Sprite):
     def __init__(self, nome, largura, altura, coordenadax, coordenaday, COR):
         self.__nome = nome
@@ -37,3 +38,6 @@ class Item(ABC, pygame.sprite.Sprite):
     '''@abstractmethod
     def criar(self, coordenadax, coordenaday):
         pass'''
+
+    '''Método para criação de itens no mapa sem que eles fiquem na água
+    ou ocupem a mesma coordenada'''

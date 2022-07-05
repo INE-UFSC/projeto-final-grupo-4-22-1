@@ -47,13 +47,13 @@ class Cobra(Inimigo):
 
     def atualiza(self,imagem):
         if(imagem == 0):
-            self.tamanho_ponto("prototipo/Imagens/cobra_direita.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/cobra_direita.png",self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 1):
-            self.tamanho_ponto("prototipo/Imagens/cobra_baixo.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/cobra_baixo.png",self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 2):
-            self.tamanho_ponto("prototipo/Imagens/cobra_esquerda.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/cobra_esquerda.png",self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 3):
-            self.tamanho_ponto("prototipo/Imagens/cobra_cima.png",self.altura,self.largura, self.rect.x,self.rect.y)
+            self.tamanho_ponto("Imagens/cobra_cima.png",self.altura,self.largura, self.rect.x,self.rect.y)
     
     
     
