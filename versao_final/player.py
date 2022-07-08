@@ -29,6 +29,11 @@ class Player(Personagem):
             self.__velocidade += v
         else:
             self.__velocidade += 1
+    
+    def debuff(self):
+        self.__velocidade = self.__velocidade*(-1)
+    
+
 
     def mover_cima(self):
         self.rect.y += (-self.velocidade)
