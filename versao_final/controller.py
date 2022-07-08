@@ -20,9 +20,9 @@ from itens.espinho import Espinho
 from itens.cogumelo import Cogumelo
 
 from coordenada import Coordenada
-c_flor = Coordenada(0,0,0)
-c_item = Coordenada(0,0,0)
-
+#c_flor = Coordenada(0,0,0)
+#c_item = Coordenada(0,0,0)
+c1 = Coordenada(0,0,0)
 
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)
@@ -101,20 +101,20 @@ class GameController:
         for flor in range(0, 6):
             #print("aaa")
             #print(self.__all_sprites)
-            c_flor.coordenadas()
+            c1.coordenadas()
             girassol = Girassol(c1.coordenadax,c1.coordenaday)
-            c_flor.coordenadas()
+            c1.coordenadas()
             jasmin = Jasmin(c1.coordenadax,c1.coordenaday)
             
             self.__lista_flores.add(girassol, jasmin)
             self.__all_sprites.add(girassol, jasmin)
         
         for cons in range(0,4):
-            c_item.coordenadas()
+            c1.coordenadas()
             maca = Maca(c1.coordenadax,c1.coordenaday)
-            c_item.coordenadas()
+            c1.coordenadas()
             espinho = Espinho(c1.coordenadax,c1.coordenaday)
-            c_item.coordenadas()
+            c1.coordenadas()
             cogumelo = Cogumelo(c1.coordenadax,c1.coordenaday)
 
             self.__lista_consumiveis.add(maca, espinho)

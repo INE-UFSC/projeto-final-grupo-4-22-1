@@ -7,6 +7,7 @@ class Coordenada():
         self.__coordenaday = coordenaday
         self.__raio_distanciamento = raio_distanciamento
         self.__lista_coordenadas = []
+        self.__dict_coordenadas = {}
 
 
     @property
