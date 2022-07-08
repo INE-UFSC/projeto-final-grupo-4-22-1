@@ -69,17 +69,43 @@ class GameController:
     def iniciar_menu(self):
         self.__tela.iniciar()
         self.__tela.menu()
-
+        self.__usuario = ''
+        clock = pygame.time.Clock()
+        font = pygame.font.Font(None, 32)
         menu = True
+        color_inactive = pygame.Color('lightskyblue3')
+        color_active = pygame.Color('dodgerblue2')
+        color = color_inactive
+        active = False
         while menu:
             self.__clock.tick(40)
             self.__tela.update()
+            input_box = self.__tela.input_box()
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_SPACE:
                         return self.iniciar()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if input_box.collidepoint(event.pos):
+                        active = True
+                    else:
+                        active = False
+                if event.type == pygame.KEYDOWN:
+                    if active:
+                        if event.key == pygame.K_RETURN:
+                            print(self.__usuario)
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.__usuario = self.__usuario[:-1]
+                        else:
+                            self.__usuario += event.unicode
+            self.__tela.menu()
+            txt_surface = font.render(self.__usuario, True, (233,233,233))
+            pygame.draw.rect(self.__tela.tela, (0,0,0), input_box, 2)
+            self.__tela.tela.blit(txt_surface, (input_box.x+5, input_box.y+5))
+            pygame.display.flip()
+            clock.tick(30)
 
     def iniciar(self):
         self.__jogador = Sapo()
@@ -133,6 +159,11 @@ class GameController:
             self.__tela.desenhar(self.__all_sprites)
             if self.colisoes() == 'Perdeu!':
                 break
+<<<<<<< Updated upstream
+=======
+            cobra.movimento(50,2,3,300,550,100,20,250,"Imagens/cobra_direita.png","Imagens/cobra_baixo.png","Imagens/cobra_esquerda.png","Imagens/cobra_cima.png")
+            jacare.movimento(15,4,5,600,500,500,0,80,"Imagens/jacare_direita.png","Imagens/jacare_baixo.png","Imagens/jacare_esquerda.png","Imagens/jacare_cima.png")
+>>>>>>> Stashed changes
             
             distancia_cobra = cobra.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,cobra.rect.x,cobra.rect.y)
             distancia_jacare = jacare.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,jacare.rect.x,jacare.rect.y)
@@ -166,7 +197,7 @@ class GameController:
         self.game_over()
 
     def game_over(self):
-        self.atualiza_ranking('pedro', 3)
+        self.atualiza_ranking(self.__usuario, 200)
         self.__tela.game_over()
         game_over = True
         while game_over:
