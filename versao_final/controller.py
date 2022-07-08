@@ -4,6 +4,7 @@ from ranking import Ranking
 from rankingDAO import RankingDAO
 import pygame
 from pygame.locals import *
+from inimigos import Inimigo
 
 from terreno.aquatico import Aquatico
 from sapo import Sapo
@@ -83,7 +84,7 @@ class GameController:
     def iniciar(self):
         self.__jogador = Sapo()
         ra = Ra()
-        cobra = Cobra(50,30,100,100,5,2,'terrestre')
+        cobra = Cobra(50,30,100,100,2,2,'terrestre')
 
         jacare = Jacare(70,40,500,60,10,3,'aquatico')
         
@@ -132,9 +133,13 @@ class GameController:
             self.__tela.desenhar(self.__all_sprites)
             if self.colisoes() == 'Perdeu!':
                 break
-            cobra.movimento(50,2,3,300,550,100,20,250,"versao_final/Imagens/cobra_direita.png","versao_final/Imagens/cobra_baixo.png","versao_final/Imagens/cobra_esquerda.png","versao_final/Imagens/cobra_cima.png")
-            jacare.movimento(15,4,5,600,500,500,0,80,"versao_final/Imagens/jacare_direita.png","versao_final/Imagens/jacare_baixo.png","versao_final/Imagens/jacare_esquerda.png","versao_final/Imagens/jacare_cima.png")
             
+            distancia_cobra = cobra.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,cobra.rect.x,cobra.rect.y)
+            distancia_jacare = jacare.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,jacare.rect.x,jacare.rect.y)
+            cobra.movimento(50,2,3,300,550,100,20,250,"versao_final/Imagens/cobra_direita.png","versao_final/Imagens/cobra_baixo.png","versao_final/Imagens/cobra_esquerda.png","versao_final/Imagens/cobra_cima.png",distancia_cobra,self.__jogador.rect.x,self.__jogador.rect.y)
+            jacare.movimento(15,4,5,600,500,500,0,80,"versao_final/Imagens/jacare_direita.png","versao_final/Imagens/jacare_baixo.png","versao_final/Imagens/jacare_esquerda.png","versao_final/Imagens/jacare_cima.png",distancia_jacare,self.__jogador.rect.x,self.__jogador.rect.y)
+            
+
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
