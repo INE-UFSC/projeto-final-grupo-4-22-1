@@ -16,6 +16,6 @@ amarelo = (255, 255, 0)
 
 
 class Girassol(Coletaveis):
-    def __init__(self):
+    def __init__(self,coordenadax,coordenaday):
         super().__init__(nome, largura_girassol, altura_girassol,
-                         random.randint(0, 1000), random.randint(0, 700), peso_girassol, amarelo)
+                         coordenadax,coordenaday, peso_girassol, amarelo)

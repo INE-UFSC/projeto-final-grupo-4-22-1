@@ -13,5 +13,5 @@ onus = -5
 marrom = (75, 54, 33)
 
 class Espinho(EfeitoOnus):
-    def __init__(self):
-        super().__init__(nome, largura_espinho, altura_espinho, coordenadax_espinho, coordenaday_espinho, onus, marrom)
+    def __init__(self,coordenadax,coordenaday):
+        super().__init__(nome, largura_espinho, altura_espinho,coordenadax,coordenaday, onus, marrom)

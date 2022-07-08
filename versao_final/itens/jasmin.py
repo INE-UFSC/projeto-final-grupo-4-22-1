@@ -12,10 +12,10 @@ altura_jasmin = 10
 coordenaday_jasmin = random.randint(0, 700) #TODO: restringir p/ terreno terrestre'''
 
 peso_jasmin = 1
-branco = (255, 255, 255)
+rosa = (255, 0, 132)
 
 
 class Jasmin(Coletaveis):
-    def __init__(self):
+    def __init__(self,coordenadax,coordenaday):
         super().__init__(nome, largura_jasmin, altura_jasmin,
-                         random.randint(0, 1000), random.randint(0, 700), peso_jasmin, branco)
+                         coordenadax, coordenaday, peso_jasmin, rosa)

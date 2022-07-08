@@ -19,6 +19,11 @@ from itens.maca import Maca
 from itens.espinho import Espinho
 from itens.cogumelo import Cogumelo
 
+from coordenada import Coordenada
+c_flor = Coordenada(0,0,0)
+c_item = Coordenada(0,0,0)
+
+
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)
 
@@ -48,6 +53,9 @@ class GameController:
 
         self.__lista_consumiveis = pygame.sprite.Group()
         self.__colisoes_consumiveis = None
+
+        self.__lista_cogumelos = pygame.sprite.Group()
+        self.__colisoes_cogumelos = None
 
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__colisoes_terreno_aquatico = None
@@ -90,21 +98,29 @@ class GameController:
         self.__all_sprites.add(aquatico, self.__jogador, ra)
         
         #FIXME: só para o mvp, dps isso dependerá da fase (que ainda não foi implementada)
-        for flor in range(0, 10):
+        for flor in range(0, 6):
             #print("aaa")
             #print(self.__all_sprites)
-            girassol = Girassol()
-            jasmin = Jasmin()
+            c_flor.coordenadas()
+            girassol = Girassol(c1.coordenadax,c1.coordenaday)
+            c_flor.coordenadas()
+            jasmin = Jasmin(c1.coordenadax,c1.coordenaday)
             
             self.__lista_flores.add(girassol, jasmin)
             self.__all_sprites.add(girassol, jasmin)
         
-        for cons in range(0,10):
-            maca = Maca()
-            espinho = Espinho()
+        for cons in range(0,4):
+            c_item.coordenadas()
+            maca = Maca(c1.coordenadax,c1.coordenaday)
+            c_item.coordenadas()
+            espinho = Espinho(c1.coordenadax,c1.coordenaday)
+            c_item.coordenadas()
+            cogumelo = Cogumelo(c1.coordenadax,c1.coordenaday)
 
             self.__lista_consumiveis.add(maca, espinho)
-            self.__all_sprites.add(maca, espinho)
+            self.__lista_cogumelos.add(cogumelo)
+
+            self.__all_sprites.add(maca, espinho,cogumelo)
         
         print(self.__all_sprites)
         self.__tela.iniciar()
@@ -177,6 +193,9 @@ class GameController:
         self.__lista_consumiveis = pygame.sprite.Group()
         self.__colisoes_consumiveis = None
 
+        self.__lista_cogumelos = pygame.sprite.Group()
+        self.__colisoes_cogumelos = None
+
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__colisoes_terreno_aquatico = None
         
@@ -194,6 +213,7 @@ class GameController:
         self.__colisoes_terreno_aquatico = pygame.sprite.spritecollide(self.__jogador, self.__lista_terreno_aquatico, False)
         self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__lista_parceiro, False)
         self.__colisoes_consumiveis = pygame.sprite.spritecollide(self.__jogador, self.__lista_consumiveis, True)
+        self.__colisoes_cogumelos = pygame.sprite.spritecollide(self.__jogador,self.__lista_cogumelos,True)
         if self.__colisoes_cobra:
             return("Perdeu!")
         elif self.__colisoes_jacare:
@@ -202,7 +222,11 @@ class GameController:
             flor = self.__colisoes_flores[0]
             self.__flores_coletadas[flor] = self.__jogador.carry(flor.peso)
         elif self.__colisoes_consumiveis:
-            self.__jogador.aumenta_velocidade(5)
+            if self.__jogador.velocidade<0:
+                self.__jogador.debuff()
+            self.__jogador.aumenta_velocidade(3)
+        elif self.__colisoes_cogumelos:
+            self.__jogador.debuff()
         elif self.__colisoes_parceiro:
             remove = []
             for flor in self.__flores_coletadas:
