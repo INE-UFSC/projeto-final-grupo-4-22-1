@@ -159,11 +159,9 @@ class GameController:
             self.__tela.desenhar(self.__all_sprites)
             if self.colisoes() == 'Perdeu!':
                 break
-<<<<<<< Updated upstream
-=======
+
             cobra.movimento(50,2,3,300,550,100,20,250,"Imagens/cobra_direita.png","Imagens/cobra_baixo.png","Imagens/cobra_esquerda.png","Imagens/cobra_cima.png")
             jacare.movimento(15,4,5,600,500,500,0,80,"Imagens/jacare_direita.png","Imagens/jacare_baixo.png","Imagens/jacare_esquerda.png","Imagens/jacare_cima.png")
->>>>>>> Stashed changes
             
             distancia_cobra = cobra.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,cobra.rect.x,cobra.rect.y)
             distancia_jacare = jacare.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,jacare.rect.x,jacare.rect.y)
