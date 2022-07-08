@@ -1,5 +1,7 @@
 from operator import index
 from TelaJogo import TelaJogo
+from ranking import Ranking
+from rankingDAO import RankingDAO
 import pygame
 from pygame.locals import *
 
@@ -23,6 +25,8 @@ from itens.cogumelo import Cogumelo
 
 class GameController:
     def __init__(self):
+        self.__rankingDAO = RankingDAO()
+        self.__ranking = Ranking(self.__rankingDAO)
 
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
@@ -141,6 +145,7 @@ class GameController:
         self.game_over()
 
     def game_over(self):
+        self.atualiza_ranking('pedro', 3)
         self.__tela.game_over()
         game_over = True
         while game_over:
@@ -204,3 +209,8 @@ class GameController:
                 if self.__flores_coletadas[flor] == True:
                     self.__jogador.aumenta_velocidade(flor.peso)
             self.__flores_coletadas = {}
+
+    def atualiza_ranking(self, usuario, pontuacao):
+        self.__ranking.atualiza_ranking(usuario, pontuacao)
+        self.__rankingDAO.replace(self.__ranking.ranking())
+        print(self.__rankingDAO.get_ranking())
