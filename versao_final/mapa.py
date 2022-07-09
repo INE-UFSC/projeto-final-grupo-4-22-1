@@ -39,7 +39,6 @@ class Mapa:
         cobra = Cobra(50,30,100,100,2,2,'terrestre')
         self.__lista_cobras.add(cobra)
 
-
     def spawn_jacares(self):
         jacare = Jacare(70,40,500,60,10,3,'aquatico')
         self.__lista_jacares.add(jacare)

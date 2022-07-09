@@ -13,7 +13,6 @@ class Movimentacao:
         self.__jogador = jogador
         self.__mapa = mapa
         self.__imagens = BibliotecaImagens()
-
     def mover_personagens(self):
         for event in self.__tela.ler():
             if event.type == pygame.QUIT:
