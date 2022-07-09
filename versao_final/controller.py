@@ -23,6 +23,7 @@ from itens.cogumelo import Cogumelo
 
 from coordenada import Coordenada
 from mapa import Mapa
+from input_box import InputBox
 #c_flor = Coordenada(0,0,0)
 #c_item = Coordenada(0,0,0)
 c1 = Coordenada(0,0,0)
@@ -37,52 +38,30 @@ class GameController:
         self.__ranking = Ranking(self.__rankingDAO)
         self.__mapa = Mapa()
         self.__colisoes = Colisoes(self.__mapa)
-
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
-        
         self.__jogador = None
 
     def iniciar_menu(self):
         self.__tela.iniciar()
         self.__tela.menu()
         self.__usuario = ''
-        clock = pygame.time.Clock()
-        font = pygame.font.Font(None, 32)
+        input_box = InputBox(430,300,140,32)
         menu = True
-        color_inactive = pygame.Color('lightskyblue3')
-        color_active = pygame.Color('dodgerblue2')
-        color = color_inactive
-        active = False
         while menu:
-            self.__clock.tick(40)
             self.__tela.update()
-            input_box = self.__tela.input_box()
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_SPACE:
+                        self.__usuario = input_box.texto
                         return self.iniciar()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if input_box.collidepoint(event.pos):
-                        active = True
-                    else:
-                        active = False
-                if event.type == pygame.KEYDOWN:
-                    if active:
-                        if event.key == pygame.K_RETURN:
-                            print(self.__usuario)
-                        elif event.key == pygame.K_BACKSPACE:
-                            self.__usuario = self.__usuario[:-1]
-                        else:
-                            self.__usuario += event.unicode
+                input_box.handle_event(event)
             self.__tela.menu()
-            txt_surface = font.render(self.__usuario, True, (233,233,233))
-            pygame.draw.rect(self.__tela.tela, (0,0,0), input_box, 2)
-            self.__tela.tela.blit(txt_surface, (input_box.x+5, input_box.y+5))
+            self.__tela.desenhar_input_box(input_box)
             pygame.display.flip()
-            clock.tick(30)
+            self.__clock.tick(30)
 
     def iniciar(self):
         self.__jogador = Sapo()
@@ -133,7 +112,7 @@ class GameController:
         self.game_over()
 
     def game_over(self):
-        self.__ranking.atualiza_ranking(self.__usuario, 300)
+        self.__ranking.atualiza_ranking(self.__usuario, 502)
         self.__tela.game_over()
         game_over = True
         while game_over:

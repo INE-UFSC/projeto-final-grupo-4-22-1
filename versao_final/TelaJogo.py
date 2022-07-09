@@ -1,4 +1,5 @@
 import pygame, random
+from input_box import InputBox
 
 #site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
 PRETO = (0, 0, 0)
@@ -39,8 +40,9 @@ class TelaJogo:
     def tela(self):
         return self.__tela
 
-    def input_box(self):
-        return pygame.Rect(100,100,140,32)
+    def desenhar_input_box(self, box):
+        self.__tela.blit(box.txt_surface, (box.rect.x+5, box.rect.y+5))
+        pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
 
     def menu(self):
         self.__tela.fill(VERDE_CLARO)
