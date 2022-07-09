@@ -46,9 +46,10 @@ class TelaJogo:
         self.__tela.blit(box.txt_surface, (box.rect.x+5, box.rect.y+5))
         pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
 
-    def menu(self):
+    def menu(self, box):
         self.__tela.fill(VERDE_CLARO)
         self.__tela.blit(self.__menu, (0,0))
+        self.desenhar_input_box(box)
 
     def game_over(self):
         self.__tela.fill(BRANCO)

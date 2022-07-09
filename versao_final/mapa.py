@@ -34,7 +34,7 @@ class Mapa:
             jasmin = Jasmin(self.__c1.coordenadax,self.__c1.coordenaday)
             self.__lista_flores.add(girassol, jasmin)
             self.__all_sprites.add(girassol, jasmin)
-    
+
     def spawn_cobras(self):
         cobra = Cobra(50,30,100,100,2,2,'terrestre')
         self.__lista_cobras.add(cobra)
@@ -45,7 +45,7 @@ class Mapa:
         self.__lista_jacares.add(jacare)
 
     def spawn_consumiveis(self):
-        for i in range (5):
+        for i in range (2):
             self.__c1.coordenadas()
             maca = Maca(self.__c1.coordenadax,self.__c1.coordenaday)
             self.__c1.coordenadas()
