@@ -2,8 +2,8 @@ from rankingDAO import RankingDAO
 
 
 class Ranking:
-    def __init__(self, rankingDAO):
-        self.__rankingDAO = rankingDAO
+    def __init__(self):
+        self.__rankingDAO = RankingDAO()
         if self.__rankingDAO.get_ranking() == {}:
             self.__ranking = {"primeiro": ['', 0], "segundo": ['', 0], "terceiro": ['', 0], "quarto": ['', 0], "quinto": ['', 0]}
         else:
