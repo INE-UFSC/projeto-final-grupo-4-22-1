@@ -35,30 +35,13 @@ class GameController:
     def __init__(self):
         self.__rankingDAO = RankingDAO()
         self.__ranking = Ranking(self.__rankingDAO)
-        self.__colisoes = Colisoes()
         self.__mapa = Mapa()
+        self.__colisoes = Colisoes(self.__mapa)
 
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
         
         self.__jogador = None
-
-        self.__colisoes_parceiro = None
-
-        self.__colisoes_cobra = None
-
-        self.__colisoes_jacare = None
-
-        self.__colisoes_flores = None
-
-        self.__colisoes_consumiveis = None
-
-        self.__colisoes_cogumelos = None
-
-        self.__colisoes_terreno_aquatico = None
-        
-        #chave é o objeto flor e o valor é bool p/ saber se seu peso foi ou não descontado da velocidade do sapo
-        self.__flores_coletadas = {}
 
     def iniciar_menu(self):
         self.__tela.iniciar()
@@ -103,9 +86,6 @@ class GameController:
 
     def iniciar(self):
         self.__jogador = Sapo()
-        
-        #FIXME: só para o mvp, dps isso dependerá da fase (que ainda não foi implementada)
-
         self.__tela.iniciar()
         rodando = True
         sprites = self.__mapa.spawn_all()
@@ -115,7 +95,8 @@ class GameController:
             self.__clock.tick(40)
             self.__tela.colorir()
             self.__tela.desenhar(sprites)
-            if self.colisoes() == 'Perdeu!':
+
+            if self.__colisoes.checar_colisoes_com_jogador(self.__jogador) == 'Perdeu!':
                 break
 
             for cobra in self.__mapa.lista_cobras:
@@ -152,7 +133,7 @@ class GameController:
         self.game_over()
 
     def game_over(self):
-        self.atualiza_ranking(self.__usuario, 200)
+        self.__ranking.atualiza_ranking(self.__usuario, 300)
         self.__tela.game_over()
         game_over = True
         while game_over:
@@ -167,53 +148,6 @@ class GameController:
 
     def restart(self):
         self.__mapa.reset()
+        self.__colisoes.reset()
         self.__jogador = None
-        self.__colisoes_parceiro = None
-        self.__colisoes_cobra = None
-        self.__colisoes_jacare = None
-        self.__colisoes_flores = None
-        self.__colisoes_consumiveis = None
-        self.__colisoes_cogumelos = None
-        self.__colisoes_terreno_aquatico = None
-        #chave é o objeto flor e o valor é bool p/ saber se seu peso foi ou não descontado da velocidade do sapo
-        self.__flores_coletadas = {}
         self.iniciar()
-
-    def colisoes(self):
-        self.__colisoes_cobra = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_cobras, False)
-        self.__colisoes_jacare = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_jacares, False)
-        self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_flores, True)
-        self.__colisoes_terreno_aquatico = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_terreno_aquatico, False)
-        self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_parceiro, False)
-        self.__colisoes_consumiveis = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_consumiveis, True)
-        self.__colisoes_cogumelos = pygame.sprite.spritecollide(self.__jogador,self.__mapa.lista_cogumelos,True)
-
-        if self.__colisoes_cobra:
-            return("Perdeu!")
-
-        elif self.__colisoes_jacare:
-            return("Perdeu!")
-
-        if self.__colisoes_flores:
-            flor = self.__colisoes_flores[0]
-            self.__flores_coletadas[flor] = self.__jogador.carry(flor.peso)
-
-        elif self.__colisoes_consumiveis:
-            if self.__jogador.velocidade<0:
-                self.__jogador.debuff()
-            self.__jogador.aumenta_velocidade(3)
-
-        elif self.__colisoes_cogumelos:
-            self.__jogador.debuff()
-
-        elif self.__colisoes_parceiro:
-            remove = []
-            for flor in self.__flores_coletadas:
-                if self.__flores_coletadas[flor] == True:
-                    self.__jogador.aumenta_velocidade(flor.peso)
-            self.__flores_coletadas = {}
-
-    def atualiza_ranking(self, usuario, pontuacao):
-        self.__ranking.atualiza_ranking(usuario, pontuacao)
-        self.__rankingDAO.replace(self.__ranking.ranking())
-        print(self.__rankingDAO.get_ranking())

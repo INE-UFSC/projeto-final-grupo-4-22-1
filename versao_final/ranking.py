@@ -3,10 +3,11 @@ from rankingDAO import RankingDAO
 
 class Ranking:
     def __init__(self, rankingDAO):
-        if rankingDAO.get_ranking() == {}:
+        self.__rankingDAO = rankingDAO
+        if self.__rankingDAO.get_ranking() == {}:
             self.__ranking = {"primeiro": ['', 0], "segundo": ['', 0], "terceiro": ['', 0], "quarto": ['', 0], "quinto": ['', 0]}
         else:
-            self.__ranking = rankingDAO.get_ranking()
+            self.__ranking = self.__rankingDAO.get_ranking()
 
     def atualiza_ranking(self, usuario, pontuacao):
         if pontuacao > self.__ranking["primeiro"][1]:
@@ -29,6 +30,9 @@ class Ranking:
             self.__ranking["quarto"] = [usuario, pontuacao]
         elif pontuacao > self.__ranking["quinto"][1]:
             self.__ranking["quinto"] = [usuario, pontuacao]
+
+        self.__rankingDAO.replace(self.__ranking)
+        print(self.__ranking)
 
     def ranking(self):
         return self.__ranking
