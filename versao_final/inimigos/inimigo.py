@@ -37,10 +37,10 @@ class Inimigo(Personagem):
     def counter(self, counter):
         self.__counter = counter
 
-    def movimento(self, distancia:int,distanciax,distanciay,delimitaxd,delimitayb,delimitaxe,delimitayc,aleatoriedade,direita,baixo,esquerda,cima,raio,SapoPosicaox,SapoPosicaoy):
+    def movimento(self, distancia,distanciax,distanciay,delimitaxd,delimitayb,delimitaxe,delimitayc,aleatoriedade,direita,baixo,esquerda,cima,raio,SapoPosicaox,SapoPosicaoy):
         
         if(raio<200 and self.rect.x <= delimitaxd and self.rect.y <= delimitayb and self.rect.x >= delimitaxe and self.rect.y >= delimitayc):
-            imagem = 0
+            imagem = 0 
             if self.rect.x <= SapoPosicaox and self.rect.y <= SapoPosicaoy:
                 self.rect.x += self.velocidade
                 self.rect.y += self.velocidade

@@ -1,5 +1,6 @@
 import pygame, random
 from input_box import InputBox
+from bibliotecaImagens import BibliotecaImagens
 
 #site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
 PRETO = (0, 0, 0)
@@ -20,13 +21,14 @@ VERDE_CLARO = (0, 255, 0)
 
 class TelaJogo:
     def __init__(self, controller):
+        self.__imagens = BibliotecaImagens()
         self.__controlador = controller
         self.__largura = 1200
         self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
-        self.__menu = pygame.image.load("Menus_botoes/1.png").convert()
-        self.__game_over = pygame.image.load("Menus_botoes/perdeu.png").convert()
+        self.__menu = pygame.image.load(self.__imagens.inicial).convert()
+        self.__game_over = pygame.image.load(self.__imagens.perdeu).convert()
 
     @property
     def largura(self):
