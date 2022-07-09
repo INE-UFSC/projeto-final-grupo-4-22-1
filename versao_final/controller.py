@@ -20,13 +20,13 @@ from itens.maca import Maca
 from itens.espinho import Espinho
 from itens.cogumelo import Cogumelo
 
-from coordenada import Coordenada
+from coordenadas.coordenada import Coordenada
 from mapa import Mapa
 from input_box import InputBox
 from Movimentacao import Movimentacao
 #c_flor = Coordenada(0,0,0)
 #c_item = Coordenada(0,0,0)
-c1 = Coordenada(0,0,0)
+
 
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)

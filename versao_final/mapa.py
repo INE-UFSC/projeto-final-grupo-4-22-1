@@ -12,7 +12,7 @@ from ra import Ra
 from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
 
-from coordenada import Coordenada
+from coordenadas.coordenada import Coordenada
 
 class Mapa:
     def __init__(self):
@@ -24,13 +24,13 @@ class Mapa:
         self.__lista_cogumelos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
-        self.__c1 = Coordenada(0,0,0)
+        self.__c1 = Coordenada(0,0)
 
     def spawn_flores(self, quantidade):
         for i in range (quantidade):
-            self.__c1.coordenadas()
+            self.__c1.coordenadas('coletavel')
             girassol = Girassol(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__c1.coordenadas()
+            self.__c1.coordenadas('coletavel')
             jasmin = Jasmin(self.__c1.coordenadax,self.__c1.coordenaday)
             self.__lista_flores.add(girassol, jasmin)
             self.__all_sprites.add(girassol, jasmin)
@@ -45,11 +45,11 @@ class Mapa:
 
     def spawn_consumiveis(self):
         for i in range (2):
-            self.__c1.coordenadas()
+            self.__c1.coordenadas('consumivel')
             maca = Maca(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__c1.coordenadas()
+            self.__c1.coordenadas('consumivel')
             espinho = Espinho(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__c1.coordenadas()
+            self.__c1.coordenadas('consumivel')
             cogumelo = Cogumelo(self.__c1.coordenadax,self.__c1.coordenaday)
 
             self.__lista_consumiveis.add(maca, espinho)
@@ -84,6 +84,7 @@ class Mapa:
         self.__lista_cogumelos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
+        self.__c1 = Coordenada(0,0)
 
     @property
     def lista_cobras(self):
