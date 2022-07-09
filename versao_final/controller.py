@@ -60,7 +60,7 @@ class GameController:
             self.__clock.tick(30)
 
     def iniciar(self):
-        self.__jogador = Sapo()
+        self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
         self.__tela.iniciar()
         sprites = self.__mapa.spawn_all()
         sprites.add(self.__jogador)

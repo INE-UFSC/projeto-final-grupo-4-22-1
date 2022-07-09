@@ -57,7 +57,7 @@ class Mapa:
             self.__all_sprites.add(maca, espinho,cogumelo)
 
     def spawn_ra(self):
-        ra = Ra()
+        ra = Ra(30, 30, 15, 585)
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
 
