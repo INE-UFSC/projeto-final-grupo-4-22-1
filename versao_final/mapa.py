@@ -20,8 +20,9 @@ class Mapa:
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
-        self.__lista_consumiveis = pygame.sprite.Group()
+        self.__lista_macas = pygame.sprite.Group()
         self.__lista_cogumelos = pygame.sprite.Group()
+        self.__lista_espinhos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
@@ -52,8 +53,9 @@ class Mapa:
             self.__c1.coordenadas('consumivel')
             cogumelo = Cogumelo(self.__c1.coordenadax,self.__c1.coordenaday)
 
-            self.__lista_consumiveis.add(maca, espinho)
+            self.__lista_macas.add(maca)
             self.__lista_cogumelos.add(cogumelo)
+            self.__lista_espinhos.add(espinho)
             self.__all_sprites.add(maca, espinho,cogumelo)
 
     def spawn_ra(self):
@@ -80,8 +82,9 @@ class Mapa:
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
-        self.__lista_consumiveis = pygame.sprite.Group()
+        self.__lista_macas = pygame.sprite.Group()
         self.__lista_cogumelos = pygame.sprite.Group()
+        self.__lista_espinhos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
@@ -103,8 +106,12 @@ class Mapa:
         return self.__lista_flores
 
     @property
-    def lista_consumiveis(self):
-        return self.__lista_consumiveis
+    def lista_macas(self):
+        return self.__lista_macas
+
+    @property
+    def lista_espinhos(self):
+        return self.__lista_espinhos
 
     @property
     def lista_cogumelos(self):

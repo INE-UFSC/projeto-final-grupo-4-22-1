@@ -14,7 +14,8 @@ class Colisoes():
         self.__colisoes_cobra = None
         self.__colisoes_jacare = None
         self.__colisoes_flores = None
-        self.__colisoes_consumiveis = None
+        self.__colisoes_macas = None
+        self.__colisoes_espinhos = None
         self.__colisoes_cogumelos = None
         self.__colisoes_terreno_aquatico = None
 
@@ -24,8 +25,9 @@ class Colisoes():
         self.__colisoes_flores = pygame.sprite.spritecollide(jogador, self.__mapa.lista_flores, True)
         self.__colisoes_terreno_aquatico = pygame.sprite.spritecollide(jogador, self.__mapa.lista_terreno_aquatico, False)
         self.__colisoes_parceiro = pygame.sprite.spritecollide(jogador, self.__mapa.lista_parceiro, False)
-        self.__colisoes_consumiveis = pygame.sprite.spritecollide(jogador, self.__mapa.lista_consumiveis, True)
+        self.__colisoes_macas = pygame.sprite.spritecollide(jogador, self.__mapa.lista_macas, True)
         self.__colisoes_cogumelos = pygame.sprite.spritecollide(jogador,self.__mapa.lista_cogumelos,True)
+        self.__colisoes_espinhos = pygame.sprite.spritecollide(jogador,self.__mapa.lista_espinhos,True)
 
         if self.__colisoes_cobra:
             return "Perdeu!"
@@ -37,13 +39,15 @@ class Colisoes():
             flor = self.__colisoes_flores[0]
             jogador.flores_coletadas[flor] = jogador.carry(flor.peso)
 
-        elif self.__colisoes_consumiveis:
+        elif self.__colisoes_macas:
             if jogador.velocidade<0:
                 jogador.debuff()
             jogador.aumenta_velocidade(3)
 
         elif self.__colisoes_cogumelos:
             jogador.debuff()
+        elif self.__colisoes_espinhos:
+            jogador.aumenta_velocidade(-3)
 
         elif self.__colisoes_parceiro:
             for flor in jogador.flores_coletadas:
@@ -56,6 +60,7 @@ class Colisoes():
         self.__colisoes_cobra = None
         self.__colisoes_jacare = None
         self.__colisoes_flores = None
-        self.__colisoes_consumiveis = None
+        self.__colisoes_macas = None
         self.__colisoes_cogumelos = None
+        self.__colisoes_espinhos = None
         self.__colisoes_terreno_aquatico = None
