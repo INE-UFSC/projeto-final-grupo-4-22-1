@@ -66,7 +66,10 @@ class GameController:
         sprites.add(self.__jogador)
         movimentacao = Movimentacao(self.__tela, self.__jogador, self.__mapa)
         rodando = True
-        while rodando:  
+        while rodando:
+            for event in self.__tela.ler():
+                if event.type == pygame.QUIT:
+                    self.__tela.fechar()
             self.__clock.tick(40)
             self.__tela.colorir()
             self.__tela.desenhar(sprites)
