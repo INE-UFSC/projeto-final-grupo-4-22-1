@@ -14,6 +14,11 @@ class Movimentacao:
         self.__mapa = mapa
         self.__imagens = BibliotecaImagens()
     def mover_personagens(self):
+        self.mover_jogador()
+        self.mover_cobras()
+        self.mover_jacares()
+
+    def mover_jogador(self):
         for event in self.__tela.ler():
             if event.type == pygame.QUIT:
                 self.__tela.fechar()
@@ -36,10 +41,13 @@ class Movimentacao:
         if pygame.key.get_pressed()[K_DOWN] and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
             self.__jogador.mover_baixo()
 
+    def mover_cobras(self):
         for cobra in self.__mapa.lista_cobras:
                 distancia_cobra = cobra.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,cobra.rect.x,cobra.rect.y)
                 cobra.movimento(50,2,3,300,550,100,20,250,self.__imagens.cobra_direita,self.__imagens.cobra_baixo,self.__imagens.cobra_esquerda,self.__imagens.cobra_cima,distancia_cobra,self.__jogador.rect.x,self.__jogador.rect.y)
 
+
+    def mover_jacares(self):
         for jacare in self.__mapa.lista_jacares:
                 distancia_jacare = jacare.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,jacare.rect.x,jacare.rect.y)
                 jacare.movimento(15,4,5,600,500,500,0,80,self.__imagens.jacare_direita,self.__imagens.jacare_baixo,self.__imagens.jacare_esquerda,self.__imagens.jacare_cima,distancia_jacare,self.__jogador.rect.x,self.__jogador.rect.y)
