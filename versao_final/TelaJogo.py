@@ -73,3 +73,8 @@ class TelaJogo:
     def fechar(self):
         pygame.quit()
         exit()
+    
+    def tamanho_ponto(self, imagem,altura,largura, x, y):
+        imagem = pygame.image.load(imagem)
+        imagem = pygame.transform.scale(imagem,(altura,largura))
+        self.__tela.blit(imagem, (x, y))

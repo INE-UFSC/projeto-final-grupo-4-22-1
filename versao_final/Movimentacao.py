@@ -12,7 +12,6 @@ class Movimentacao:
         self.__tela = tela
         self.__jogador = jogador
         self.__mapa = mapa
-        self.__imagens = BibliotecaImagens()
 
     def mover_personagens(self):
         self.mover_jogador()
@@ -42,11 +41,9 @@ class Movimentacao:
 
     def mover_cobras(self):
         for cobra in self.__mapa.lista_cobras:
-            distancia_cobra = cobra.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,cobra.rect.x,cobra.rect.y)
-            cobra.movimento(50,2,3,300,550,100,20,250,self.__imagens.cobra_direita,self.__imagens.cobra_baixo,self.__imagens.cobra_esquerda,self.__imagens.cobra_cima,distancia_cobra,self.__jogador.rect.x,self.__jogador.rect.y)
-
+            cobra.movimento_cobra()
+            
 
     def mover_jacares(self):
         for jacare in self.__mapa.lista_jacares:
-            distancia_jacare = jacare.distancia_ponto(self.__jogador.rect.x,self.__jogador.rect.y,jacare.rect.x,jacare.rect.y)
-            jacare.movimento(15,4,5,600,500,500,0,80,self.__imagens.jacare_direita,self.__imagens.jacare_baixo,self.__imagens.jacare_esquerda,self.__imagens.jacare_cima,distancia_jacare,self.__jogador.rect.x,self.__jogador.rect.y)
+            jacare.movimento_jacare()
