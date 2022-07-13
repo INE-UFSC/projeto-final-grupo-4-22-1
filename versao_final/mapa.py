@@ -19,6 +19,7 @@ class Mapa:
         self.__lista_parceiro = pygame.sprite.Group()
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
+        self.__lista_inimigos = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
         self.__lista_macas = pygame.sprite.Group()
         self.__lista_cogumelos = pygame.sprite.Group()
@@ -39,10 +40,12 @@ class Mapa:
     def spawn_cobras(self):
         cobra = Cobra(50,30,100,100,2,2,'terrestre')
         self.__lista_cobras.add(cobra)
+        self.__lista_inimigos.add(cobra)
 
     def spawn_jacares(self):
         jacare = Jacare(70,40,500,60,10,3,'aquatico')
         self.__lista_jacares.add(jacare)
+        self.__lista_inimigos.add(jacare)
 
     def spawn_consumiveis(self):
         for i in range (2):
@@ -67,7 +70,7 @@ class Mapa:
         aquatico = Aquatico()
         self.__lista_terreno_aquatico.add(aquatico)
         self.__all_sprites.add(aquatico)
-    
+
     def spawn_all(self):
         self.spawn_terrenos()
         self.spawn_ra()
@@ -124,3 +127,7 @@ class Mapa:
     @property
     def all_sprites(self):
         return self.__all_sprites
+
+    @property
+    def lista_inimigos(self):
+        return self.__lista_inimigos

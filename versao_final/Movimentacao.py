@@ -15,11 +15,16 @@ class Movimentacao:
 
     def mover_personagens(self):
         self.mover_jogador()
-        self.mover_cobras()
-        self.mover_jacares()
+        self.mover_inimigos()
+
+    def mover_inimigos(self):
+        for inimigo in self.__mapa.lista_inimigos:
+            inimigo.movimentar()
 
     def mover_jogador(self):
         for event in self.__tela.ler():
+            if event.type == pygame.QUIT:
+                self.__tela.fechar()
             if event.type == pygame.KEYDOWN:
                 if event.key == K_LEFT and 0 <= self.__jogador.rect.x:
                     self.__jogador.mover_esquerda()
@@ -38,12 +43,3 @@ class Movimentacao:
             self.__jogador.mover_cima()
         if pygame.key.get_pressed()[K_DOWN] and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
             self.__jogador.mover_baixo()
-
-    def mover_cobras(self):
-        for cobra in self.__mapa.lista_cobras:
-            cobra.movimento_cobra()
-            
-
-    def mover_jacares(self):
-        for jacare in self.__mapa.lista_jacares:
-            jacare.movimento_jacare()
