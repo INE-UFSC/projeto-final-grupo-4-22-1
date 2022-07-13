@@ -6,10 +6,12 @@ from itens.jasmin import Jasmin
 from itens.maca import Maca
 from itens.espinho import Espinho
 from itens.cogumelo import Cogumelo
+from consequenciasColisoes import ConsequenciasColisoes
 
 class Colisoes():
     def __init__(self, mapa):
         self.__mapa = mapa
+        self.__consequencias = ConsequenciasColisoes()
         self.__colisoes_parceiro = None
         self.__colisoes_cobra = None
         self.__colisoes_jacare = None
@@ -30,30 +32,26 @@ class Colisoes():
         self.__colisoes_espinhos = pygame.sprite.spritecollide(jogador,self.__mapa.lista_espinhos,True)
 
         if self.__colisoes_cobra:
-            return "Perdeu!"
+            return self.__consequencias.jogador_e_inimigo()
 
         elif self.__colisoes_jacare:
-            return("Perdeu!")
+            return self.__consequencias.jogador_e_inimigo()
 
         if self.__colisoes_flores:
             flor = self.__colisoes_flores[0]
-            jogador.flores_coletadas[flor] = jogador.carry(flor.peso)
+            self.__consequencias.jogador_e_flor(jogador, flor)
 
         elif self.__colisoes_macas:
-            if jogador.velocidade<0:
-                jogador.debuff()
-            jogador.aumenta_velocidade(3)
+            self.__consequencias.jogador_e_maca(jogador)
 
         elif self.__colisoes_cogumelos:
-            jogador.debuff()
+            self.__consequencias.jogador_e_cogumelo(jogador)
+
         elif self.__colisoes_espinhos:
-            jogador.aumenta_velocidade(-3)
+            self.__consequencias.jogador_e_espinho(jogador)
 
         elif self.__colisoes_parceiro:
-            for flor in jogador.flores_coletadas:
-                if jogador.flores_coletadas[flor] == True:
-                    jogador.aumenta_velocidade(flor.peso)
-            jogador.soltar_flores()
+            self.__consequencias.jogador_e_parceiro(jogador)
 
     def reset(self):
         self.__colisoes_parceiro = None

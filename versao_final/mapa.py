@@ -90,6 +90,7 @@ class Mapa:
         self.__lista_espinhos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
+        self.__lista_inimigos = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
 
     @property
