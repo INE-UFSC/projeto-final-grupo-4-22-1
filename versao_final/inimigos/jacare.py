@@ -9,6 +9,9 @@ class Jacare(Inimigo):
         self.__imagens = BibliotecaImagens()
         self.__imagens = [self.__imagens.jacare_direita,self.__imagens.jacare_baixo,self.__imagens.jacare_esquerda,self.__imagens.jacare_cima]
     
-    def movimentar(self):
-        movimento_jacare = self.movimento(15,4,5,600,500,500,0,80,self.__imagens[0],self.__imagens[1],self.__imagens[2],self.__imagens[3])
-        return movimento_jacare
+    
+    def movimentar(self,SapoPosicaox,SapoPosicaoy):
+        movimento_jacare = self.movimento(15,4,5,600,500,500,0,80,SapoPosicaox,SapoPosicaoy)
+        self.atualiza(movimento_jacare,self.__imagens[0],self.__imagens[1],self.__imagens[2],self.__imagens[3])
+    
+    

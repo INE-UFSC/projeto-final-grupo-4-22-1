@@ -19,7 +19,7 @@ class Movimentacao:
 
     def mover_inimigos(self):
         for inimigo in self.__mapa.lista_inimigos:
-            inimigo.movimentar()
+            inimigo.movimentar(self.__jogador.rect.x,self.__jogador.rect.y)
 
     def mover_jogador(self):
         for event in self.__tela.ler():
