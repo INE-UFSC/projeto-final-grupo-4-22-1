@@ -36,7 +36,6 @@ class GameController:
     def __init__(self):
         self.__ranking = Ranking()
         self.__mapa = Mapa()
-        self.__colisoes = Colisoes(self.__mapa)
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
         self.__jogador = None
@@ -61,6 +60,7 @@ class GameController:
 
     def iniciar(self):
         self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
+        colisoes = Colisoes(self.__mapa, self.__jogador)
         self.__tela.iniciar()
         sprites = self.__mapa.spawn_all()
         sprites.add(self.__jogador)
@@ -73,7 +73,7 @@ class GameController:
             self.__clock.tick(40)
             self.__tela.colorir()
             self.__tela.desenhar(sprites)
-            if self.__colisoes.checar_colisoes_com_jogador(self.__jogador) == 'Perdeu!':
+            if colisoes.checar_colisoes_com_jogador() == 'Perdeu!':
                 break
             movimentacao.mover_personagens()
             self.__tela.update()
@@ -95,5 +95,4 @@ class GameController:
 
     def restart(self):
         self.__mapa.reset()
-        self.__colisoes.reset()
         self.iniciar()
