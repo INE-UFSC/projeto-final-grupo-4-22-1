@@ -33,6 +33,9 @@ class Player(Personagem):
     def debuff(self):
         self.__velocidade = self.__velocidade*(-1)
     
+    def alterar_velocidade(self, fator_alteracao):
+        self.__velocidade = self.__velocidade*fator_alteracao
+    
 
 
     def mover_cima(self):

@@ -43,13 +43,16 @@ class Colisoes():
             self.__consequencias.jogador_e_flor(flor)
 
         elif self.__colisoes_macas:
-            self.__consequencias.jogador_e_maca()
+            m1 = Maca(0,0)
+            self.__consequencias.jogador_e_maca(m1)
 
         elif self.__colisoes_cogumelos:
-            self.__consequencias.jogador_e_cogumelo()
+            c1 = Cogumelo(0,0)
+            self.__consequencias.jogador_e_cogumelo(c1)
 
         elif self.__colisoes_espinhos:
-            self.__consequencias.jogador_e_espinho()
+            e1 = Espinho(0,0)
+            self.__consequencias.jogador_e_espinho(e1)
 
         elif self.__colisoes_parceiro:
             self.__consequencias.jogador_e_parceiro()

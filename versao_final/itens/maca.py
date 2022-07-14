@@ -1,12 +1,14 @@
-from itens.efeitobonus import EfeitoBonus
-import random
+from itens.efeitosnojogador import EfeitosNoJogador
+import time
 
-#coordenadax_maca = 15
-#coordenaday_maca = 50
 vermelho = (255, 0, 0)
+efeito = 2
 
 
-class Maca(EfeitoBonus):
+class Maca(EfeitosNoJogador):
     def __init__(self,coordenadax,coordenaday):
-        super().__init__("maca", 15, 10,
-                         coordenadax,coordenaday, 5, vermelho)
+        super().__init__("maca", 15, 10, coordenadax,coordenaday, vermelho, efeito)
+        self.__efeito = efeito
+    
+    def aplicar_efeito(self, jogador):
+        jogador.alterar_velocidade(self.__efeito)

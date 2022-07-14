@@ -13,16 +13,14 @@ class ConsequenciasColisoes:
                 self.__jogador.aumenta_velocidade(flor.peso)
         self.__jogador.soltar_flores()
 
-    def jogador_e_espinho(self):
-        self.__jogador.aumenta_velocidade(-3)
+    def jogador_e_espinho(self,espinho):
+        espinho.aplicar_efeito(self.__jogador)
 
-    def jogador_e_cogumelo(self):
-        self.__jogador.debuff()
+    def jogador_e_cogumelo(self,cogumelo):
+        cogumelo.aplicar_efeito(self.__jogador)
 
-    def jogador_e_maca(self):
-        if self.__jogador.velocidade < 0:
-            self.__jogador.debuff()
-        self.__jogador.aumenta_velocidade(3)
+    def jogador_e_maca(self,maca):
+        maca.aplicar_efeito(self.__jogador)
 
     def jogador_e_flor(self, flor):
         self.__jogador.flores_coletadas[flor] = self.__jogador.carry(flor.peso)
