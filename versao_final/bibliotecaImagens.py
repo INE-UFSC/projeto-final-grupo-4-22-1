@@ -3,16 +3,16 @@ import os
 
 class BibliotecaImagens():
     def __init__(self):
-        self.__inicial = os.path.join("versao_final/Menus_botoes/1.png")
-        self.__perdeu = os.path.join("versao_final/Menus_botoes/perdeu.png")
-        self.__cobra_direita = os.path.join("versao_final/Imagens/cobra_direita.png")
-        self.__cobra_baixo = os.path.join("versao_final/Imagens/cobra_baixo.png")
-        self.__cobra_esquerda = os.path.join("versao_final/Imagens/cobra_esquerda.png")
-        self.__cobra_cima = os.path.join("versao_final/Imagens/cobra_cima.png")
-        self.__jacare_direita = os.path.join("versao_final/Imagens/jacare_direita.png")
-        self.__jacare_baixo = os.path.join("versao_final/Imagens/jacare_baixo.png")
-        self.__jacare_esquerda = os.path.join("versao_final/Imagens/jacare_esquerda.png")
-        self.__jacare_cima = os.path.join("versao_final/Imagens/jacare_cima.png")
+        self.__inicial = os.path.join("Menus_botoes/1.png")
+        self.__perdeu = os.path.join("Menus_botoes/perdeu.png")
+        self.__cobra_direita = os.path.join("Imagens/cobra_direita.png")
+        self.__cobra_baixo = os.path.join("Imagens/cobra_baixo.png")
+        self.__cobra_esquerda = os.path.join("Imagens/cobra_esquerda.png")
+        self.__cobra_cima = os.path.join("Imagens/cobra_cima.png")
+        self.__jacare_direita = os.path.join("Imagens/jacare_direita.png")
+        self.__jacare_baixo = os.path.join("Imagens/jacare_baixo.png")
+        self.__jacare_esquerda = os.path.join("Imagens/jacare_esquerda.png")
+        self.__jacare_cima = os.path.join("Imagens/jacare_cima.png")
     
     @property 
     def inicial(self):

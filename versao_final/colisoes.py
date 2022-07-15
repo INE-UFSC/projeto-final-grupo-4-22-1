@@ -44,15 +44,15 @@ class Colisoes():
 
         elif self.__colisoes_macas:
             m1 = Maca(0,0)
-            self.__consequencias.jogador_e_maca(m1)
+            self.__consequencias.jogador_e_item(m1)
 
         elif self.__colisoes_cogumelos:
             c1 = Cogumelo(0,0)
-            self.__consequencias.jogador_e_cogumelo(c1)
+            self.__consequencias.jogador_e_item(c1)
 
         elif self.__colisoes_espinhos:
             e1 = Espinho(0,0)
-            self.__consequencias.jogador_e_espinho(e1)
+            self.__consequencias.jogador_e_item(e1)
 
         elif self.__colisoes_parceiro:
             self.__consequencias.jogador_e_parceiro()
