@@ -13,6 +13,8 @@ class BibliotecaImagens():
         self.__jacare_baixo = os.path.join("Imagens/jacare_baixo.png")
         self.__jacare_esquerda = os.path.join("Imagens/jacare_esquerda.png")
         self.__jacare_cima = os.path.join("Imagens/jacare_cima.png")
+        self.__agua = os.path.join("Imagens/agua.png")
+        self.__terra = os.path.join("Imagens/terra.png")
     
     @property 
     def inicial(self):
@@ -53,3 +55,11 @@ class BibliotecaImagens():
     @property 
     def jacare_cima(self):
         return self.__jacare_cima
+
+    @property 
+    def agua(self):
+        return self.__agua
+    
+    @property 
+    def terra(self):
+        return self.__terra

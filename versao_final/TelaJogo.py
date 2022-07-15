@@ -74,6 +74,13 @@ class TelaJogo:
         pygame.quit()
         exit()
     
+    def draw_map(self, imagem, lista_coordenadas):
+        imagem = pygame.image.load(imagem)
+        imagem = pygame.transform.scale(imagem,(100,100))
+        for coordenada in lista_coordenadas:
+            self.__tela.blit(imagem, coordenada)
+            
+
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
         imagem = pygame.transform.scale(imagem,(altura,largura))

@@ -71,7 +71,7 @@ class GameController:
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
             self.__clock.tick(40)
-            self.__tela.colorir()
+            self.__mapa.load_map()
             self.__tela.desenhar(sprites)
             if colisoes.checar_colisoes_com_jogador() == 'Perdeu!':
                 break

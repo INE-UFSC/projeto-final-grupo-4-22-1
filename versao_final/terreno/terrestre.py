@@ -1,7 +1,8 @@
 import pygame
+
 from bibliotecaImagens import BibliotecaImagens
 
-class Aquatico(pygame.sprite.Sprite):
+class Terrestre(pygame.sprite.Sprite):
     def __init__(self):#, altura, largura, coordenadax, coordenaday, AZUL):
         self.__altura = 100
         self.__largura = 100
@@ -17,7 +18,7 @@ class Aquatico(pygame.sprite.Sprite):
         #self.rect.center = [self.__coordenadax, self.__coordenaday]
         
         self.__imagens = BibliotecaImagens()
-        self.__sprite = self.__imagens.agua
+        self.__sprite = self.__imagens.terra
 
     @property
     def altura(self):
@@ -38,11 +39,3 @@ class Aquatico(pygame.sprite.Sprite):
     @property
     def sprite(self):
         return self.__sprite
-
-    @property
-    def vitorias_regias(self):
-        return self.__vitorias_regias
-
-    @vitorias_regias.setter
-    def vitorias_regias(self, flor):
-        self.__vitorias_regias.append(flor)

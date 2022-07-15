@@ -1,4 +1,5 @@
 import pygame
+import csv
 
 from itens.girassol import Girassol
 from itens.jasmin import Jasmin
@@ -7,12 +8,15 @@ from itens.espinho import Espinho
 from itens.cogumelo import Cogumelo
 
 from terreno.aquatico import Aquatico
+from terreno.terrestre import Terrestre
+
 from ra import Ra
 
 from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
 
 from coordenadas.coordenada import Coordenada
+from TelaJogo import TelaJogo
 
 class Mapa:
     def __init__(self):
@@ -26,7 +30,33 @@ class Mapa:
         self.__lista_espinhos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
+        
+        self.__aquatico = Aquatico()
+        self.__terrestre = Terrestre()
+
         self.__c1 = Coordenada(0,0)
+        self.__tela = TelaJogo(self)
+        
+    def load_map(self):
+        map_list = []
+        
+        with open('mapa.csv', 'r') as file_obj:
+            reader_obj = csv.reader(file_obj)
+      
+            for row in reader_obj:
+                map_list.append(list(row))
+            
+        
+        height, width = len(map_list), len(map_list[0])
+
+        original_map = {'terra': [], 'agua': []}
+        for y, line in enumerate(map_list):
+            if line != '':
+                for x, tile_name in enumerate(line):
+                    original_map[tile_name].append((x*100,y*100))
+
+        self.__tela.draw_map(self.__aquatico.sprite, original_map['agua'])
+        self.__tela.draw_map(self.__terrestre.sprite, original_map['terra'])                    
 
     def spawn_flores(self, quantidade):
         for i in range (quantidade):
@@ -66,13 +96,12 @@ class Mapa:
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
 
-    def spawn_terrenos(self):
+    '''def spawn_terrenos(self):
         aquatico = Aquatico()
         self.__lista_terreno_aquatico.add(aquatico)
-        self.__all_sprites.add(aquatico)
+        self.__all_sprites.add(aquatico)'''
 
     def spawn_all(self):
-        self.spawn_terrenos()
         self.spawn_ra()
         self.spawn_consumiveis()
         self.spawn_jacares()
