@@ -15,6 +15,11 @@ class BibliotecaImagens():
         self.__jacare_cima = os.path.join("Imagens/jacare_cima.png")
         self.__agua = os.path.join("Imagens/agua.png")
         self.__terra = os.path.join("Imagens/terra.png")
+        self.__maca = os.path.join("Imagens/maca.png")
+        self.__cogumelo = os.path.join("Imagens/cogumelo.png")
+        self.__girassol = os.path.join("Imagens/girassol.png")
+        self.__jasmin = os.path.join("Imagens/jasmin.png")
+        self.__espinho = os.path.join("Imagens/espinho.png")
     
     @property 
     def inicial(self):
@@ -63,3 +68,19 @@ class BibliotecaImagens():
     @property 
     def terra(self):
         return self.__terra
+
+    @property
+    def maca(self):
+        return self.__maca
+    @property
+    def cogumelo(self):
+        return self.__cogumelo
+    @property
+    def girassol(self):
+        return self.__girassol
+    @property
+    def jasmin(self):
+        return self.__jasmin
+    @property
+    def espinho(self):
+        return self.__espinho
