@@ -30,6 +30,7 @@ class Mapa:
         self.__lista_espinhos = pygame.sprite.Group()
         self.__lista_terreno_aquatico = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
+        self.__lista_itens = pygame.sprite.Group()
         
         self.__aquatico = Aquatico()
         self.__terrestre = Terrestre()
@@ -90,16 +91,14 @@ class Mapa:
             self.__lista_cogumelos.add(cogumelo)
             self.__lista_espinhos.add(espinho)
             self.__all_sprites.add(maca, espinho,cogumelo)
+            self.__lista_itens.add(maca)
+            self.__lista_itens.add(espinho)
+            self.__lista_itens.add(cogumelo)
 
     def spawn_ra(self):
         ra = Ra(30, 30, 15, 585)
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
-
-    '''def spawn_terrenos(self):
-        aquatico = Aquatico()
-        self.__lista_terreno_aquatico.add(aquatico)
-        self.__all_sprites.add(aquatico)'''
 
     def spawn_all(self):
         self.spawn_ra()
@@ -121,6 +120,11 @@ class Mapa:
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_inimigos = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
+        self.__lista_itens = pygame.sprite.Group()
+
+    @property
+    def lista_itens(self):
+        return self.__lista_itens
 
     @property
     def lista_cobras(self):

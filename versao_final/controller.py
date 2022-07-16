@@ -81,7 +81,7 @@ class GameController:
             if self.__teste == True:
                 break
             self.__clock.tick(50)
-            self.__tela.colorir()
+            self.__mapa.load_map()
             self.__tela.desenhar(sprites)
             self.__tela.imagem_relogio(self.__relogio.timer_text,1050,20)
 
