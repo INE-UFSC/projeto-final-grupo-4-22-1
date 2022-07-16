@@ -4,6 +4,7 @@ class Player(Personagem):
     def __init__(self, altura, largura, vida, coordenadax, coordenaday, velocidade, COR):
         super().__init__(altura, largura, coordenadax, coordenaday, COR)
         self.__vida = vida
+        self.__velocidade_inicial = velocidade
         self.__velocidade = velocidade
 
     @property
@@ -35,8 +36,6 @@ class Player(Personagem):
     
     def alterar_velocidade(self, fator_alteracao):
         self.__velocidade = self.__velocidade*fator_alteracao
-    
-
 
     def mover_cima(self):
         self.rect.y += (-self.velocidade)
@@ -49,3 +48,11 @@ class Player(Personagem):
 
     def mover_direita(self):
         self.rect.x += (self.velocidade)
+
+    @velocidade.setter
+    def velocidade(self, velocidade):
+        self.__velocidade = velocidade
+
+    @property
+    def velocidade_inicial(self):
+        return self.__velocidade_inicial

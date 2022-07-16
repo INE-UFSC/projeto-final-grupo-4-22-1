@@ -40,24 +40,23 @@ class Mapa:
         
     def load_map(self):
         map_list = []
+        self.__tile_rects = []
         
         with open('mapa.csv', 'r') as file_obj:
             reader_obj = csv.reader(file_obj)
-      
             for row in reader_obj:
                 map_list.append(list(row))
-            
-        
+        print(map_list)
+
         height, width = len(map_list), len(map_list[0])
 
-        original_map = {'terra': [], 'agua': []}
+        self.__original_map = {'terra': [], 'agua': []}
         for y, line in enumerate(map_list):
             if line != '':
                 for x, tile_name in enumerate(line):
-                    original_map[tile_name].append((x*100,y*100))
-
-        self.__tela.draw_map(self.__aquatico.sprite, original_map['agua'])
-        self.__tela.draw_map(self.__terrestre.sprite, original_map['terra'])                    
+                    self.__original_map[tile_name].append((x*100,y*100))
+                    if tile_name == 'agua':
+                        self.__tile_rects.append(pygame.Rect(x*100,y*100, 100, 100))
 
     def spawn_flores(self, quantidade):
         for i in range (quantidade):
@@ -165,3 +164,19 @@ class Mapa:
     @property
     def lista_inimigos(self):
         return self.__lista_inimigos
+
+    @property
+    def original_map(self):
+        return self.__original_map
+
+    @property
+    def aquatico_sprite(self):
+        return self.__aquatico.sprite
+
+    @property
+    def terrestre_sprite(self):
+        return self.__terrestre.sprite
+
+    @property
+    def tile_rects(self):
+        return self.__tile_rects

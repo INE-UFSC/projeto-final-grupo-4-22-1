@@ -18,3 +18,6 @@ class ConsequenciasColisoes:
 
     def jogador_e_flor(self, flor):
         self.__jogador.flores_coletadas[flor] = self.__jogador.carry(flor.peso)
+
+    def jogador_e_agua(self):
+        self.__jogador.velocidade = 3

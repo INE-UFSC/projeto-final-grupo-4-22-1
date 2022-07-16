@@ -33,18 +33,6 @@ class TelaJogo:
         self.display = pygame.display.set_mode(
             self.tamanho_display, pygame.HWSURFACE)
 
-    @property
-    def largura(self):
-        return self.__largura
-
-    @property
-    def altura(self):
-        return self.__altura
-
-    @property
-    def tela(self):
-        return self.__tela
-
     def desenhar_input_box(self, box):
         self.__tela.blit(box.txt_surface, (box.rect.x+5, box.rect.y+5))
         pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
@@ -82,7 +70,6 @@ class TelaJogo:
         imagem = pygame.transform.scale(imagem,(100,100))
         for coordenada in lista_coordenadas:
             self.__tela.blit(imagem, coordenada)
-            
 
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
@@ -91,3 +78,15 @@ class TelaJogo:
     
     def imagem_relogio(self,imagem,x,y):
         self.__tela.blit(imagem, (x, y))
+
+    @property
+    def largura(self):
+        return self.__largura
+
+    @property
+    def altura(self):
+        return self.__altura
+
+    @property
+    def tela(self):
+        return self.__tela

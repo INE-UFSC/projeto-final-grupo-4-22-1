@@ -72,6 +72,7 @@ class GameController:
         movimentacao = Movimentacao(self.__tela, self.__jogador, self.__mapa)
         rodando = True
         self.__relogio.iniciar_clock()
+        self.__mapa.load_map()
         while rodando:
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
@@ -80,12 +81,13 @@ class GameController:
                     self.__teste = self.__relogio.verifica_clock()
             if self.__teste == True:
                 break
-            self.__clock.tick(50)
-            self.__mapa.load_map()
+            self.__clock.tick(40)
+            self.__tela.draw_map(self.__mapa.aquatico_sprite, self.__mapa.original_map['agua'])
+            self.__tela.draw_map(self.__mapa.terrestre_sprite, self.__mapa.original_map['terra'])
             self.__tela.desenhar(sprites)
             self.__tela.imagem_relogio(self.__relogio.timer_text,1050,20)
 
-            if colisoes.checar_colisoes_com_jogador() == 'Perdeu!':
+            if colisoes.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
                 break
             movimentacao.mover_personagens()
             self.__tela.update()
