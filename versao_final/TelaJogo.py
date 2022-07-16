@@ -29,6 +29,9 @@ class TelaJogo:
         pygame.display.set_caption("GRUPO 4")
         self.__menu = pygame.image.load(self.__imagens.inicial).convert()
         self.__game_over = pygame.image.load(self.__imagens.perdeu).convert()
+        self.tamanho_display = self.__largura, self.__altura
+        self.display = pygame.display.set_mode(
+            self.tamanho_display, pygame.HWSURFACE)
 
     @property
     def largura(self):
@@ -84,4 +87,7 @@ class TelaJogo:
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
         imagem = pygame.transform.scale(imagem,(altura,largura))
+        self.__tela.blit(imagem, (x, y))
+    
+    def imagem_relogio(self,imagem,x,y):
         self.__tela.blit(imagem, (x, y))

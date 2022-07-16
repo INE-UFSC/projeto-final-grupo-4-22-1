@@ -27,6 +27,9 @@ from Movimentacao import Movimentacao
 #c_flor = Coordenada(0,0,0)
 #c_item = Coordenada(0,0,0)
 
+import time
+from clock import Clock
+
 
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)
@@ -39,6 +42,8 @@ class GameController:
         self.__tela = TelaJogo(self)
         self.__clock = pygame.time.Clock()
         self.__jogador = None
+        self.__relogio = Clock()
+        self.__teste = False
 
     def iniciar_menu(self):
         self.__tela.iniciar()
@@ -66,13 +71,20 @@ class GameController:
         sprites.add(self.__jogador)
         movimentacao = Movimentacao(self.__tela, self.__jogador, self.__mapa)
         rodando = True
+        self.__relogio.iniciar_clock()
         while rodando:
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
-            self.__clock.tick(40)
-            self.__mapa.load_map()
+                elif event.type == pygame.USEREVENT:
+                    self.__teste = self.__relogio.verifica_clock()
+            if self.__teste == True:
+                break
+            self.__clock.tick(50)
+            self.__tela.colorir()
             self.__tela.desenhar(sprites)
+            self.__tela.imagem_relogio(self.__relogio.timer_text,1050,20)
+
             if colisoes.checar_colisoes_com_jogador() == 'Perdeu!':
                 break
             movimentacao.mover_personagens()
