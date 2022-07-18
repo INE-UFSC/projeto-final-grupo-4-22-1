@@ -87,7 +87,7 @@ class GameController:
             self.__tela.draw_map(self.__mapa.terrestre_sprite, self.__mapa.original_map['terra'])
             self.__tela.desenhar(sprites)
             self.__tela.imagem_relogio(self.__relogio.timer_text,1050,20)
-            if colisoes.checar_colisoes_com_jogador(self.__mapa.tile_rects_agua, self.__mapa.tile_rects_barreira) == 'Perdeu!':
+            if colisoes.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
                 break
             movimentacao.mover_personagens()
             self.__tela.update()
