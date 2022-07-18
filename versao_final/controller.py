@@ -29,7 +29,7 @@ from Movimentacao import Movimentacao
 
 import time
 from clock import Clock
-
+from construtorDeFases import ConstrutorDeFases
 
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)
@@ -40,6 +40,7 @@ class GameController:
         self.__ranking = Ranking()
         self.__mapa = Mapa()
         self.__tela = TelaJogo(self)
+        self.__construtor = ConstrutorDeFases(self.__mapa)
         self.__clock = pygame.time.Clock()
         self.__jogador = None
         self.__relogio = Clock()
@@ -67,12 +68,12 @@ class GameController:
         self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
         colisoes = Colisoes(self.__mapa, self.__jogador)
         self.__tela.iniciar()
-        sprites = self.__mapa.spawn_all()
-        sprites.add(self.__jogador)
         movimentacao = Movimentacao(self.__tela, self.__jogador, self.__mapa)
         rodando = True
         self.__relogio.iniciar_clock()
-        self.__mapa.load_map()
+        self.__construtor.gerar_fase(2)
+        sprites = self.__mapa.all_sprites
+        sprites.add(self.__jogador)
         while rodando:
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
@@ -86,8 +87,7 @@ class GameController:
             self.__tela.draw_map(self.__mapa.terrestre_sprite, self.__mapa.original_map['terra'])
             self.__tela.desenhar(sprites)
             self.__tela.imagem_relogio(self.__relogio.timer_text,1050,20)
-
-            if colisoes.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
+            if colisoes.checar_colisoes_com_jogador(self.__mapa.tile_rects_agua, self.__mapa.tile_rects_barreira) == 'Perdeu!':
                 break
             movimentacao.mover_personagens()
             self.__tela.update()

@@ -14,7 +14,7 @@ class Colisoes():
         self.__jogador = jogador
         self.__consequencias = ConsequenciasColisoes(self.__jogador)
 
-    def checar_colisoes_com_jogador(self, tiles):
+    def checar_colisoes_com_jogador(self, agua, barreira):
         self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_flores, True)
         self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_parceiro, False)
         self.__colisoes_itens = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_itens, True)
@@ -34,8 +34,11 @@ class Colisoes():
         elif self.__colisoes_parceiro:
             self.__consequencias.jogador_e_parceiro()
 
-        if self.colisao_tiles(tiles):
+        if self.colisao_tiles(agua):
             self.__consequencias.jogador_e_agua()
+
+        if self.colisao_tiles(barreira):
+            self.__consequencias.jogador_e_barreira(self.colisao_tiles(barreira)[0])
 
     def colisao_tiles(self, tiles):
         hits = []

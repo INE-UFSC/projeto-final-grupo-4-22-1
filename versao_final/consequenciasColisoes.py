@@ -1,4 +1,5 @@
 from player import Player
+import pygame
 
 class ConsequenciasColisoes:
     def __init__(self, jogador):
@@ -21,3 +22,13 @@ class ConsequenciasColisoes:
 
     def jogador_e_agua(self):
         self.__jogador.velocidade = 3
+
+    def jogador_e_barreira(self, tile):
+        if self.__jogador.rect.x < 0:
+            self.__jogador.rect.left = tile.right
+        elif self.__jogador.rect.x > 1200 - self.__jogador.largura:
+            self.__jogador.rect.right = tile.left
+        if self.__jogador.rect.y < 0:
+            self.__jogador.rect.top = tile.bottom
+        elif self.__jogador.rect.y > 600 - self.__jogador.altura:
+            self.__jogador.rect.bottom = tile.top

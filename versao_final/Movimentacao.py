@@ -26,20 +26,20 @@ class Movimentacao:
             if event.type == pygame.QUIT:
                 self.__tela.fechar()
             if event.type == pygame.KEYDOWN:
-                if event.key == K_LEFT and 0 <= self.__jogador.rect.x:
+                if event.key == K_LEFT:
                     self.__jogador.mover_esquerda()
-                if event.key == K_RIGHT and self.__tela.largura - self.__jogador.largura >= self.__jogador.rect.x:
+                if event.key == K_RIGHT:
                     self.__jogador.mover_direita()
-                if event.key == K_UP and 0 <= self.__jogador.rect.y:
+                if event.key == K_UP:
                     self.__jogador.mover_cima()
-                if event.key == K_DOWN and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
+                if event.key == K_DOWN:
                     self.__jogador.mover_baixo()
 
-        if pygame.key.get_pressed()[K_LEFT] and 0 <= self.__jogador.rect.x:
+        if pygame.key.get_pressed()[K_LEFT]:
             self.__jogador.mover_esquerda()
-        if pygame.key.get_pressed()[K_RIGHT] and self.__tela.largura - self.__jogador.largura >= self.__jogador.rect.x:
+        if pygame.key.get_pressed()[K_RIGHT]:
             self.__jogador.mover_direita()
-        if pygame.key.get_pressed()[K_UP] and 0 <= self.__jogador.rect.y:
+        if pygame.key.get_pressed()[K_UP]:
             self.__jogador.mover_cima()
-        if pygame.key.get_pressed()[K_DOWN] and self.__tela.altura - self.__jogador.altura >= self.__jogador.rect.y:
+        if pygame.key.get_pressed()[K_DOWN]:
             self.__jogador.mover_baixo()

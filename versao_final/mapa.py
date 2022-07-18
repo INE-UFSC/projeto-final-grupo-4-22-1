@@ -40,7 +40,8 @@ class Mapa:
         
     def load_map(self):
         map_list = []
-        self.__tile_rects = []
+        self.__tile_rects_agua = []
+        self.__tile_rects_barreira = []
         
         with open('mapa.csv', 'r') as file_obj:
             reader_obj = csv.reader(file_obj)
@@ -50,13 +51,15 @@ class Mapa:
 
         height, width = len(map_list), len(map_list[0])
 
-        self.__original_map = {'terra': [], 'agua': []}
+        self.__original_map = {'terra': [], 'agua': [], 'void': []}
         for y, line in enumerate(map_list):
             if line != '':
                 for x, tile_name in enumerate(line):
-                    self.__original_map[tile_name].append((x*100,y*100))
+                    self.__original_map[tile_name].append((x*100-100,y*100-100))
                     if tile_name == 'agua':
-                        self.__tile_rects.append(pygame.Rect(x*100,y*100, 100, 100))
+                        self.__tile_rects_agua.append(pygame.Rect(x*100-100,y*100-100, 100, 100))
+                    elif tile_name == 'void':
+                        self.__tile_rects_barreira.append(pygame.Rect(x*100-100, y*100-100, 100, 100 ))
 
     def spawn_flores(self, quantidade):
         for i in range (quantidade):
@@ -77,35 +80,34 @@ class Mapa:
         self.__lista_jacares.add(jacare)
         self.__lista_inimigos.add(jacare)
 
-    def spawn_consumiveis(self):
-        for i in range (2):
+    def spawn_consumiveis(self, quant_maca, quant_espinho, quant_cogumelo):
+        for i in range (quant_maca):
             self.__c1.coordenadas('consumivel')
             maca = Maca(self.__c1.coordenadax,self.__c1.coordenaday)
+            self.__lista_macas.add(maca)
+        for i in range (quant_espinho):
             self.__c1.coordenadas('consumivel')
             espinho = Espinho(self.__c1.coordenadax,self.__c1.coordenaday)
+            self.__lista_espinhos.add(espinho)
+        for i in range (quant_cogumelo):
             self.__c1.coordenadas('consumivel')
             cogumelo = Cogumelo(self.__c1.coordenadax,self.__c1.coordenaday)
-
-            self.__lista_macas.add(maca)
             self.__lista_cogumelos.add(cogumelo)
-            self.__lista_espinhos.add(espinho)
-            self.__all_sprites.add(maca, espinho,cogumelo)
-            self.__lista_itens.add(maca)
-            self.__lista_itens.add(espinho)
-            self.__lista_itens.add(cogumelo)
+
+        self.__all_sprites.add(maca, espinho,cogumelo)
+        self.__lista_itens.add(maca, espinho, cogumelo)
 
     def spawn_ra(self):
         ra = Ra(30, 30, 15, 585)
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
 
-    def spawn_all(self):
+    def spawn_all(self, quant_maca, quant_espinho, quant_cogumelo, quant_flores):
         self.spawn_ra()
-        self.spawn_consumiveis()
+        self.spawn_consumiveis(quant_maca, quant_espinho, quant_cogumelo)
         self.spawn_jacares()
         self.spawn_cobras()
-        self.spawn_flores(5)
-        return self.__all_sprites
+        self.spawn_flores(quant_flores)
 
     def reset(self):
         self.__lista_parceiro = pygame.sprite.Group()
@@ -178,5 +180,9 @@ class Mapa:
         return self.__terrestre.sprite
 
     @property
-    def tile_rects(self):
-        return self.__tile_rects
+    def tile_rects_agua(self):
+        return self.__tile_rects_agua
+
+    @property
+    def tile_rects_barreira(self):
+        return self.__tile_rects_barreira
