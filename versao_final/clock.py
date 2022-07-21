@@ -22,10 +22,9 @@ class Clock():
     
     def iniciar_clock(self):
         self.__timer_font = pygame.font.SysFont("fontname", 48)
-        self.__timer_sec = 5
+        self.__timer_sec = 120
         self.__timer_text = self.__timer_font.render(
             "02:00", True, ((255, 255, 255)))
-        pygame.time.set_timer(pygame.USEREVENT,300)
         
     def verifica_clock(self):
         if self.__timer_sec > 0:
@@ -34,4 +33,8 @@ class Clock():
         else:
             tempo = True
             return tempo
+            
+
+
+
             

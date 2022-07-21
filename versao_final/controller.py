@@ -59,6 +59,7 @@ class GameController:
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_SPACE:
                         self.__usuario = input_box.texto
+                        pygame.time.set_timer(pygame.USEREVENT,310)
                         return self.iniciar()
                 input_box.handle_event(event)
             self.__tela.update()
