@@ -28,7 +28,7 @@ class ConsequenciasColisoes:
             self.__jogador.rect.left = tile.right
         elif self.__jogador.rect.x > 1200 - self.__jogador.largura:
             self.__jogador.rect.right = tile.left
-        if self.__jogador.rect.y < 0:
+        elif self.__jogador.rect.y < 0:
             self.__jogador.rect.top = tile.bottom
         elif self.__jogador.rect.y > 600 - self.__jogador.altura:
             self.__jogador.rect.bottom = tile.top

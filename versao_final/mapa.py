@@ -46,7 +46,6 @@ class Mapa:
             reader_obj = csv.reader(file_obj)
             for row in reader_obj:
                 map_list.append(list(row))
-        print(map_list)
 
         height, width = len(map_list), len(map_list[0])
 

@@ -34,5 +34,8 @@ class Ranking:
         self.__rankingDAO.replace(self.__ranking)
         print(self.__ranking)
 
+    def reset_ranking(self):
+        self.__ranking = {"primeiro": ['', 0], "segundo": ['', 0], "terceiro": ['', 0], "quarto": ['', 0], "quinto": ['', 0]}
+
     def ranking(self):
         return self.__ranking
