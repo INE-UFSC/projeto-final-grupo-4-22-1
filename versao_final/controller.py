@@ -31,6 +31,8 @@ import time
 from clock import Clock
 from construtorDeFases import ConstrutorDeFases
 
+from Som import Som
+
 
 # TODO: precisamos verificar se essa combinação de coordenadas que criamos p/ cada item já está sendo usada, pq se já estiver teremos que criar novas coordenadas até todas serem diferentes (isso é no arquivos do item, só deixei  comentário aqui, pq sempre usamos esse arquivo)
 
@@ -45,12 +47,14 @@ class GameController:
         self.__jogador = None
         self.__relogio = Clock()
         self.__teste = False
+        self.__som = Som()
 
     def iniciar_menu(self):
         self.__tela.iniciar()
         self.__usuario = ''
         input_box = InputBox(430,300,140,32)
         menu = True
+        #self.__som.iniciar(1)
         while menu:
             self.__tela.menu(input_box)
             for event in self.__tela.ler():
@@ -75,6 +79,7 @@ class GameController:
         self.__construtor.gerar_fase(2)
         sprites = self.__mapa.all_sprites
         sprites.add(self.__jogador)
+        #self.__som.iniciar(0)
         while rodando:
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
@@ -98,6 +103,7 @@ class GameController:
         self.__ranking.atualiza_ranking(self.__usuario, 510)
         self.__tela.game_over()
         game_over = True
+        #self.__som.iniciar(2)
         while game_over:
             self.__clock.tick(40)
             self.__tela.update()
