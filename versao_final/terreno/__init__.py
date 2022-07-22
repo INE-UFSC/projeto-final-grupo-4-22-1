@@ -1,1 +1,1 @@
-from terreno.aquatico import Aquatico
+from terreno.water import Water

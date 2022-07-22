@@ -1,12 +1,12 @@
 from itens.efeitosnojogador import EfeitosNoJogador
-from bibliotecaImagens import BibliotecaImagens
+from ImageLibrary import ImageLibrary
 import time
 
 
 marrom = (75, 54, 33)
 efeito = 0
 
-imagem = BibliotecaImagens()
+imagem = ImageLibrary()
 imagem_espinho = imagem.espinho
 
 class Espinho(EfeitosNoJogador):
@@ -14,7 +14,7 @@ class Espinho(EfeitosNoJogador):
         super().__init__("espinho", 15, 10, coordenadax, coordenaday, marrom, efeito)
         self.__efeito = efeito
 
-        '''self.__imagem = BibliotecaImagens()
+        '''self.__imagem = ImageLibrary()
         self.__sprite = self.__imagem.espinho'''
 
     

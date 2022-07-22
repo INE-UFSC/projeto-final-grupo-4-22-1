@@ -1,6 +1,6 @@
 import pygame, random
 from input_box import InputBox
-from bibliotecaImagens import BibliotecaImagens
+from ImageLibrary import ImageLibrary
 
 class Menu:
     def __init__():

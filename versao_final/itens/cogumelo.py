@@ -1,11 +1,11 @@
 from itens.efeitosnojogador import EfeitosNoJogador
-from bibliotecaImagens import BibliotecaImagens
+from ImageLibrary import ImageLibrary
 import time
 
 cinza = (124, 134, 153)
 efeito = -1
 
-imagem = BibliotecaImagens()
+imagem = ImageLibrary()
 imagem_cogumelo = imagem.cogumelo
 
 class Cogumelo(EfeitosNoJogador):
@@ -13,7 +13,7 @@ class Cogumelo(EfeitosNoJogador):
         super().__init__("cogumelo", 15, 10,coordenadax,coordenaday, cinza, efeito)
         self.__efeito = efeito
         
-        '''self.__imagem = BibliotecaImagens()
+        '''self.__imagem = ImageLibrary()
         self.__sprite = self.__imagem.espinho'''
 
     def aplicar_efeito(self, jogador):

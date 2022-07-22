@@ -6,7 +6,7 @@ from pygame.locals import *
 from inimigos import Inimigo
 from colisoes import Colisoes
 
-from terreno.aquatico import Aquatico
+from terreno.water import Water
 from sapo import Sapo
 from ra import Ra
 
@@ -89,8 +89,8 @@ class GameController:
             if self.__teste == True:
                 break
             self.__clock.tick(40)
-            self.__tela.draw_map(self.__mapa.aquatico_sprite, self.__mapa.original_map['agua'])
-            self.__tela.draw_map(self.__mapa.terrestre_sprite, self.__mapa.original_map['terra'])
+            self.__tela.draw_map(self.__mapa.water_sprite, self.__mapa.original_map['water'])
+            self.__tela.draw_map(self.__mapa.ground_sprite, self.__mapa.original_map['ground'])
             self.__tela.desenhar(sprites)
             self.__tela.imagem_relogio(self.__relogio.timer_text,1050,20)
             if colisoes.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':

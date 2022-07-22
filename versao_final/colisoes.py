@@ -39,8 +39,8 @@ class Colisoes():
         for hit in jogador_tiles:
             if hit[1] == "void":
                 self.__consequencias.jogador_e_barreira(jogador_tiles[0][0])
-            elif hit[1] == "agua":
-                self.__consequencias.jogador_e_agua()
+            elif hit[1] == "water":
+                self.__consequencias.jogador_e_water()
 
     def colisao_tiles(self, tiles):
         hits = []

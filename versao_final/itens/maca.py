@@ -1,11 +1,11 @@
 from itens.efeitosnojogador import EfeitosNoJogador
-from bibliotecaImagens import BibliotecaImagens
+from ImageLibrary import ImageLibrary
 import time
 
 vermelho = (255, 0, 0)
 efeito = 2
 
-imagem = BibliotecaImagens()
+imagem = ImageLibrary()
 imagem_maca = imagem.maca
 
 
@@ -14,7 +14,7 @@ class Maca(EfeitosNoJogador):
         super().__init__("maca", 15, 10, coordenadax,coordenaday, vermelho, efeito)
         self.__efeito = efeito 
 
-        '''self.__imagem = BibliotecaImagens()
+        '''self.__imagem = ImageLibrary()
         self.__sprite = self.__imagem.maca'''
         
     

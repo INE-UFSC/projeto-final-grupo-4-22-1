@@ -7,8 +7,8 @@ from itens.maca import Maca
 from itens.espinho import Espinho
 from itens.cogumelo import Cogumelo
 
-from terreno.aquatico import Aquatico
-from terreno.terrestre import Terrestre
+from terreno.water import Water
+from terreno.ground import Ground
 
 from ra import Ra
 
@@ -28,12 +28,12 @@ class Mapa:
         self.__lista_macas = pygame.sprite.Group()
         self.__lista_cogumelos = pygame.sprite.Group()
         self.__lista_espinhos = pygame.sprite.Group()
-        self.__lista_terreno_aquatico = pygame.sprite.Group()
+        self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_itens = pygame.sprite.Group()
         
-        self.__aquatico = Aquatico()
-        self.__terrestre = Terrestre()
+        self.__water = Water()
+        self.__ground = Ground()
 
         self.__c1 = Coordenada(0,0)
         self.__tela = TelaJogo(self)
@@ -49,13 +49,13 @@ class Mapa:
 
         height, width = len(map_list), len(map_list[0])
 
-        self.__original_map = {'terra': [], 'agua': [], 'void': []}
+        self.__original_map = {'ground': [], 'water': [], 'void': []}
         for y, line in enumerate(map_list):
             if line != '':
                 for x, tile_name in enumerate(line):
                     self.__original_map[tile_name].append((x*100-100,y*100-100))
-                    if tile_name == 'agua':
-                        self.__tile_rects.append((pygame.Rect(x*100-100,y*100-100, 100, 100), 'agua'))
+                    if tile_name == 'water':
+                        self.__tile_rects.append((pygame.Rect(x*100-100,y*100-100, 100, 100), 'water'))
                     elif tile_name == 'void':
                         self.__tile_rects.append((pygame.Rect(x*100-100, y*100-100, 100, 100), 'void'))
 
@@ -69,12 +69,12 @@ class Mapa:
             self.__all_sprites.add(girassol, jasmin)
 
     def spawn_cobras(self):
-        cobra = Cobra(50,30,100,100,2,2,'terrestre')
+        cobra = Cobra(50,30,100,100,2,2,'ground')
         self.__lista_cobras.add(cobra)
         self.__lista_inimigos.add(cobra)
 
     def spawn_jacares(self):
-        jacare = Jacare(70,40,500,60,10,3,'aquatico')
+        jacare = Jacare(70,40,500,60,10,3,'water')
         self.__lista_jacares.add(jacare)
         self.__lista_inimigos.add(jacare)
 
@@ -115,7 +115,7 @@ class Mapa:
         self.__lista_macas = pygame.sprite.Group()
         self.__lista_cogumelos = pygame.sprite.Group()
         self.__lista_espinhos = pygame.sprite.Group()
-        self.__lista_terreno_aquatico = pygame.sprite.Group()
+        self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_inimigos = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
@@ -154,8 +154,8 @@ class Mapa:
         return self.__lista_cogumelos
 
     @property
-    def lista_terreno_aquatico(self):
-        return self.__lista_terreno_aquatico
+    def lista_terreno_water(self):
+        return self.__lista_terreno_water
 
     @property
     def all_sprites(self):
@@ -170,12 +170,12 @@ class Mapa:
         return self.__original_map
 
     @property
-    def aquatico_sprite(self):
-        return self.__aquatico.sprite
+    def water_sprite(self):
+        return self.__water.sprite
 
     @property
-    def terrestre_sprite(self):
-        return self.__terrestre.sprite
+    def ground_sprite(self):
+        return self.__ground.sprite
 
     @property
     def tile_rects(self):

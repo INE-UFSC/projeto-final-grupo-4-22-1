@@ -5,7 +5,7 @@ from pygame.locals import *
 from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
 from mapa import Mapa
-from bibliotecaImagens import BibliotecaImagens
+from ImageLibrary import ImageLibrary
 
 class Movimentacao:
     def __init__(self, tela, jogador, mapa):

@@ -1,6 +1,6 @@
 import pygame, random
 from input_box import InputBox
-from bibliotecaImagens import BibliotecaImagens
+from ImageLibrary import ImageLibrary
 
 #site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
 PRETO = (0, 0, 0)
@@ -16,12 +16,12 @@ VERDE_ESCURO = (0, 100, 0)
 ROSA = (218, 112, 214)
 #o fundo do terreno aquático será azul
 AZUL = (0, 191, 255)
-# o fundo do terreno terrestre será verde
+# o fundo do terreno ground será verde
 VERDE_CLARO = (0, 255, 0)
 
 class TelaJogo:
     def __init__(self, controller):
-        self.__imagens = BibliotecaImagens()
+        self.__imagens = ImageLibrary()
         self.__controlador = controller
         self.__largura = 1200
         self.__altura = 600

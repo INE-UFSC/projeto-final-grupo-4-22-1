@@ -1,7 +1,7 @@
 import os
 
 
-class BibliotecaImagens():
+class ImageLibrary():
     def __init__(self):
         self.__inicial = os.path.join("Menus_botoes/1.png")
         self.__perdeu = os.path.join("Menus_botoes/perdeu.png")
@@ -13,8 +13,8 @@ class BibliotecaImagens():
         self.__jacare_baixo = os.path.join("Imagens/jacare_baixo.png")
         self.__jacare_esquerda = os.path.join("Imagens/jacare_esquerda.png")
         self.__jacare_cima = os.path.join("Imagens/jacare_cima.png")
-        self.__agua = os.path.join("Imagens/agua.png")
-        self.__terra = os.path.join("Imagens/terra.png")
+        self.__water = os.path.join("Imagens/water.png")
+        self.__ground = os.path.join("Imagens/ground.png")
         self.__maca = os.path.join("Imagens/maca.png")
         self.__cogumelo = os.path.join("Imagens/cogumelo.png")
         self.__girassol = os.path.join("Imagens/girassol.png")
@@ -62,12 +62,12 @@ class BibliotecaImagens():
         return self.__jacare_cima
 
     @property 
-    def agua(self):
-        return self.__agua
+    def water(self):
+        return self.__water
     
     @property 
-    def terra(self):
-        return self.__terra
+    def ground(self):
+        return self.__ground
 
     @property
     def maca(self):

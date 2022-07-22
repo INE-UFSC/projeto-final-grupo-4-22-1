@@ -54,18 +54,18 @@ class Inimigo(Personagem):
                 self.rect.y -= self.velocidade
                 imagem = 3
 
-        elif self.counter >= 0 and self.counter <= distancia and self.rect.x <= delimitaxd:
+        elif self.counter >= 0 and self.counter <= distancia :
             self.rect.x += self.velocidade
 
-        elif self.counter >= distancia and self.counter <= distancia*distanciax and self.rect.y <= delimitayb:
+        elif self.counter >= distancia and self.counter <= distancia*distanciax :
             self.rect.y += self.velocidade
             imagem = 1
 
-        elif self.counter >= distancia*distanciax and self.counter <= distancia*distanciay and self.rect.x >= delimitaxe:
+        elif self.counter >= distancia*distanciax and self.counter <= distancia*distanciay :
             self.rect.x -= self.velocidade
             imagem = 2
 
-        elif self.counter >= distancia*distanciay and self.counter <= distancia*distanciax*2 and self.rect.y >= delimitayc:
+        elif self.counter >= distancia*distanciay and self.counter <= distancia*distanciax*2 :
             self.rect.y -= self.velocidade
             imagem = 3
 
