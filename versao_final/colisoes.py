@@ -1,11 +1,11 @@
 import pygame
 from mapa import Mapa
 from sapo import Sapo
-from itens.girassol import Girassol
-from itens.jasmin import Jasmin
-from itens.maca import Maca
-from itens.espinho import Espinho
-from itens.cogumelo import Cogumelo
+from itens.sunflower import Sunflower
+from itens.jasminen import Jasminen
+from itens.apple import Apple
+from itens.thorm import Thorm
+from itens.mushroom import Mushroom
 from consequenciasColisoes import ConsequenciasColisoes
 
 class Colisoes():

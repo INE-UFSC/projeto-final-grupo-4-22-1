@@ -15,11 +15,11 @@ class ImageLibrary():
         self.__jacare_cima = os.path.join("Imagens/jacare_cima.png")
         self.__water = os.path.join("Imagens/water.png")
         self.__ground = os.path.join("Imagens/ground.png")
-        self.__maca = os.path.join("Imagens/maca.png")
-        self.__cogumelo = os.path.join("Imagens/cogumelo.png")
-        self.__girassol = os.path.join("Imagens/girassol.png")
-        self.__jasmin = os.path.join("Imagens/jasmin.png")
-        self.__espinho = os.path.join("Imagens/espinho.png")
+        self.__apple = os.path.join("Imagens/apple.png")
+        self.__mushroom = os.path.join("Imagens/mushroom.png")
+        self.__sunflower = os.path.join("Imagens/sunflower.png")
+        self.__jasminen = os.path.join("Imagens/jasminen.png")
+        self.__thorm = os.path.join("Imagens/thorm.png")
     
     @property 
     def inicial(self):
@@ -70,17 +70,17 @@ class ImageLibrary():
         return self.__ground
 
     @property
-    def maca(self):
-        return self.__maca
+    def apple(self):
+        return self.__apple
     @property
-    def cogumelo(self):
-        return self.__cogumelo
+    def mushroom(self):
+        return self.__mushroom
     @property
-    def girassol(self):
-        return self.__girassol
+    def sunflower(self):
+        return self.__sunflower
     @property
-    def jasmin(self):
-        return self.__jasmin
+    def jasminen(self):
+        return self.__jasminen
     @property
-    def espinho(self):
-        return self.__espinho
+    def thorm(self):
+        return self.__thorm

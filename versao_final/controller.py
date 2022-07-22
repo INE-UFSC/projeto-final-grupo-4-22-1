@@ -14,11 +14,11 @@ from inimigos.cobra import Cobra
 from inimigos.jacare import Jacare
 import random
 
-from itens.girassol import Girassol
-from itens.jasmin import Jasmin
-from itens.maca import Maca
-from itens.espinho import Espinho
-from itens.cogumelo import Cogumelo
+from itens.sunflower import Sunflower
+from itens.jasminen import Jasminen
+from itens.apple import Apple
+from itens.thorm import Thorm
+from itens.mushroom import Mushroom
 
 from coordenadas.coordenada import Coordenada
 from mapa import Mapa

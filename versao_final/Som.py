@@ -6,7 +6,7 @@ class Som():
         self.__SomFundo = os.path.join("musica\musica_fundo.mp3")
         self.__SomInicial = os.path.join("musica\musica_inicial.mp3")
         self.__SomPerdeu = os.path.join("musica\musica_final.mp3")
-        self.__SomGirassol = os.path.join("musica\girassol.mp3")
+        self.__Somsunflower = os.path.join("musica\sunflower.mp3")
     
     def iniciar(self,musica):
         mixer.init()
@@ -20,7 +20,7 @@ class Som():
     
     def elemento(self):
         mixer.init()
-        mixer.music.load(self.__SomGirassol)
+        mixer.music.load(self.__Somsunflower)
         mixer.music.play(1)
     """caso vcs queiram testar o código de música basta colocar 
     pip install pygame==1.9.6

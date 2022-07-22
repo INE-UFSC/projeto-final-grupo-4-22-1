@@ -1,11 +1,11 @@
 import pygame
 import csv
 
-from itens.girassol import Girassol
-from itens.jasmin import Jasmin
-from itens.maca import Maca
-from itens.espinho import Espinho
-from itens.cogumelo import Cogumelo
+from itens.sunflower import Sunflower
+from itens.jasminen import Jasminen
+from itens.apple import Apple
+from itens.thorm import Thorm
+from itens.mushroom import Mushroom
 
 from terreno.water import Water
 from terreno.ground import Ground
@@ -25,9 +25,9 @@ class Mapa:
         self.__lista_jacares = pygame.sprite.Group()
         self.__lista_inimigos = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
-        self.__lista_macas = pygame.sprite.Group()
-        self.__lista_cogumelos = pygame.sprite.Group()
-        self.__lista_espinhos = pygame.sprite.Group()
+        self.__lista_apples = pygame.sprite.Group()
+        self.__lista_mushrooms = pygame.sprite.Group()
+        self.__lista_thorms = pygame.sprite.Group()
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_itens = pygame.sprite.Group()
@@ -62,11 +62,11 @@ class Mapa:
     def spawn_flores(self, quantidade):
         for i in range (quantidade):
             self.__c1.coordenadas('coletavel')
-            girassol = Girassol(self.__c1.coordenadax,self.__c1.coordenaday)
+            sunflower = Sunflower(self.__c1.coordenadax,self.__c1.coordenaday)
             self.__c1.coordenadas('coletavel')
-            jasmin = Jasmin(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_flores.add(girassol, jasmin)
-            self.__all_sprites.add(girassol, jasmin)
+            jasminen = Jasminen(self.__c1.coordenadax,self.__c1.coordenaday)
+            self.__lista_flores.add(sunflower, jasminen)
+            self.__all_sprites.add(sunflower, jasminen)
 
     def spawn_cobras(self):
         cobra = Cobra(50,30,100,100,2,2,'ground')
@@ -78,31 +78,31 @@ class Mapa:
         self.__lista_jacares.add(jacare)
         self.__lista_inimigos.add(jacare)
 
-    def spawn_consumiveis(self, quant_maca, quant_espinho, quant_cogumelo):
-        for i in range (quant_maca):
+    def spawn_consumiveis(self, quant_apple, quant_thorm, quant_mushroom):
+        for i in range (quant_apple):
             self.__c1.coordenadas('consumivel')
-            maca = Maca(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_macas.add(maca)
-        for i in range (quant_espinho):
+            apple = Apple(self.__c1.coordenadax,self.__c1.coordenaday)
+            self.__lista_apples.add(apple)
+        for i in range (quant_thorm):
             self.__c1.coordenadas('consumivel')
-            espinho = Espinho(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_espinhos.add(espinho)
-        for i in range (quant_cogumelo):
+            thorm = Thorm(self.__c1.coordenadax,self.__c1.coordenaday)
+            self.__lista_thorms.add(thorm)
+        for i in range (quant_mushroom):
             self.__c1.coordenadas('consumivel')
-            cogumelo = Cogumelo(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_cogumelos.add(cogumelo)
+            mushroom = Mushroom(self.__c1.coordenadax,self.__c1.coordenaday)
+            self.__lista_mushrooms.add(mushroom)
 
-        self.__all_sprites.add(maca, espinho,cogumelo)
-        self.__lista_itens.add(maca, espinho, cogumelo)
+        self.__all_sprites.add(apple, thorm,mushroom)
+        self.__lista_itens.add(apple, thorm, mushroom)
 
     def spawn_ra(self):
         ra = Ra(30, 30, 15, 585)
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
 
-    def spawn_all(self, quant_maca, quant_espinho, quant_cogumelo, quant_flores):
+    def spawn_all(self, quant_apple, quant_thorm, quant_mushroom, quant_flores):
         self.spawn_ra()
-        self.spawn_consumiveis(quant_maca, quant_espinho, quant_cogumelo)
+        self.spawn_consumiveis(quant_apple, quant_thorm, quant_mushroom)
         self.spawn_jacares()
         self.spawn_cobras()
         self.spawn_flores(quant_flores)
@@ -112,9 +112,9 @@ class Mapa:
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
-        self.__lista_macas = pygame.sprite.Group()
-        self.__lista_cogumelos = pygame.sprite.Group()
-        self.__lista_espinhos = pygame.sprite.Group()
+        self.__lista_apples = pygame.sprite.Group()
+        self.__lista_mushrooms = pygame.sprite.Group()
+        self.__lista_thorms = pygame.sprite.Group()
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_inimigos = pygame.sprite.Group()
@@ -142,16 +142,16 @@ class Mapa:
         return self.__lista_flores
 
     @property
-    def lista_macas(self):
-        return self.__lista_macas
+    def lista_apples(self):
+        return self.__lista_apples
 
     @property
-    def lista_espinhos(self):
-        return self.__lista_espinhos
+    def lista_thorms(self):
+        return self.__lista_thorms
 
     @property
-    def lista_cogumelos(self):
-        return self.__lista_cogumelos
+    def lista_mushrooms(self):
+        return self.__lista_mushrooms
 
     @property
     def lista_terreno_water(self):
