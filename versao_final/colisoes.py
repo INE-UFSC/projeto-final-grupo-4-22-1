@@ -34,17 +34,19 @@ class Colisoes():
         elif self.__colisoes_parceiro:
             self.__consequencias.jogador_e_parceiro()
 
-        self.colisao_tiles(tiles)
+        #código feio pra caralho? sim
+        jogador_tiles = self.colisao_tiles(tiles)
+        for hit in jogador_tiles:
+            if hit[1] == "void":
+                self.__consequencias.jogador_e_barreira(jogador_tiles[0][0])
+            elif hit[1] == "agua":
+                self.__consequencias.jogador_e_agua()
 
     def colisao_tiles(self, tiles):
         hits = []
         for tile in tiles:
             if self.__jogador.rect.colliderect(tile[0]):
                 hits.append(tile)
-                if tile[1] == 'void':
-                    self.__consequencias.jogador_e_barreira(tile[0])
-                elif tile[1] == 'agua':
-                    self.__consequencias.jogador_e_agua()
         return hits
 
     def reset(self):
