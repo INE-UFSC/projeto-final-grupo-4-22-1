@@ -42,7 +42,7 @@ class Mapa:
         map_list = []
         self.__tile_rects = []
         
-        with open('mapa.csv', 'r') as file_obj:
+        with open('mapa_facil.csv', 'r') as file_obj:
             reader_obj = csv.reader(file_obj)
             for row in reader_obj:
                 map_list.append(list(row))
