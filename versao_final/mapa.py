@@ -42,7 +42,7 @@ class Mapa:
         map_list = []
         self.__tile_rects = []
         
-        with open('mapa_facil.csv', 'r') as file_obj:
+        with open('mapa_medio.csv', 'r') as file_obj:
             reader_obj = csv.reader(file_obj)
             for row in reader_obj:
                 map_list.append(list(row))
@@ -54,10 +54,7 @@ class Mapa:
             if line != '':
                 for x, tile_name in enumerate(line):
                     self.__original_map[tile_name].append((x*100-100,y*100-100))
-                    if tile_name == 'water':
-                        self.__tile_rects.append((pygame.Rect(x*100-100,y*100-100, 100, 100), 'water'))
-                    elif tile_name == 'void':
-                        self.__tile_rects.append((pygame.Rect(x*100-100, y*100-100, 100, 100), 'void'))
+                    self.__tile_rects.append((pygame.Rect(x*100-100,y*100-100, 100, 100), tile_name))
 
     def spawn_flores(self, quantidade):
         for i in range (quantidade):

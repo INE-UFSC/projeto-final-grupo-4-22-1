@@ -28,18 +28,34 @@ class Movimentacao:
             if event.type == pygame.KEYDOWN:
                 if event.key == K_LEFT:
                     self.__jogador.mover_esquerda()
-                if event.key == K_RIGHT:
+                    self.__jogador.direcao_horizontal = -1
+                elif event.key == K_RIGHT:
                     self.__jogador.mover_direita()
+                    self.__jogador.direcao_horizontal = 1
+                else:
+                    self.__jogador.direcao_horizontal = 0
                 if event.key == K_UP:
                     self.__jogador.mover_cima()
-                if event.key == K_DOWN:
+                    self.__jogador.direcao_vertical = 1
+                elif event.key == K_DOWN:
+                    self.__jogador.direcao_vertical = -1
                     self.__jogador.mover_baixo()
+                else:
+                    self.__jogador.direcao_vertical = 0
 
         if pygame.key.get_pressed()[K_LEFT]:
             self.__jogador.mover_esquerda()
-        if pygame.key.get_pressed()[K_RIGHT]:
+            self.__jogador.direcao_horizontal = -1
+        elif pygame.key.get_pressed()[K_RIGHT]:
             self.__jogador.mover_direita()
+            self.__jogador.direcao_horizontal = 1
+        else:
+            self.__jogador.direcao_horizontal = 0
         if pygame.key.get_pressed()[K_UP]:
             self.__jogador.mover_cima()
-        if pygame.key.get_pressed()[K_DOWN]:
+            self.__jogador.direcao_vertical = 1
+        elif pygame.key.get_pressed()[K_DOWN]:
             self.__jogador.mover_baixo()
+            self.__jogador.direcao_vertical = -1
+        else:
+            self.__jogador.direcao_vertical = 0

@@ -6,6 +6,9 @@ class Player(Personagem):
         self.__vida = vida
         self.__velocidade_inicial = velocidade
         self.__velocidade = velocidade
+        self.__direcao_vertical = 0
+        self.__direcao_horizontal = 0
+        self.__envenenado = False
 
     @property
     def vida(self):
@@ -56,3 +59,19 @@ class Player(Personagem):
     @property
     def velocidade_inicial(self):
         return self.__velocidade_inicial
+
+    @property
+    def direcao_vertical(self):
+        return self.__direcao_vertical
+
+    @property
+    def direcao_horizontal(self):
+        return self.__direcao_horizontal
+
+    @direcao_vertical.setter
+    def direcao_vertical(self, direcao):
+        self.__direcao_vertical = direcao
+
+    @direcao_horizontal.setter
+    def direcao_horizontal(self, direcao):
+        self.__direcao_horizontal = direcao

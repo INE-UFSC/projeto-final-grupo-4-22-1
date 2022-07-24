@@ -23,12 +23,14 @@ class ConsequenciasColisoes:
     def jogador_e_water(self):
         self.__jogador.velocidade = 3
 
-    def jogador_e_barreira(self, tile):
-        if self.__jogador.rect.x < 0:
-            self.__jogador.rect.left = tile.right
-        elif self.__jogador.rect.x > 1200 - self.__jogador.largura:
-            self.__jogador.rect.right = tile.left
-        elif self.__jogador.rect.y < 0:
-            self.__jogador.rect.top = tile.bottom
-        elif self.__jogador.rect.y > 600 - self.__jogador.altura:
-            self.__jogador.rect.bottom = tile.top
+    def jogador_e_barreira_x(self, tile):
+        if self.__jogador.direcao_horizontal == -1:
+            self.__jogador.rect.x = tile.right
+        elif self.__jogador.direcao_horizontal == 1:
+            self.__jogador.rect.x = tile.left - self.__jogador.rect.w
+
+    def jogador_e_barreira_y(self, tile):
+        if self.__jogador.direcao_vertical == 1:
+            self.__jogador.rect.y = tile.bottom
+        elif self.__jogador.direcao_vertical == -1:
+            self.__jogador.rect.bottom = tile.top - self.__jogador.rect.h
