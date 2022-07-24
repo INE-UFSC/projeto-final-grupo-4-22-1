@@ -1,5 +1,5 @@
-from controller import GameController
+from game.GameController import GameController
 
-controlador = GameController()
+controller = GameController()
 
-controlador.iniciar_menu()
+controller.start()
