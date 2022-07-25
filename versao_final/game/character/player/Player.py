@@ -48,16 +48,24 @@ class Player(Character):
         self.__velocidade = self.__velocidade*fator_alteracao
 
     def mover_cima(self):
+        self.set_direction_y(1)
         self.rect.y += (-self.velocidade)
 
     def mover_baixo(self):
+        self.set_direction_y(-1)
         self.rect.y += (self.velocidade)
 
     def mover_esquerda(self):
+        self.set_direction_x(-1)
         self.rect.x += (-self.velocidade)
 
     def mover_direita(self):
+        self.set_direction_x(1)
         self.rect.x += (self.velocidade)
+
+    def stopped(self):
+        self.set_direction_x(0)
+        self.set_direction_y(0)
 
     @velocidade.setter
     def velocidade(self, velocidade):

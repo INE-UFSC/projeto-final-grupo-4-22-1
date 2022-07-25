@@ -91,7 +91,8 @@ class GameController:
             self.__screen.imagem_relogio(self.__relogio.timer_text,1050,20)
             if collisions.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
                 break
-            collisions.colisao_com_inimigos(self.__mapa.lista_inimigos, self.__mapa.tile_rects)
+
+            collisions.colisao_com_inimigos()
             movimentacao.mover_personagens()
             self.__screen.update()
         self.game_over()

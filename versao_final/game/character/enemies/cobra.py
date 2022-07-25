@@ -9,8 +9,8 @@ class Cobra(Enemy):
         self.__imagens = [self.__imagens.cobra_direita,self.__imagens.cobra_baixo,self.__imagens.cobra_esquerda,self.__imagens.cobra_cima]
         
 
-    def movimentar(self,SapoPosicaox,SapoPosicaoy):
-        movimento_cobra = self.movimento(50,2,3,300,550,100,20,250,SapoPosicaox,SapoPosicaoy)
+    def movimentar(self, player_position):
+        movimento_cobra = self.movimento(player_position)
         self.atualiza(movimento_cobra,self.__imagens[0],self.__imagens[1],self.__imagens[2],self.__imagens[3])
 
     

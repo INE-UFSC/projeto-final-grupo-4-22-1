@@ -26,7 +26,7 @@ class Mapa:
         self.__lista_parceiro = pygame.sprite.Group()
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
-        self.__lista_inimigos = pygame.sprite.Group()
+        self.__enemies = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
         self.__lista_apples = pygame.sprite.Group()
         self.__lista_mushrooms = pygame.sprite.Group()
@@ -72,12 +72,12 @@ class Mapa:
     def spawn_cobras(self):
         cobra = Cobra(50,30,100,100,2,2,'ground')
         self.__lista_cobras.add(cobra)
-        self.__lista_inimigos.add(cobra)
+        self.__enemies.add(cobra)
 
     def spawn_jacares(self):
         jacare = Jacare(70,40,500,60,10,3,'water')
         self.__lista_jacares.add(jacare)
-        self.__lista_inimigos.add(jacare)
+        self.__enemies.add(jacare)
 
     def spawn_consumiveis(self, quant_apple, quant_thorm, quant_mushroom):
         for i in range (quant_apple):
@@ -118,13 +118,17 @@ class Mapa:
         self.__lista_thorms = pygame.sprite.Group()
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
-        self.__lista_inimigos = pygame.sprite.Group()
+        self.__enemies = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
         self.__lista_itens = pygame.sprite.Group()
 
     @property
     def lista_itens(self):
         return self.__lista_itens
+
+    @property
+    def enimies(self):
+        return self.__enemies
 
     @property
     def lista_cobras(self):
@@ -161,10 +165,6 @@ class Mapa:
     @property
     def all_sprites(self):
         return self.__all_sprites
-
-    @property
-    def lista_inimigos(self):
-        return self.__lista_inimigos
 
     @property
     def original_map(self):

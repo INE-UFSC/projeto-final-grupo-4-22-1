@@ -1,35 +1,50 @@
 class CollisionConsequences:
     def __init__(self, jogador):
-        self.__jogador = jogador
+        #player = jogador
+        teste = 0
 
-    def jogador_e_inimigo(self):
+    def jogador_e_inimigo(self, player):
         return "Perdeu!"
 
-    def jogador_e_parceiro(self):
-        for flor in self.__jogador.flores_coletadas:
-            if self.__jogador.flores_coletadas[flor] == True:
-                self.__jogador.aumenta_velocidade(flor.peso)
-        self.__jogador.soltar_flores()
+    def jogador_e_parceiro(player, self):
+        for flor in player.flores_coletadas:
+            if player.flores_coletadas[flor] == True:
+                player.aumenta_velocidade(flor.peso)
+        player.soltar_flores()
 
-    def jogador_e_item(self, item):
-        item.aplicar_efeito(self.__jogador)
+    def jogador_e_item(self, player, item):
+        item.aplicar_efeito(player)
 
-    def jogador_e_flor(self, flor):
-        self.__jogador.flores_coletadas[flor] = self.__jogador.carry(flor.peso)
+    def jogador_e_flor(self, player, flor):
+        player.flores_coletadas[flor] = player.carry(flor.peso)
 
-    def jogador_e_water(self):
-        self.__jogador.velocidade = 3
+    def jogador_e_water(self, player):
+        player.velocidade = 3
 
-    def jogador_e_barreira_x(self, tile):
-        if self.__jogador.direcao_horizontal == -1:
-            self.__jogador.rect.x = tile.right
+    def jogador_e_barreira_x(self, player, tile):
+        if player.direction_x == -1:
+            player.rect.x = tile.right
 
-        elif self.__jogador.direcao_horizontal == 1:
-            self.__jogador.rect.x = tile.left - self.__jogador.rect.w
+        elif player.direction_x == 1:
+            player.rect.x = tile.left - player.rect.w
 
-    def jogador_e_barreira_y(self, tile):
-        if self.__jogador.direcao_vertical == 1:
-            self.__jogador.rect.y = tile.bottom
+    def jogador_e_barreira_y(self, player, tile):
+        if player.direction_y == 1:
+            player.rect.y = tile.bottom
 
-        elif self.__jogador.direcao_vertical == -1:
-            self.__jogador.rect.bottom = tile.top - self.__jogador.rect.h
+        elif player.direction_y == -1:
+            player.rect.bottom = tile.top - player.rect.h
+
+    def enemy_x(self, enemy, tile):
+        if enemy.direction_x == -1:
+            enemy.rect.x = tile.right
+
+        elif enemy.direction_x == 1:
+            enemy.rect.x = tile.left - enemy.rect.w
+
+    def enemy_y(self, enemy, tile):
+        if enemy.direction_y == 1:
+            enemy.rect.y = tile.bottom
+
+        elif enemy.direction_y == -1:
+            enemy.rect.bottom = tile.top - enemy.rect.h

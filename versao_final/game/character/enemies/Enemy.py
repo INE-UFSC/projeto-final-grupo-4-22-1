@@ -32,49 +32,73 @@ class Enemy(Character):
     def counter(self, counter):
         self.__counter = counter
 
+    
+    def mover_cima(self):
+        self.set_direction_y(1)
+        self.rect.y -= self.velocidade
 
-    def movimento(self, distancia,distanciax,distanciay,delimitaxd,delimitayb,delimitaxe,delimitayc,aleatoriedade,SapoPosicaox,SapoPosicaoy):
+    def mover_baixo(self):
+        self.set_direction_y(-1)
+        self.rect.y += self.velocidade
+
+    def mover_esquerda(self):
+        self.set_direction_x(-1)
+        self.rect.x -= self.velocidade
+
+    def mover_direita(self):
+        self.set_direction_x(1)
+        self.rect.x += self.velocidade
+        
+    def stopped(self):
+        self.set_direction_x(0)
+        self.set_direction_y(0)
+
+    def movimento(self, player_position):
         imagem = 0
-        raio = self.distancia_ponto(SapoPosicaox,SapoPosicaoy,self.rect.x,self.rect.y)
-        if(self.rect.x <= delimitaxd and self.rect.y <= delimitayb and self.rect.x >= delimitaxe and self.rect.y >= delimitayc and raio <= 200):
-            if self.rect.x <= SapoPosicaox and self.rect.y <= SapoPosicaoy:
-                self.rect.x += self.velocidade
-                self.rect.y += self.velocidade
-                imagem = 1
-            elif self.rect.x <= SapoPosicaox and self.rect.y >  SapoPosicaoy:
-                self.rect.x += self.velocidade
-                self.rect.y -= self.velocidade
-            elif self.rect.x > SapoPosicaox and self.rect.y <=  SapoPosicaoy:
-                self.rect.x -= self.velocidade
-                self.rect.y += self.velocidade
+        distance_from_player = self.distancia_ponto(player_position, self.rect.x, self.rect.y)
+
+        if distance_from_player <= 200:
+            if self.rect.x <= player_position[0]:
+                self.mover_direita()
+                imagem = 0
+
+            elif self.rect.x > player_position[0]:
+                self.mover_esquerda()
                 imagem = 2
-            elif self.rect.x > SapoPosicaox and self.rect.y >  SapoPosicaoy:
-                self.rect.x -= self.velocidade
-                self.rect.y -= self.velocidade
+
+            if self.rect.y <= player_position[1]:
+                self.mover_baixo()
+                imagem = 1
+
+            elif self.rect.y >  player_position[1]:
+                self.mover_cima()
                 imagem = 3
 
-        elif self.counter >= 0 and self.counter <= distancia :
-            self.rect.x += self.velocidade
 
-        elif self.counter >= distancia and self.counter <= distancia*distanciax :
-            self.rect.y += self.velocidade
-            imagem = 1
+        '''if self.rect.x <= 0:
+            self.mover_direita()
+            imagem = 0
 
-        elif self.counter >= distancia*distanciax and self.counter <= distancia*distanciay :
-            self.rect.x -= self.velocidade
+        elif self.rect.x > 0:
+            self.mover_esquerda()
             imagem = 2
 
-        elif self.counter >= distancia*distanciay and self.counter <= distancia*distanciax*2 :
-            self.rect.y -= self.velocidade
+        if self.rect.y <= 0:
+            self.mover_baixo()
+            imagem = 1
+
+        elif self.rect.y > 0:
+            self.mover_cima()
             imagem = 3
 
         else:
-            self.counter = random.randint(0,aleatoriedade)
+            self.counter = random.randint(0, 4)'''
+
         self.counter += 1
         return imagem
 
 
-    def atualiza(self,imagem,direita,baixo,esquerda,cima):
+    def atualiza(self, imagem, direita, baixo, esquerda, cima):
         if(imagem == 0):
             self.__screen.tamanho_ponto(direita,self.altura,self.largura, self.rect.x,self.rect.y)
         elif(imagem == 1):
@@ -85,6 +109,6 @@ class Enemy(Character):
             self.__screen.tamanho_ponto(cima,self.altura,self.largura, self.rect.x,self.rect.y)
     
 
-    def distancia_ponto(self,sapox,sapoy,inimigox,inimigoy):
-        distancia = math.sqrt((inimigox-sapox)**2+(inimigoy-sapoy)**2)
+    def distancia_ponto(self, player_position,inimigox,inimigoy):
+        distancia = math.sqrt((inimigox-player_position[0])**2+(inimigoy-player_position[1])**2)
         return distancia

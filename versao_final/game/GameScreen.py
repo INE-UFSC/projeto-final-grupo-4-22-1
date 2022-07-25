@@ -24,10 +24,12 @@ class GameScreen:
     def __init__(self, controller):
         self.__imagens = ImageLibrary()
         self.__controlador = controller
+        
         self.__largura = 1200
         self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
+        
         self.__menu = pygame.image.load(self.__imagens.inicial).convert()
         self.__game_over = pygame.image.load(self.__imagens.perdeu).convert()
         self.tamanho_display = self.__largura, self.__altura

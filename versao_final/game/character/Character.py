@@ -13,6 +13,9 @@ class Character(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = [coordenadax, coordenaday]
         
+        # coordenadas x: 1-direita, 0-parado, -1-esquerda e y: 1-cima, 0-parado, -1-baixo
+        self.__direction = pygame.math.Vector2(0, 0)
+        
         self.__direcao_vertical = 0
         self.__direcao_horizontal = 0
         
@@ -44,17 +47,19 @@ class Character(pygame.sprite.Sprite):
         self.__coordenaday += velocidade
 
     @property
-    def direcao_vertical(self):
-        return self.__direcao_vertical
+    def direction(self):
+        return self.__direction
 
     @property
-    def direcao_horizontal(self):
-        return self.__direcao_horizontal
+    def direction_x(self):
+        return self.__direction.x
 
-    @direcao_vertical.setter
-    def direcao_vertical(self, direcao):
-        self.__direcao_vertical = direcao
+    @property
+    def direction_y(self):
+        return self.__direction.y
 
-    @direcao_horizontal.setter
-    def direcao_horizontal(self, direcao):
-        self.__direcao_horizontal = direcao
+    def set_direction_x(self, direction):
+        self.__direction.x = direction
+
+    def set_direction_y(self, direction):
+        self.__direction.y = direction

@@ -9,36 +9,36 @@ class Collisions():
     def __init__(self, mapa, jogador):
         self.__mapa = mapa
         self.__jogador = jogador
-        self.__consequences = CollisionConsequences(self.__jogador)
+        self.__consequences = CollisionConsequences(self)
 
     def checar_colisoes_com_jogador(self, tiles):
         self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_flores, True)
         self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_parceiro, False)
         self.__colisoes_itens = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_itens, True)
-        self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_inimigos, False)
+        self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__jogador, self.__mapa.enimies, False)
 
         if self.__colisoes_inimigos:
-            return self.__consequences.jogador_e_inimigo()
+            return self.__consequences.jogador_e_inimigo(self.__jogador)
 
         elif self.__colisoes_flores:
             flor = self.__colisoes_flores[0]
-            self.__consequences.jogador_e_flor(flor)
+            self.__consequences.jogador_e_flor(self.__jogador, flor)
 
         elif self.__colisoes_itens:
             item = self.__colisoes_itens[0]
-            self.__consequences.jogador_e_item(item)
+            self.__consequences.jogador_e_item(self.__jogador, item)
 
         elif self.__colisoes_parceiro:
-            self.__consequences.jogador_e_parceiro()
+            self.__consequences.jogador_e_parceiro(self.__jogador)
 
         #código feio pra caralho? sim
         jogador_tiles = self.colisao_tiles(self.__jogador, tiles)
         for hit in jogador_tiles:
             if hit[1] == "void":
-                self.__consequences.jogador_e_barreira_x(hit[0])
-                self.__consequences.jogador_e_barreira_y(hit[0])
+                self.__consequences.jogador_e_barreira_x(self.__jogador, hit[0])
+                self.__consequences.jogador_e_barreira_y(self.__jogador, hit[0])
             elif hit[1] == "water":
-                self.__consequences.jogador_e_water()
+                self.__consequences.jogador_e_water(self.__jogador)
 
     def colisao_tiles(self, personagem, tiles):
         hits = []
@@ -47,36 +47,31 @@ class Collisions():
                 hits.append(tile)
         return hits
 
-    def colisao_com_inimigos(self, inimigos, tiles):
+    def colisao_com_inimigos(self):
+        inimigos = self.__mapa.enimies
+        tile = self.__mapa.tile_rects
+        
         for inimigo in inimigos:
-            colisao_inimigo = self.colisao_tiles(inimigo, tiles)
+            colisao_inimigo = self.colisao_tiles(inimigo, tile)
 
             for colisao in colisao_inimigo:
                 if colisao[1] == "ground" and isinstance(inimigo, Jacare):
-                    if colisao[0].x + 100 > inimigo.rect.x:
-                        inimigo.rect.x = colisao[0].right
-
-                    elif colisao[0].x < inimigo.rect.x:
-                        inimigo.rect.x = colisao[0].left
+                    self.__consequences.enemy_x(inimigo, colisao[0])
 
                 elif colisao[1] == "void" and isinstance(inimigo, Jacare):
-                    if colisao[0].y + 100 > inimigo.rect.y:
-                        inimigo.rect.y = colisao[0].bottom
-                    elif colisao[0].y < inimigo.rect.y:
-                        inimigo.rect.y = colisao[0].top
-
-                if colisao[1] == "water" and isinstance(inimigo, Cobra):
-                    if colisao[0].x + 100 > inimigo.rect.x:
-                        inimigo.rect.x = colisao[0].right
-
-                    elif colisao[0].x < inimigo.rect.x:
-                        inimigo.rect.x = colisao[0].left
-
+                    if colisao[0].right == 0:
+                        self.__consequences.enemy_x(inimigo, colisao[0])
+                    else:
+                        self.__consequences.enemy_y(inimigo, colisao[0])
+                    
                 elif colisao[1] == "void" and isinstance(inimigo, Cobra):
-                    if colisao[0].y + 100 > inimigo.rect.y:
-                        inimigo.rect.y = colisao[0].bottom
-                    elif colisao[0].y < inimigo.rect.y:
-                        inimigo.rect.y = colisao[0].top
+                    if colisao[0].right == 0:
+                        self.__consequences.enemy_x(inimigo, colisao[0])
+                    else:
+                        self.__consequences.enemy_y(inimigo, colisao[0])
+
+                elif colisao[1] == "water" and isinstance(inimigo, Cobra):
+                    self.__consequences.enemy_x(inimigo, colisao[0])
 
     def reset(self):
         self.__colisoes_parceiro = None
