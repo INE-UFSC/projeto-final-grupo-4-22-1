@@ -1,4 +1,4 @@
-import random, pygame, math
+import random, pygame, math, time
 
 from game.GameScreen import GameScreen
 from game.character.Character import Character
@@ -28,10 +28,8 @@ class Enemy(Character):
     def counter(self):
         return self.__counter
     
-    @counter.setter
-    def counter(self, counter):
+    def set_counter(self, counter):
         self.__counter = counter
-
     
     def mover_cima(self):
         self.set_direction_y(1)
@@ -73,28 +71,27 @@ class Enemy(Character):
             elif self.rect.y >  player_position[1]:
                 self.mover_cima()
                 imagem = 3
-
-
-        '''if self.rect.x <= 0:
-            self.mover_direita()
+        
+        if self.counter == 1:
             imagem = 0
-
-        elif self.rect.x > 0:
-            self.mover_esquerda()
+            self.mover_direita()
+            
+        elif self.counter == 3:
             imagem = 2
+            self.mover_esquerda()
 
-        if self.rect.y <= 0:
-            self.mover_baixo()
+        elif self.counter == 4:
             imagem = 1
+            self.mover_baixo()
 
-        elif self.rect.y > 0:
-            self.mover_cima()
+        elif self.counter == 2:
             imagem = 3
+            self.mover_cima()
 
         else:
-            self.counter = random.randint(0, 4)'''
+            self.__counter = random.randint(1, 4)
 
-        self.counter += 1
+        #self.counter += 1
         return imagem
 
 

@@ -38,13 +38,17 @@ class CollisionConsequences:
     def enemy_x(self, enemy, tile):
         if enemy.direction_x == -1:
             enemy.rect.x = tile.right
+            enemy.set_counter(4)
 
         elif enemy.direction_x == 1:
             enemy.rect.x = tile.left - enemy.rect.w
+            enemy.set_counter(2)
 
     def enemy_y(self, enemy, tile):
         if enemy.direction_y == 1:
             enemy.rect.y = tile.bottom
+            enemy.set_counter(3)
 
         elif enemy.direction_y == -1:
             enemy.rect.bottom = tile.top - enemy.rect.h
+            enemy.set_counter(1)
