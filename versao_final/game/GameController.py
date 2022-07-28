@@ -57,10 +57,12 @@ class GameController:
                 if event.type == pygame.QUIT:
                     self.__screen.fechar()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == K_SPACE:
+                    if event.key == K_RETURN:
                         self.__usuario = input_box.texto
                         pygame.time.set_timer(pygame.USEREVENT,310)
                         return self.iniciar()
+                    if event.key == K_BACKSPACE:
+                        self.tela_ranking()
                 input_box.handle_event(event)
             self.__screen.update()
             self.__clock.tick(30)
@@ -88,11 +90,9 @@ class GameController:
                 if self.__teste == True:
                     break
                 self.__clock.tick(40)
-                self.__screen.draw_map(self.__mapa.water_sprite, self.__mapa.original_map['water'])
-                self.__screen.draw_map(self.__mapa.ground_sprite, self.__mapa.original_map['ground'])
+                self.__screen.draw_map(self.__mapa.dict_sprites_mapa, self.__mapa.original_map)
                 self.__screen.desenhar(sprites)
                 self.__screen.imagem_relogio(self.__relogio.timer_text,1050,20)
-                print(self.__jogador.flores_coletadas)
                 if self.__mapa.checar_flores() == "Acabou!" and self.__jogador.flores_coletadas == {}:
                     break
                 if collisions.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
@@ -109,19 +109,34 @@ class GameController:
 
     def game_over(self):
         self.__ranking.atualiza_ranking(self.__usuario, self.__relogio.timer_sec)
-        self.__screen.game_over()
         game_over = True
         #self.__som.iniciar(2)
         while game_over:
             self.__clock.tick(40)
             self.__screen.update()
+            self.__screen.game_over()
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
                     self.__screen.fechar()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == K_SPACE:
+                    if event.key == K_RETURN:
                         return self.restart()
+                    elif event.key == K_BACKSPACE:
+                        self.tela_ranking()
+
+    def tela_ranking(self):
+        while True:
+            for event in self.__screen.ler():
+                if event.type == pygame.QUIT:
+                    self.__screen.fechar()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == K_BACKSPACE:
+                        return
+                    if event.key == K_r:
+                        self.__ranking.reset_ranking()
+            self.__screen.tela_ranking(self.__ranking.ranking)
+            self.__screen.update()
 
     def restart(self):
         self.__mapa.reset()
-        self.iniciar()
+        self.start()

@@ -37,5 +37,6 @@ class Ranking:
     def reset_ranking(self):
         self.__ranking = {'primeiro': ['', 0], 'segundo': ['', 0], 'terceiro': ['', 0], 'quarto': ['', 0], 'quinto': ['', 0]}
 
+    @property
     def ranking(self):
         return self.__ranking

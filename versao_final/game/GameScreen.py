@@ -41,12 +41,10 @@ class GameScreen:
         pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
 
     def menu(self, box):
-        self.__tela.fill(VERDE_CLARO)
         self.__tela.blit(self.__menu, (0,0))
         self.desenhar_input_box(box)
 
     def game_over(self):
-        self.__tela.fill(BRANCO)
         self.__tela.blit(self.__game_over, (0,0))
 
     def start(self):
@@ -68,11 +66,14 @@ class GameScreen:
         pygame.quit()
         exit()
     
-    def draw_map(self, imagem, lista_coordenadas):
-        imagem = pygame.image.load(imagem)
-        imagem = pygame.transform.scale(imagem,(100,100))
-        for coordenada in lista_coordenadas:
-            self.__tela.blit(imagem, coordenada)
+    def draw_map(self, imagens, lista_coordenadas):
+        for imagem in imagens:
+            sprite = pygame.image.load(imagens[imagem])
+            sprite = pygame.transform.scale(sprite,(100,100))
+            for coordenada in lista_coordenadas:
+                if coordenada == imagem:
+                    for coord in lista_coordenadas[coordenada]:
+                        self.__tela.blit(sprite, coord)
 
     def tamanho_ponto(self, imagem,altura,largura, x, y):
         imagem = pygame.image.load(imagem)
@@ -81,6 +82,15 @@ class GameScreen:
     
     def imagem_relogio(self,imagem,x,y):
         self.__tela.blit(imagem, (x, y))
+
+    def tela_ranking(self, ranking):
+        self.colorir()
+        fonte = pygame.font.SysFont("Times New Roman", 40, True, False)
+        lugar = 0
+        for posicao in ranking:
+            lugar += 50
+            texto = fonte.render("%s: %s, com %s pontos" % (posicao, ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
+            self.__tela.blit(texto, (320, lugar))
 
     @property
     def largura(self):

@@ -34,9 +34,9 @@ class Mapa:
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_itens = pygame.sprite.Group()
-        
         self.__water = Water()
         self.__ground = Ground()
+        self.__dict_sprites_mapa = {"ground": self.__ground.sprite, "water": self.__water.sprite}
 
         self.__c1 = Coordenada(0,0)
         self.__screen = GameScreen(self)
@@ -123,7 +123,6 @@ class Mapa:
         self.__lista_itens = pygame.sprite.Group()
 
     def checar_flores(self):
-        print(len(self.__lista_flores))
         if len(self.__lista_flores) == 0:
             return "Acabou!"
 
@@ -186,3 +185,7 @@ class Mapa:
     @property
     def tile_rects(self):
         return self.__tile_rects
+
+    @property
+    def dict_sprites_mapa(self):
+        return self.__dict_sprites_mapa
