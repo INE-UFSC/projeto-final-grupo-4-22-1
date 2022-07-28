@@ -4,8 +4,8 @@ class ConstrutorDeFases:
 
     def gerar_fase(self, nivel):
         if nivel == 1:
-            self.__mapa.load_map()
-            self.__mapa.spawn_all(2, 5, 2, 5)
+            self.__mapa.load_map(nivel)
+            self.__mapa.spawn_all(1, 1, 1, 1)
         if nivel == 2:
-            self.__mapa.load_map()
+            self.__mapa.load_map(nivel)
             self.__mapa.spawn_all(5, 5, 5, 10)

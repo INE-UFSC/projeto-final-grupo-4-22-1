@@ -6,6 +6,7 @@ class MapsLibrary:
         self.__easy = os.path.join("game/maps/csv_files/mapa_facil.csv")
         self.__medium = os.path.join("game/maps/csv_files/mapa_medio.csv")
         self.__hard = os.path.join("game/maps/csv_files/mapa_dificil.csv")
+        self.__mapas = [self.__easy, self.__medium, self.__hard]
     
     @property 
     def easy(self):
@@ -18,3 +19,7 @@ class MapsLibrary:
     @property 
     def hard(self):
         return self.__hard
+
+    @property
+    def mapas(self):
+        return self.__mapas

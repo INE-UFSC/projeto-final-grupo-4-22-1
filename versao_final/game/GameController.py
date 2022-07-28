@@ -66,35 +66,45 @@ class GameController:
             self.__clock.tick(30)
 
     def iniciar(self):
-        self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
-        collisions = Collisions(self.__mapa, self.__jogador)
+        fase_atual = 1
         self.__screen.start()
-        movimentacao = Movimentacao(self.__screen, self.__jogador, self.__mapa)
         rodando = True
-        self.__relogio.iniciar_clock()
-        self.__construtor.gerar_fase(2)
-        sprites = self.__mapa.all_sprites
-        sprites.add(self.__jogador)
         #self.__som.iniciar(0)
-        while rodando:
-            for event in self.__screen.ler():
-                if event.type == pygame.QUIT:
-                    self.__screen.fechar()
-                elif event.type == pygame.USEREVENT:
-                    self.__teste = self.__relogio.verifica_clock()
-            if self.__teste == True:
+        game = True
+        while game:
+            self.__relogio.iniciar_clock()
+            self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
+            self.__construtor.gerar_fase(fase_atual)
+            sprites = self.__mapa.all_sprites
+            sprites.add(self.__jogador)
+            movimentacao = Movimentacao(self.__screen, self.__jogador, self.__mapa)
+            collisions = Collisions(self.__mapa, self.__jogador)
+            while rodando:
+                for event in self.__screen.ler():
+                    if event.type == pygame.QUIT:
+                        self.__screen.fechar()
+                    elif event.type == pygame.USEREVENT:
+                        self.__teste = self.__relogio.verifica_clock()
+                if self.__teste == True:
+                    break
+                self.__clock.tick(40)
+                self.__screen.draw_map(self.__mapa.water_sprite, self.__mapa.original_map['water'])
+                self.__screen.draw_map(self.__mapa.ground_sprite, self.__mapa.original_map['ground'])
+                self.__screen.desenhar(sprites)
+                self.__screen.imagem_relogio(self.__relogio.timer_text,1050,20)
+                print(self.__jogador.flores_coletadas)
+                if self.__mapa.checar_flores() == "Acabou!" and self.__jogador.flores_coletadas == {}:
+                    break
+                if collisions.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
+                    game = False
+                    break
+                collisions.colisao_com_inimigos()
+                movimentacao.mover_personagens()
+                self.__screen.update()
+            if game == False:
                 break
-            self.__clock.tick(40)
-            self.__screen.draw_map(self.__mapa.water_sprite, self.__mapa.original_map['water'])
-            self.__screen.draw_map(self.__mapa.ground_sprite, self.__mapa.original_map['ground'])
-            self.__screen.desenhar(sprites)
-            self.__screen.imagem_relogio(self.__relogio.timer_text,1050,20)
-            if collisions.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
-                break
-
-            collisions.colisao_com_inimigos()
-            movimentacao.mover_personagens()
-            self.__screen.update()
+            self.__mapa.reset()
+            fase_atual += 1
         self.game_over()
 
     def game_over(self):

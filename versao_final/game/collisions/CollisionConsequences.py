@@ -1,3 +1,5 @@
+from game.character.player.Player import Player
+
 class CollisionConsequences:
     def __init__(self, jogador):
         #player = jogador
@@ -6,7 +8,7 @@ class CollisionConsequences:
     def jogador_e_inimigo(self, player):
         return "Perdeu!"
 
-    def jogador_e_parceiro(player, self):
+    def jogador_e_parceiro(self, player):
         for flor in player.flores_coletadas:
             if player.flores_coletadas[flor] == True:
                 player.aumenta_velocidade(flor.peso)

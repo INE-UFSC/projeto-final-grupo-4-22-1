@@ -42,11 +42,11 @@ class Mapa:
         self.__screen = GameScreen(self)
         self.__maps = MapsLibrary()
         
-    def load_map(self):
+    def load_map(self, nivel):
         map_list = []
         self.__tile_rects = []
         
-        with open(self.__maps.medium, 'r') as file_obj:
+        with open(self.__maps.mapas[nivel-1], 'r') as file_obj:
             reader_obj = csv.reader(file_obj)
             for row in reader_obj:
                 map_list.append(list(row))
@@ -121,6 +121,11 @@ class Mapa:
         self.__enemies = pygame.sprite.Group()
         self.__c1 = Coordenada(0,0)
         self.__lista_itens = pygame.sprite.Group()
+
+    def checar_flores(self):
+        print(len(self.__lista_flores))
+        if len(self.__lista_flores) == 0:
+            return "Acabou!"
 
     @property
     def lista_itens(self):
