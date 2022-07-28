@@ -21,7 +21,10 @@ class CollisionConsequences:
         player.flores_coletadas[flor] = player.carry(flor.peso)
 
     def jogador_e_water(self, player):
-        player.velocidade = 3
+        player.velocidade = player.velocidade_na_agua
+
+    def jogador_e_ground(self, player):
+        player.velocidade = player.velocidade_normal
 
     def jogador_e_barreira_x(self, player, tile):
         if player.direction_x == -1:
@@ -35,7 +38,7 @@ class CollisionConsequences:
             player.rect.y = tile.bottom
 
         elif player.direction_y == -1:
-            player.rect.bottom = tile.top - player.rect.h
+            player.rect.bottom = tile.top
 
     def enemy_x(self, enemy, tile):
         if enemy.direction_x == -1:

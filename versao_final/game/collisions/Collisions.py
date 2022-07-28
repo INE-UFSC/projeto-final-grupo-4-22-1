@@ -39,6 +39,8 @@ class Collisions():
                 self.__consequences.jogador_e_barreira_y(self.__jogador, hit[0])
             elif hit[1] == "water":
                 self.__consequences.jogador_e_water(self.__jogador)
+            elif hit[1] == "ground":
+                self.__consequences.jogador_e_ground(self.__jogador)
 
     def colisao_tiles(self, personagem, tiles):
         hits = []

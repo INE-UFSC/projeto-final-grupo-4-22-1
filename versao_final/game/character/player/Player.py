@@ -8,6 +8,8 @@ class Player(Character):
         self.__velocidade = velocidade
         self.__flores = []
         self.__envenenado = False
+        self.__velocidade_na_agua = 2
+        self.__velocidade_normal = self.__velocidade
 
     @property
     def vida(self):
@@ -21,17 +23,21 @@ class Player(Character):
         if self.__velocidade - v > 1:
             if v:
                 self.__velocidade -= v
+                self.__velocidade_normal = self.__velocidade
                 return True
             else:
                 self.__velocidade -= 1
+                self.__velocidade_normal = self.__velocidade
         else:
             return False
 
     def aumenta_velocidade(self, v):
         if v:
             self.__velocidade += v
+            self.__velocidade_normal = self.__velocidade
         else:
             self.__velocidade += 1
+            self.__velocidade_normal = self.__velocidade
     
     @property
     def flores(self):
@@ -43,9 +49,11 @@ class Player(Character):
 
     def debuff(self):
         self.__velocidade = self.__velocidade*(-1)
+        self.__velocidade_normal = self.__velocidade
     
     def alterar_velocidade(self, fator_alteracao):
         self.__velocidade = self.__velocidade*fator_alteracao
+        self.__velocidade_normal = self.__velocidade
 
     def mover_cima(self):
         self.set_direction_y(1)
@@ -74,3 +82,11 @@ class Player(Character):
     @property
     def velocidade_inicial(self):
         return self.__velocidade_inicial
+
+    @property
+    def velocidade_na_agua(self):
+        return self.__velocidade_na_agua
+
+    @property
+    def velocidade_normal(self):
+        return self.__velocidade_normal

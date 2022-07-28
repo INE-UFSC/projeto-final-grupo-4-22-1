@@ -3,8 +3,9 @@ import os
 
 class ImageLibrary():
     def __init__(self):
-        self.__inicial = os.path.join("game/imageLibrary/Menus_botoes/1.png")
+        self.__inicial = os.path.join("game/imageLibrary/Menus_botoes/Layout_completo_menu_inicial.png")
         self.__perdeu = os.path.join("game/imageLibrary/Menus_botoes/perdeu.png")
+        self.__ranking = os.path.join("game/imageLibrary/Menus_botoes/Layout_completo_ranking.png")
         self.__cobra_direita = os.path.join("game/imageLibrary/images/cobra_direita.png")
         self.__cobra_baixo = os.path.join("game/imageLibrary/images/cobra_baixo.png")
         self.__cobra_esquerda = os.path.join("game/imageLibrary/images/cobra_esquerda.png")
@@ -20,7 +21,11 @@ class ImageLibrary():
         self.__sunflower = os.path.join("game/imageLibrary/images/sunflower.png")
         self.__jasminen = os.path.join("game/imageLibrary/images/jasminen.png")
         self.__thorm = os.path.join("game/imageLibrary/images/thorm.png")
-    
+
+    @property
+    def ranking(self):
+        return self.__ranking
+
     @property 
     def inicial(self):
         return self.__inicial

@@ -29,7 +29,7 @@ class GameScreen:
         self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
-        
+        self.__ranking = pygame.image.load(self.__imagens.ranking).convert()
         self.__menu = pygame.image.load(self.__imagens.inicial).convert()
         self.__game_over = pygame.image.load(self.__imagens.perdeu).convert()
         self.tamanho_display = self.__largura, self.__altura
@@ -84,13 +84,13 @@ class GameScreen:
         self.__tela.blit(imagem, (x, y))
 
     def tela_ranking(self, ranking):
-        self.colorir()
-        fonte = pygame.font.SysFont("Times New Roman", 40, True, False)
-        lugar = 0
+        self.__tela.blit(self.__ranking, (0,0))
+        fonte = pygame.font.SysFont("Times New Roman", 30, True, False)
+        lugar = 165
         for posicao in ranking:
-            lugar += 50
             texto = fonte.render("%s: %s, com %s pontos" % (posicao, ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
-            self.__tela.blit(texto, (320, lugar))
+            self.__tela.blit(texto, (350, lugar))
+            lugar += 95
 
     @property
     def largura(self):
