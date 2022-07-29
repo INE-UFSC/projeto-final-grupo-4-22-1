@@ -6,41 +6,42 @@ from game.character.enemies.cobra import Cobra
 from game.collisions.CollisionConsequences import CollisionConsequences
 
 class Collisions():
-    def __init__(self, mapa, jogador):
+    def __init__(self, mapa, player):
         self.__mapa = mapa
-        self.__jogador = jogador
+        self.__player = player
         self.__consequences = CollisionConsequences(self)
 
-    def checar_colisoes_com_jogador(self, tiles):
-        self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_flores, True)
-        self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_parceiro, False)
-        self.__colisoes_itens = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_itens, True)
-        self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__jogador, self.__mapa.enemies, False)
+    def checar_colisoes_com_player(self, tiles):
+        self.__colisoes_flores = pygame.sprite.spritecollide(self.__player, self.__mapa.lista_flores, True)
+        self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__player, self.__mapa.lista_parceiro, False)
+        self.__colisoes_itens = pygame.sprite.spritecollide(self.__player, self.__mapa.lista_itens, True)
+        self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__player, self.__mapa.enemies, False)
 
         if self.__colisoes_inimigos:
-            return self.__consequences.jogador_e_inimigo(self.__jogador)
+            return self.__consequences.player_e_inimigo(self.__player)
 
         elif self.__colisoes_flores:
             flor = self.__colisoes_flores[0]
-            self.__consequences.jogador_e_flor(self.__jogador, flor)
+            self.__consequences.player_e_flor(self.__player, flor)
 
         elif self.__colisoes_itens:
             item = self.__colisoes_itens[0]
-            self.__consequences.jogador_e_item(self.__jogador, item)
+            self.__consequences.player_e_item(self.__player, item)
 
         elif self.__colisoes_parceiro:
-            self.__consequences.jogador_e_parceiro(self.__jogador)
+            self.__consequences.player_e_parceiro(self.__player)
 
         #código feio pra caralho? sim
-        jogador_tiles = self.colisao_tiles(self.__jogador, tiles)
-        for hit in jogador_tiles:
+        #pelo menos funciona kkkkk
+        player_tiles = self.colisao_tiles(self.__player, tiles)
+        for hit in player_tiles:
             if hit[1] == "void":
-                self.__consequences.jogador_e_barreira_x(self.__jogador, hit[0])
-                self.__consequences.jogador_e_barreira_y(self.__jogador, hit[0])
+                self.__consequences.player_e_barreira_x(self.__player, hit[0])
+                self.__consequences.player_e_barreira_y(self.__player, hit[0])
             elif hit[1] == "water":
-                self.__consequences.jogador_e_water(self.__jogador)
+                self.__consequences.player_e_water(self.__player)
             elif hit[1] == "ground":
-                self.__consequences.jogador_e_ground(self.__jogador)
+                self.__consequences.player_e_ground(self.__player)
 
     def colisao_itens(self, item, tiles):
         item_tiles = self.colisao_tiles(item, tiles)

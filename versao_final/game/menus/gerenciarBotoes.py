@@ -1,12 +1,11 @@
 import pygame
-from game.menus.botao import Button
+from game.menus.button import Button
 from game.GameScreen import GameScreen
 from game.ranking.Ranking import Ranking
 from game.menus.input_box import InputBox
 
 class GerenciarBotoes():
     def __init__(self):
-        print("chegou")
         self.__tela = GameScreen(self)
         self.__buttonSair = Button(470,250,280,60)
         self.__buttonSom = Button(470,335,280,60)
@@ -19,17 +18,14 @@ class GerenciarBotoes():
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.__buttonSair.rect.collidepoint(event.pos):
-                print("Você está Jogando")
                 teste = self.tela_inicial()
                 if teste == 0:
                     return 0
                 
             if self.__buttonSom.rect.collidepoint(event.pos):
-                print("Você está vendo o Som")
                 self.tela_som()
     
             if self.__buttonRanking.rect.collidepoint(event.pos):
-                print("Você está vendo o Ranking")
                 self.tela_ranking()
     
     def tela_inicial(self):

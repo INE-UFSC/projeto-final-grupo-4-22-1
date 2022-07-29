@@ -13,5 +13,5 @@ class EfeitosNoJogador(Item, ABC):
         return self.__efeito
 
     @abstractmethod
-    def aplicar_efeito(self, jogador):
-        jogador.alterar_velocidade(self.__efeito)
+    def aplicar_efeito(self, player):
+        player.alterar_velocidade(self.__efeito)

@@ -5,9 +5,9 @@ from game.imageLibrary.ImageLibrary import ImageLibrary
 
 #site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
 PRETO = (0, 0, 0)
-# o jogador será branco
+# o player será branco
 BRANCO = (255, 255, 255)
-#o crush do jogador será roxo
+#o crush do player será roxo
 ROXO = (72, 61, 139)
 #o inimigo 1 (cobra) será vermelho
 VERMELHO = 	(139, 0, 0)
@@ -80,21 +80,21 @@ class GameScreen:
         exit()
     
     def draw_map(self, imagens, lista_coordenadas):
-        for imagem in imagens:
-            sprite = pygame.image.load(imagens[imagem])
+        for image in imagens:
+            sprite = pygame.image.load(imagens[image])
             sprite = pygame.transform.scale(sprite,(100,100))
             for coordenada in lista_coordenadas:
-                if coordenada == imagem:
+                if coordenada == image:
                     for coord in lista_coordenadas[coordenada]:
                         self.__tela.blit(sprite, coord)
 
-    def tamanho_ponto(self, imagem,altura,largura, x, y):
-        imagem = pygame.image.load(imagem)
-        imagem = pygame.transform.scale(imagem,(altura,largura))
-        self.__tela.blit(imagem, (x, y))
+    def tamanho_ponto(self, image,altura,largura, x, y):
+        image = pygame.image.load(image)
+        image = pygame.transform.scale(image,(altura,largura))
+        self.__tela.blit(image, (x, y))
     
-    def imagem_relogio(self,imagem,x,y):
-        self.__tela.blit(imagem, (x, y))
+    def image_relogio(self,image,x,y):
+        self.__tela.blit(image, (x, y))
     
     def tela_ranking(self, ranking):
         fonte = pygame.font.SysFont("Arial", 25, True, False)

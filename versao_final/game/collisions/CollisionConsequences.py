@@ -1,32 +1,32 @@
 from game.character.player.Player import Player
 
 class CollisionConsequences:
-    def __init__(self, jogador):
-        #player = jogador
+    def __init__(self, player):
+        #player = player
         teste = 0
 
-    def jogador_e_inimigo(self, player):
+    def player_e_inimigo(self, player):
         return "Perdeu!"
 
-    def jogador_e_parceiro(self, player):
+    def player_e_parceiro(self, player):
         for flor in player.flores_coletadas:
             if player.flores_coletadas[flor] == True:
                 player.aumenta_velocidade(flor.peso)
         player.soltar_flores()
 
-    def jogador_e_item(self, player, item):
+    def player_e_item(self, player, item):
         item.aplicar_efeito(player)
 
-    def jogador_e_flor(self, player, flor):
+    def player_e_flor(self, player, flor):
         player.flores_coletadas[flor] = player.carry(flor.peso)
 
-    def jogador_e_water(self, player):
+    def player_e_water(self, player):
         player.velocidade = player.velocidade_na_agua
 
-    def jogador_e_ground(self, player):
+    def player_e_ground(self, player):
         player.velocidade = player.velocidade_normal
 
-    def jogador_e_barreira_x(self, player, tile):
+    def player_e_barreira_x(self, player, tile):
         if player.envenenado == False:
             if player.direction_x == -1:
                 player.rect.x = tile.right
@@ -40,7 +40,7 @@ class CollisionConsequences:
             elif player.direction_x == -1:
                 player.rect.x = tile.left - player.rect.w
 
-    def jogador_e_barreira_y(self, player, tile):
+    def player_e_barreira_y(self, player, tile):
         if player.envenenado == False:
             if player.direction_y == 1:
                 player.rect.y = tile.bottom

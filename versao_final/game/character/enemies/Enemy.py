@@ -52,57 +52,57 @@ class Enemy(Character):
         self.set_direction_y(0)
 
     def movimento(self, player_position):
-        imagem = 0
+        
+        image = 0
         distance_from_player = self.distancia_ponto(player_position, self.rect.x, self.rect.y)
 
         if distance_from_player <= 200:
             if self.rect.x <= player_position[0]:
                 self.mover_direita()
-                imagem = 0
+                image = 0
 
             elif self.rect.x > player_position[0]:
                 self.mover_esquerda()
-                imagem = 2
+                image = 2
 
             if self.rect.y <= player_position[1]:
                 self.mover_baixo()
-                imagem = 1
+                image = 1
 
             elif self.rect.y >  player_position[1]:
                 self.mover_cima()
-                imagem = 3
+                image = 3
+        else:        
+            if self.counter >= 1 and self.counter < 100:
+                image = 0
+                self.mover_direita()
         
-        if self.counter == 1:
-            imagem = 0
-            self.mover_direita()
-            
-        elif self.counter == 3:
-            imagem = 2
-            self.mover_esquerda()
+            elif self.counter >= 200 and self.counter < 300:
+                image = 2
+                self.mover_esquerda()
 
-        elif self.counter == 4:
-            imagem = 1
-            self.mover_baixo()
+            elif self.counter >= 300 and self.counter < 400:
+                image = 1
+                self.mover_baixo()
 
-        elif self.counter == 2:
-            imagem = 3
-            self.mover_cima()
+            elif self.counter >= 100 and self.counter < 200:
+                image = 3
+                self.mover_cima()
+            else:
+                self.__counter = random.randint(1, 400)
 
-        else:
-            self.__counter = random.randint(1, 4)
-
-        #self.counter += 1
-        return imagem
+        self.__counter += 1
+        return image
 
 
-    def atualiza(self, imagem, direita, baixo, esquerda, cima):
-        if(imagem == 0):
+    def atualiza(self, image, direita, baixo, esquerda, cima):
+        if(image == 0):
             self.__screen.tamanho_ponto(direita,self.altura,self.largura, self.rect.x,self.rect.y)
-        elif(imagem == 1):
+        elif(image == 1):
             self.__screen.tamanho_ponto(baixo,self.altura,self.largura, self.rect.x,self.rect.y)
-        elif(imagem == 2):
+        elif(image == 2):
             self.__screen.tamanho_ponto(esquerda,self.altura,self.largura, self.rect.x,self.rect.y)
-        elif(imagem == 3):
+        elif(image == 3):
             self.__screen.tamanho_ponto(cima,self.altura,self.largura, self.rect.x,self.rect.y)
     
 

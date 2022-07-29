@@ -28,7 +28,7 @@ from game.maps.mapa import Mapa
 from game.menus.input_box import InputBox
 from game.Movimentacao import Movimentacao
 from game.menus.gerenciarBotoes import GerenciarBotoes
-from game.menus.botao import Button
+from game.menus.button import Button
 
 from game.construtorDeFases import ConstrutorDeFases
 
@@ -42,7 +42,7 @@ class GameController:
         self.__screen = GameScreen(self)
         self.__construtor = ConstrutorDeFases(self.__mapa)
         self.__clock = pygame.time.Clock()
-        self.__jogador = None
+        self.__player = None
         self.__relogio = Clock()
         self.__teste = False
         self.__som = Som()
@@ -77,14 +77,14 @@ class GameController:
         vitoria = False
         while game:
             self.__relogio.iniciar_clock()
-            self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
-            collisions = Collisions(self.__mapa, self.__jogador)
+            self.__player = Sapo(30, 30, 3, 300, 300, 7)
+            collisions = Collisions(self.__mapa, self.__player)
             if self.__construtor.gerar_fase(collisions, fase_atual) == "Finished!":
                 vitoria = True
                 break
             sprites = self.__mapa.all_sprites
-            sprites.add(self.__jogador)
-            movimentacao = Movimentacao(self.__screen, self.__jogador, self.__mapa)
+            sprites.add(self.__player)
+            movimentacao = Movimentacao(self.__screen, self.__player, self.__mapa)
             while rodando:
                 for event in self.__screen.ler():
                     if event.type == pygame.QUIT:
@@ -96,10 +96,10 @@ class GameController:
                 self.__clock.tick(40)
                 self.__screen.draw_map(self.__mapa.dict_sprites_mapa, self.__mapa.original_map)
                 self.__screen.desenhar(sprites)
-                self.__screen.imagem_relogio(self.__relogio.timer_text,1050,20)
-                if self.__mapa.checar_flores() == "Acabou!" and self.__jogador.flores_coletadas == {}:
+                self.__screen.image_relogio(self.__relogio.timer_text,1050,20)
+                if self.__mapa.checar_flores() == "Acabou!" and self.__player.flores_coletadas == {}:
                     break
-                if collisions.checar_colisoes_com_jogador(self.__mapa.tile_rects) == 'Perdeu!':
+                if collisions.checar_colisoes_com_player(self.__mapa.tile_rects) == 'Perdeu!':
                     game = False
                     break
                 collisions.colisao_com_inimigos()
@@ -124,9 +124,8 @@ class GameController:
                     self.__screen.fechar()
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_RETURN:
+                        print("TEsteeee")
                         return self.restart()
-                    elif event.key == K_BACKSPACE:
-                        self.start()
 
     def restart(self):
         self.__mapa.reset()
