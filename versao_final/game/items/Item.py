@@ -3,7 +3,7 @@ import pygame
 
 
 class Item(ABC, pygame.sprite.Sprite):
-    def __init__(self, nome, largura, altura, coordenadax, coordenaday, COR):
+    def __init__(self, nome, largura, altura, coordenadax, coordenaday, sprite):
         self.__nome = nome
         self.__largura = largura
         self.__altura = altura
@@ -11,9 +11,9 @@ class Item(ABC, pygame.sprite.Sprite):
         self.__coordenaday = coordenaday
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface([altura, largura])
-        self.image.fill(COR)
         self.rect = self.image.get_rect()
         self.rect.center = [coordenadax, coordenaday]
+        self.__sprite = pygame.image.load(sprite)
 
     @property
     def nome(self):
@@ -35,9 +35,6 @@ class Item(ABC, pygame.sprite.Sprite):
     def coordenaday(self):
         return self.__coordenaday
 
-    '''@abstractmethod
-    def criar(self, coordenadax, coordenaday):
-        pass'''
-
-    '''Método para criação de itens no mapa sem que eles fiquem na água
-    ou ocupem a mesma coordenada'''
+    @property
+    def sprite(self):
+        return self.__sprite

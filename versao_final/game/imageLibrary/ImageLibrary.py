@@ -23,6 +23,8 @@ class ImageLibrary():
         self.__sunflower = os.path.join("game/imageLibrary/images/sunflower.png")
         self.__jasminen = os.path.join("game/imageLibrary/images/jasminen.png")
         self.__thorn = os.path.join("game/imageLibrary/images/thorn.png")
+        self.__ra = os.path.join("game/imageLibrary/images/ra.png")
+        self.__sapo_esquerda = os.path.join("game/imageLibrary/images/sapo_esquerda.png")
 
     @property
     def ranking(self):
@@ -103,3 +105,11 @@ class ImageLibrary():
     @property
     def thorn(self):
         return self.__thorn
+
+    @property
+    def ra(self):
+        return self.__ra
+
+    @property
+    def sapo_esquerda(self):
+        return self.__sapo_esquerda

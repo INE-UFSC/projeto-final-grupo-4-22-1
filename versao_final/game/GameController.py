@@ -95,7 +95,7 @@ class GameController:
                     break
                 self.__clock.tick(40)
                 self.__screen.draw_map(self.__mapa.dict_sprites_mapa, self.__mapa.original_map)
-                self.__screen.desenhar(sprites)
+                self.__screen.draw_sprites(sprites)
                 self.__screen.image_relogio(self.__relogio.timer_text,1050,20)
                 if self.__mapa.checar_flores() == "Acabou!" and self.__player.flores_coletadas == {}:
                     break

@@ -66,6 +66,12 @@ class GameScreen:
     def colorir(self):
         self.__tela.fill(VERDE_CLARO)
 
+    def draw_sprites(self, sprites):
+        for sprite in sprites:
+            image = sprite.sprite
+            image = pygame.transform.scale(image,(sprite.altura,sprite.largura))
+            self.__tela.blit(image, (sprite.rect.x, sprite.rect.y))
+
     def desenhar(self, sprites):
         sprites.draw(self.__tela)
 
@@ -92,6 +98,7 @@ class GameScreen:
         image = pygame.image.load(image)
         image = pygame.transform.scale(image,(altura,largura))
         self.__tela.blit(image, (x, y))
+
     
     def image_relogio(self,image,x,y):
         self.__tela.blit(image, (x, y))

@@ -4,8 +4,8 @@ from game.items.Item import Item
 
 
 class EfeitosNoJogador(Item, ABC):
-    def __init__(self, nome, largura, altura, coordenadax, coordenaday, COR, efeito):
-        super().__init__(nome, largura, altura, coordenadax, coordenaday, COR)
+    def __init__(self, nome, largura, altura, coordenadax, coordenaday, efeito, sprite):
+        super().__init__(nome, largura, altura, coordenadax, coordenaday, sprite)
         self.__efeito = efeito
 
     @property
@@ -14,4 +14,4 @@ class EfeitosNoJogador(Item, ABC):
 
     @abstractmethod
     def aplicar_efeito(self, player):
-        player.alterar_velocidade(self.__efeito)
+        pass
