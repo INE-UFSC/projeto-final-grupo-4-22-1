@@ -41,7 +41,7 @@ class GerenciarBotoes():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if buttonIniciar.rect.collidepoint(event.pos):
                         return 0
-                input_box.handle_event(event)
+                self.__usuario = input_box.handle_event(event)
             self.__tela.update()
         pygame.time.Clock().tick(30)
     
@@ -68,11 +68,16 @@ class GerenciarBotoes():
         menu = True
         while menu:
             self.__tela.ranking()
-            self.__tela.tela_ranking(Ranking().ranking)
+            ranking  = Ranking()
+            self.__tela.tela_ranking(ranking.ranking)
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
                 if event.type == pygame.KEYDOWN:
-                    return 
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_r:
+                            ranking.reset_ranking()
+                        else:
+                            return 
             self.__tela.update()
         pygame.time.Clock().tick(30)
