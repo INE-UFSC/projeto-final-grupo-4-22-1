@@ -29,9 +29,13 @@ class GameScreen:
         self.__altura = 600
         self.__tela = pygame.display.set_mode((self.__largura, self.__altura))
         pygame.display.set_caption("GRUPO 4")
-        self.__ranking = pygame.image.load(self.__imagens.ranking).convert()
+        
         self.__menu = pygame.image.load(self.__imagens.inicial).convert()
         self.__game_over = pygame.image.load(self.__imagens.perdeu).convert()
+        self.__som = pygame.image.load(self.__imagens.som).convert()
+        self.__ranking = pygame.image.load(self.__imagens.ranking).convert()
+        self.__nome = pygame.image.load(self.__imagens.nome).convert()
+        
         self.tamanho_display = self.__largura, self.__altura
         self.display = pygame.display.set_mode(
             self.tamanho_display, pygame.HWSURFACE)
@@ -39,13 +43,22 @@ class GameScreen:
     def desenhar_input_box(self, box):
         self.__tela.blit(box.txt_surface, (box.rect.x+5, box.rect.y+5))
         pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
-
-    def menu(self, box):
+        
+    def menu(self):
         self.__tela.blit(self.__menu, (0,0))
-        self.desenhar_input_box(box)
 
     def game_over(self):
         self.__tela.blit(self.__game_over, (0,0))
+    
+    def som(self):
+        self.__tela.blit(self.__som, (0,0))
+    
+    def ranking(self):
+        self.__tela.blit(self.__ranking, (0,0))
+        
+    def nome(self,box,):
+        self.__tela.blit(self.__nome, (0,0))
+        self.desenhar_input_box(box)
 
     def start(self):
         pygame.init()
@@ -82,15 +95,14 @@ class GameScreen:
     
     def imagem_relogio(self,imagem,x,y):
         self.__tela.blit(imagem, (x, y))
-
+    
     def tela_ranking(self, ranking):
-        self.__tela.blit(self.__ranking, (0,0))
-        fonte = pygame.font.SysFont("Times New Roman", 30, True, False)
-        lugar = 180
+        fonte = pygame.font.SysFont("Arial", 25, True, False)
+        lugar = 90
         for posicao in ranking:
             texto = fonte.render("%s: %s, com %s pontos" % (posicao, ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
+            lugar += 85
             self.__tela.blit(texto, (450, lugar))
-            lugar += 84
 
     @property
     def largura(self):

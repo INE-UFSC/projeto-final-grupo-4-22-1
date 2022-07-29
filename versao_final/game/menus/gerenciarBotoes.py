@@ -1,0 +1,82 @@
+import pygame
+from game.menus.botao import Button
+from game.GameScreen import GameScreen
+from game.ranking.Ranking import Ranking
+from game.menus.input_box import InputBox
+
+class GerenciarBotoes():
+    def __init__(self):
+        print("chegou")
+        self.__tela = GameScreen(self)
+        self.__buttonSair = Button(470,250,280,60)
+        self.__buttonSom = Button(470,335,280,60)
+        self.__buttonRanking = Button(470,425,280,60)
+    
+    @property
+    def usuario(self):
+        return self.__usuario
+    
+    def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.__buttonSair.rect.collidepoint(event.pos):
+                print("Você está Jogando")
+                teste = self.tela_inicial()
+                if teste == 0:
+                    return 0
+                
+            if self.__buttonSom.rect.collidepoint(event.pos):
+                print("Você está vendo o Som")
+                self.tela_som()
+    
+            if self.__buttonRanking.rect.collidepoint(event.pos):
+                print("Você está vendo o Ranking")
+                self.tela_ranking()
+    
+    def tela_inicial(self):
+        buttonIniciar = Button(490,350,220,50)
+        input_box = InputBox(410,268,370,46)
+        self.__usuario = ''
+        menu = True
+        while menu:
+            self.__tela.nome(input_box)
+            for event in self.__tela.ler():
+                if event.type == pygame.QUIT:
+                    self.__tela.fechar()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if buttonIniciar.rect.collidepoint(event.pos):
+                        return 0
+                input_box.handle_event(event)
+            self.__tela.update()
+        pygame.time.Clock().tick(30)
+    
+    def tela_som(self):
+        buttonDesligado = Button(510,375,150,60)
+        buttonLigado = Button(510,270,150,60)
+        menu = True
+        while menu:
+            self.__tela.som()
+            for event in self.__tela.ler():
+                if event.type == pygame.QUIT:
+                    self.__tela.fechar()
+                if event.type == pygame.KEYDOWN:
+                    return 
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if buttonDesligado.rect.collidepoint(event.pos):
+                        print("Som Desligado")
+                    elif buttonLigado.rect.collidepoint(event.pos):
+                        print("Som Ligado")
+            self.__tela.update()
+        pygame.time.Clock().tick(30)
+    
+    def tela_ranking(self):
+        menu = True
+        while menu:
+            self.__tela.ranking()
+            self.__tela.tela_ranking(Ranking().ranking)
+            for event in self.__tela.ler():
+                if event.type == pygame.QUIT:
+                    self.__tela.fechar()
+                if event.type == pygame.KEYDOWN:
+                    return 
+            self.__tela.update()
+        pygame.time.Clock().tick(30)

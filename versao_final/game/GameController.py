@@ -27,6 +27,8 @@ from game.items.Mushroom import Mushroom
 from game.maps.mapa import Mapa
 from game.menus.input_box import InputBox
 from game.Movimentacao import Movimentacao
+from game.menus.gerenciarBotoes import GerenciarBotoes
+from game.menus.botao import Button
 
 from game.construtorDeFases import ConstrutorDeFases
 
@@ -44,26 +46,25 @@ class GameController:
         self.__relogio = Clock()
         self.__teste = False
         self.__som = Som()
+        
 
     def start(self):
         self.__screen.start()
         self.__usuario = ''
         input_box = InputBox(430,300,140,32)
+        button = GerenciarBotoes()
         menu = True
         #self.__som.iniciar(1)
         while menu:
-            self.__screen.menu(input_box)
+            self.__screen.menu()
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
-                    self.__screen.fechar()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == K_RETURN:
-                        self.__usuario = input_box.texto
-                        pygame.time.set_timer(pygame.USEREVENT,310)
-                        return self.iniciar()
-                    if event.key == K_BACKSPACE:
-                        self.tela_ranking()
-                input_box.handle_event(event)
+                    self.__screen.fechar() 
+                inicio = button.handle_event(event)
+                if inicio == 0:
+                    self.__usuario = input_box.texto
+                    pygame.time.set_timer(pygame.USEREVENT,310)
+                    return self.iniciar()
             self.__screen.update()
             self.__clock.tick(30)
 
@@ -125,20 +126,7 @@ class GameController:
                     if event.key == K_RETURN:
                         return self.restart()
                     elif event.key == K_BACKSPACE:
-                        self.tela_ranking()
-
-    def tela_ranking(self):
-        while True:
-            for event in self.__screen.ler():
-                if event.type == pygame.QUIT:
-                    self.__screen.fechar()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == K_BACKSPACE:
-                        return
-                    if event.key == K_r:
-                        self.__ranking.reset_ranking()
-            self.__screen.tela_ranking(self.__ranking.ranking)
-            self.__screen.update()
+                        self.start()
 
     def restart(self):
         self.__mapa.reset()
