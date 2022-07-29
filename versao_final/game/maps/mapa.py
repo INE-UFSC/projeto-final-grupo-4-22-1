@@ -74,6 +74,8 @@ class Mapa:
                     self.__lista_flores.add(sunflower)
                     self.__all_sprites.add(sunflower)
                     break
+                else:
+                    self.__c1.remover_item('coletavel')
             while True:
                 self.__c1.coordenadas('coletavel')
                 jasminen = Jasminen(self.__c1.coordenadax,self.__c1.coordenaday)
@@ -82,6 +84,8 @@ class Mapa:
                     self.__lista_flores.add(jasminen)
                     self.__all_sprites.add(jasminen)
                     break
+                else:
+                    self.__c1.remover_item('coletavel')
 
     def spawn_cobras(self):
         for tile in self.__original_map:
@@ -109,6 +113,8 @@ class Mapa:
                     self.__all_sprites.add(apple)
                     self.__lista_itens.add(apple)
                     break
+                else:
+                    self.__c1.remover_item('consumivel')
         for i in range (quant_thorn):
             while True:
                 self.__c1.coordenadas('consumivel')
@@ -118,6 +124,8 @@ class Mapa:
                     self.__all_sprites.add(thorn)
                     self.__lista_itens.add(thorn)
                     break
+                else:
+                    self.__c1.remover_item('consumivel')
         for i in range (quant_mushroom):
             while True:
                 self.__c1.coordenadas('consumivel')
@@ -127,6 +135,8 @@ class Mapa:
                     self.__all_sprites.add(mushroom)
                     self.__lista_itens.add(mushroom)
                     break
+                else:
+                    self.__c1.remover_item('consumivel')
 
     def spawn_ra(self):
         ra = Ra(30, 30, 15, 585)

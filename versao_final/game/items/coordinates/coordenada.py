@@ -39,3 +39,6 @@ class Coordenada():
                     break
 
         self.__dict_coordenadas[tipo_item].append(tuplacoordenada)
+
+    def remover_item(self, tipo_item):
+        self.__dict_coordenadas[tipo_item].pop()
