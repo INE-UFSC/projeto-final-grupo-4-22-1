@@ -20,7 +20,7 @@ class ImageLibrary():
         self.__mushroom = os.path.join("game/imageLibrary/images/mushroom.png")
         self.__sunflower = os.path.join("game/imageLibrary/images/sunflower.png")
         self.__jasminen = os.path.join("game/imageLibrary/images/jasminen.png")
-        self.__thorm = os.path.join("game/imageLibrary/images/thorm.png")
+        self.__thorn = os.path.join("game/imageLibrary/images/thorn.png")
 
     @property
     def ranking(self):
@@ -91,5 +91,5 @@ class ImageLibrary():
         return self.__jasminen
 
     @property
-    def thorm(self):
-        return self.__thorm
+    def thorn(self):
+        return self.__thorn

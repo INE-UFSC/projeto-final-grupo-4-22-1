@@ -92,3 +92,11 @@ class Player(Character):
     @property
     def velocidade_normal(self):
         return self.__velocidade_normal
+
+    @property
+    def envenenado(self):
+        return self.__envenenado
+
+    @envenenado.setter
+    def envenenado(self, status):
+        self.__envenenado = status

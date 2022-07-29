@@ -34,11 +34,18 @@ class CollisionConsequences:
             player.rect.x = tile.left - player.rect.w
 
     def jogador_e_barreira_y(self, player, tile):
-        if player.direction_y == 1:
-            player.rect.y = tile.bottom
+        if player.envenenado == False:
+            if player.direction_y == 1:
+                player.rect.y = tile.bottom
 
-        elif player.direction_y == -1:
-            player.rect.bottom = tile.top
+            elif player.direction_y == -1:
+                player.rect.bottom = tile.top
+        else:
+            if player.direction_y == -1:
+                player.rect.y = tile.bottom
+
+            elif player.direction_y == 1:
+                player.rect.bottom = tile.top
 
     def enemy_x(self, enemy, tile):
         if enemy.direction_x == -1:

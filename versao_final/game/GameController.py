@@ -21,7 +21,7 @@ from game.items.collectibles.sunflower import Sunflower
 from game.items.collectibles.jasminen import Jasminen
 
 from game.items.Apple import Apple
-from game.items.Thorm import Thorm
+from game.items.Thorn import Thorn
 from game.items.Mushroom import Mushroom
 
 from game.maps.mapa import Mapa
@@ -103,6 +103,7 @@ class GameController:
                     break
                 collisions.colisao_com_inimigos()
                 movimentacao.mover_personagens()
+                print(self.__jogador.velocidade)
                 self.__screen.update()
             if game == False:
                 break
