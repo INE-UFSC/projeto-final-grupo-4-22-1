@@ -7,29 +7,29 @@ from game.som.Som import Som
 
 class GerenciarBotoes():
     def __init__(self):
-        self.__tela = GameScreen(self)
+        self.__tela = GameScreen()
         self.__buttonSair = Button(470,250,280,60)
         self.__buttonSom = Button(470,335,280,60)
         self.__buttonRanking = Button(470,425,280,60)
         self.__som = Som()
-    
+
     @property
     def usuario(self):
         return self.__usuario
-    
+
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.__buttonSair.rect.collidepoint(event.pos):
                 teste = self.tela_inicial()
                 if teste == 0:
                     return 0
-                
+
             if self.__buttonSom.rect.collidepoint(event.pos):
                 self.tela_som()
-    
+
             if self.__buttonRanking.rect.collidepoint(event.pos):
                 self.tela_ranking()
-    
+
     def tela_inicial(self):
         buttonIniciar = Button(490,350,220,50)
         input_box = InputBox(410,268,370,46)
@@ -47,13 +47,13 @@ class GerenciarBotoes():
                 input_box.handle_event(event)
             self.__tela.update()
         pygame.time.Clock().tick(30)
-    
+
     def tela_som(self):
         buttonDesligado = Button(510,375,150,60)
         buttonLigado = Button(510,270,150,60)
         menu = True
         while menu:
-            self.__tela.som()
+            self.__tela.draw_screen("som")
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
                     self.__tela.fechar()
@@ -66,11 +66,11 @@ class GerenciarBotoes():
                         self.__som.unpause()
             self.__tela.update()
         pygame.time.Clock().tick(30)
-    
+
     def tela_ranking(self):
         menu = True
         while menu:
-            self.__tela.ranking()
+            self.__tela.draw_screen("ranking")
             ranking  = Ranking()
             self.__tela.tela_ranking(ranking.ranking)
             for event in self.__tela.ler():

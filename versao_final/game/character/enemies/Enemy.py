@@ -10,7 +10,7 @@ class Enemy(Character):
         self.__terreno = terreno
         self.__velocidade = velocidade
         self.__counter = 0
-        self.__screen = GameScreen(self)
+        self.__screen = GameScreen()
 
     @property
     def dano(self):

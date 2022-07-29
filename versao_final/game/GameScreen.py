@@ -1,29 +1,12 @@
-import pygame, random
+import pygame
 
 from game.menus.input_box import InputBox
 from game.imageLibrary.ImageLibrary import ImageLibrary
 
-#site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
-PRETO = (0, 0, 0)
-# o jogador será branco
-BRANCO = (255, 255, 255)
-#o crush do jogador será roxo
-ROXO = (72, 61, 139)
-#o inimigo 1 (cobra) será vermelho
-VERMELHO = 	(139, 0, 0)
-#o inimigo 2 (jacaré) será verde escuro
-VERDE_ESCURO = (0, 100, 0)
-#as flores serão rosas
-ROSA = (218, 112, 214)
-#o fundo do terreno aquático será azul
-AZUL = (0, 191, 255)
-# o fundo do terreno ground será verde
-VERDE_CLARO = (0, 255, 0)
 
 class GameScreen:
-    def __init__(self, controller):
+    def __init__(self):
         self.__imagens = ImageLibrary()
-        self.__controlador = controller
         
         self.__largura = 1200
         self.__altura = 600
@@ -36,6 +19,7 @@ class GameScreen:
         self.__ranking = pygame.image.load(self.__imagens.ranking).convert()
         self.__nome = pygame.image.load(self.__imagens.nome).convert()
         self.__venceu = pygame.image.load(self.__imagens.venceu).convert()
+        self.__telas = {"ranking": self.__ranking, "menu": self.__menu, "game_over": self.__game_over, "som": self.__som, "nome": self.__nome, "venceu": self.__venceu}
 
         self.tamanho_display = self.__largura, self.__altura
         self.display = pygame.display.set_mode(
@@ -45,33 +29,15 @@ class GameScreen:
         self.__tela.blit(box.txt_surface, (box.rect.x+5, box.rect.y+5))
         pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
 
-    def draw_screen(self, tela):
-        self.__tela.blit(tela, (0,0))
+    def draw_screen(self, nome):
+        self.__tela.blit(self.__telas[nome], (0,0))
 
-    def menu(self):
-        self.__tela.blit(self.__menu, (0,0))
-
-    def game_over(self):
-        self.__tela.blit(self.__game_over, (0,0))
-    
-    def som(self):
-        self.__tela.blit(self.__som, (0,0))
-    
-    def ranking(self):
-        self.__tela.blit(self.__ranking, (0,0))
-    
-    def venceu(self):
-        self.__tela.blit(self.__venceu, (0,0))
-        
     def nome(self,box,):
         self.__tela.blit(self.__nome, (0,0))
         self.desenhar_input_box(box)
 
     def start(self):
         pygame.init()
-
-    def colorir(self):
-        self.__tela.fill(VERDE_CLARO)
 
     def draw_sprites(self, sprites):
         for sprite in sprites:

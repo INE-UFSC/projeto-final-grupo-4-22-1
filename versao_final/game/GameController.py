@@ -38,7 +38,7 @@ class GameController:
     def __init__(self):
         self.__ranking = Ranking()
         self.__mapa = Mapa()
-        self.__screen = GameScreen(self)
+        self.__screen = GameScreen()
         self.__construtor = ConstrutorDeFases(self.__mapa)
         self.__clock = pygame.time.Clock()
         self.__player = None
@@ -52,9 +52,9 @@ class GameController:
         self.__usuario = ''
         button = GerenciarBotoes()
         menu = True
-        #self.__som.iniciar(1)
+        self.__som.iniciar(1)
         while menu:
-            self.__screen.menu()
+            self.__screen.draw_screen("menu")
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
                     self.__screen.fechar()
@@ -70,7 +70,7 @@ class GameController:
         fase_atual = 1
         self.__screen.start()
         rodando = True
-        #self.__som.iniciar(0)
+        self.__som.iniciar(0)
         game = True
         vitoria = False
         while game:
@@ -111,11 +111,11 @@ class GameController:
     def game_over(self):
         self.__ranking.atualiza_ranking(self.__usuario, self.__relogio.timer_sec)
         game_over = True
-        #self.__som.iniciar(2)
+        self.__som.iniciar(2)
         while game_over:
             self.__clock.tick(40)
             self.__screen.update()
-            self.__screen.game_over()
+            self.__screen.draw_screen("game_over")
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
                     self.__screen.fechar()
@@ -126,11 +126,11 @@ class GameController:
     def venceu(self):
         self.__ranking.atualiza_ranking(self.__usuario, self.__relogio.timer_sec)
         venceu = True
-        #self.__som.iniciar(3)
+        self.__som.iniciar(3)
         while venceu:
             self.__clock.tick(40)
             self.__screen.update()
-            self.__screen.venceu()
+            self.__screen.draw_screen("venceu")
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
                     self.__screen.fechar()

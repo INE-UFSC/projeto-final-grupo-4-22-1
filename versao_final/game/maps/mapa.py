@@ -38,16 +38,14 @@ class Mapa:
         self.__water = Water()
         self.__ground = Ground()
         self.__dict_sprites_mapa = {"ground": self.__ground.sprite, "water": self.__water.sprite}
-        self.__tipos_de_flores = {"sunflower", "jasmine"}
 
         self.__c1 = Coordenada(0,0)
-        self.__screen = GameScreen(self)
         self.__maps = MapsLibrary()
         
     def load_map(self, nivel):
         map_list = []
         self.__tile_rects = []
-        
+
         with open(self.__maps.mapas[nivel-1], 'r') as file_obj:
             reader_obj = csv.reader(file_obj)
             for row in reader_obj:
