@@ -15,7 +15,7 @@ class Collisions():
         self.__colisoes_flores = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_flores, True)
         self.__colisoes_parceiro = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_parceiro, False)
         self.__colisoes_itens = pygame.sprite.spritecollide(self.__jogador, self.__mapa.lista_itens, True)
-        self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__jogador, self.__mapa.enimies, False)
+        self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__jogador, self.__mapa.enemies, False)
 
         if self.__colisoes_inimigos:
             return self.__consequences.jogador_e_inimigo(self.__jogador)
@@ -57,7 +57,7 @@ class Collisions():
         return hits
 
     def colisao_com_inimigos(self):
-        inimigos = self.__mapa.enimies
+        inimigos = self.__mapa.enemies
         tile = self.__mapa.tile_rects
         
         for inimigo in inimigos:

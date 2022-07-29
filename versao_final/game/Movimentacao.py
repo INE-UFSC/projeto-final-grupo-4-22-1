@@ -13,7 +13,7 @@ class Movimentacao:
         self.mover_inimigos()
 
     def mover_inimigos(self):
-        for inimigo in self.__mapa.enimies:
+        for inimigo in self.__mapa.enemies:
             inimigo.movimentar((self.__jogador.rect.x, self.__jogador.rect.y))
 
     def mover_jogador(self):

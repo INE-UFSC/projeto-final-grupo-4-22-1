@@ -71,15 +71,17 @@ class Mapa:
                 sunflower = Sunflower(self.__c1.coordenadax,self.__c1.coordenaday)
                 if colisoes.colisao_itens(sunflower, self.__tile_rects):
                     self.__lista_apples.add(sunflower)
+                    self.__lista_flores.add(sunflower)
+                    self.__all_sprites.add(sunflower)
                     break
             while True:
                 self.__c1.coordenadas('coletavel')
                 jasminen = Jasminen(self.__c1.coordenadax,self.__c1.coordenaday)
                 if colisoes.colisao_itens(jasminen, self.__tile_rects):
                     self.__lista_apples.add(jasminen)
+                    self.__lista_flores.add(jasminen)
+                    self.__all_sprites.add(jasminen)
                     break
-            self.__lista_flores.add(sunflower, jasminen)
-            self.__all_sprites.add(sunflower, jasminen)
 
     def spawn_cobras(self):
         for tile in self.__original_map:
@@ -104,6 +106,8 @@ class Mapa:
                 apple = Apple(self.__c1.coordenadax,self.__c1.coordenaday)
                 if colisoes.colisao_itens(apple, self.__tile_rects):
                     self.__lista_apples.add(apple)
+                    self.__all_sprites.add(apple)
+                    self.__lista_itens.add(apple)
                     break
         for i in range (quant_thorn):
             while True:
@@ -111,6 +115,8 @@ class Mapa:
                 thorn = Thorn(self.__c1.coordenadax,self.__c1.coordenaday)
                 if colisoes.colisao_itens(thorn, self.__tile_rects):
                     self.__lista_thorns.add(thorn)
+                    self.__all_sprites.add(thorn)
+                    self.__lista_itens.add(thorn)
                     break
         for i in range (quant_mushroom):
             while True:
@@ -118,10 +124,9 @@ class Mapa:
                 mushroom = Mushroom(self.__c1.coordenadax,self.__c1.coordenaday)
                 if colisoes.colisao_itens(mushroom, self.__tile_rects):
                     self.__lista_mushrooms.add(mushroom)
+                    self.__all_sprites.add(mushroom)
+                    self.__lista_itens.add(mushroom)
                     break
-
-        self.__all_sprites.add(apple, thorn,mushroom)
-        self.__lista_itens.add(apple, thorn, mushroom)
 
     def spawn_ra(self):
         ra = Ra(30, 30, 15, 585)
@@ -139,15 +144,15 @@ class Mapa:
         self.__lista_parceiro = pygame.sprite.Group()
         self.__lista_cobras = pygame.sprite.Group()
         self.__lista_jacares = pygame.sprite.Group()
+        self.__enemies = pygame.sprite.Group()
         self.__lista_flores = pygame.sprite.Group()
         self.__lista_apples = pygame.sprite.Group()
         self.__lista_mushrooms = pygame.sprite.Group()
         self.__lista_thorns = pygame.sprite.Group()
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
-        self.__enemies = pygame.sprite.Group()
-        self.__c1 = Coordenada(0,0)
         self.__lista_itens = pygame.sprite.Group()
+        self.__c1 = Coordenada(0,0)
 
     def checar_flores(self):
         if len(self.__lista_flores) == 0:
@@ -158,7 +163,7 @@ class Mapa:
         return self.__lista_itens
 
     @property
-    def enimies(self):
+    def enemies(self):
         return self.__enemies
 
     @property

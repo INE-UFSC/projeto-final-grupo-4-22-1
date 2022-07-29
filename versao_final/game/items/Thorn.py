@@ -19,3 +19,4 @@ class Thorn(EfeitosNoJogador):
     
     def aplicar_efeito(self, jogador):
         jogador.alterar_velocidade(self.__efeito)
+        return "Perdeu!"

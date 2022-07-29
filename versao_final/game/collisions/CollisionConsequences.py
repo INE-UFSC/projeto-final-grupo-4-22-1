@@ -27,11 +27,18 @@ class CollisionConsequences:
         player.velocidade = player.velocidade_normal
 
     def jogador_e_barreira_x(self, player, tile):
-        if player.direction_x == -1:
-            player.rect.x = tile.right
+        if player.envenenado == False:
+            if player.direction_x == -1:
+                player.rect.x = tile.right
 
-        elif player.direction_x == 1:
-            player.rect.x = tile.left - player.rect.w
+            elif player.direction_x == 1:
+                player.rect.x = tile.left - player.rect.w
+        else:
+            if player.direction_x == 1:
+                player.rect.x = tile.right
+
+            elif player.direction_x == -1:
+                player.rect.x = tile.left - player.rect.w
 
     def jogador_e_barreira_y(self, player, tile):
         if player.envenenado == False:
