@@ -50,7 +50,6 @@ class GameController:
     def start(self):
         self.__screen.start()
         self.__usuario = ''
-        input_box = InputBox(430,300,140,32)
         button = GerenciarBotoes()
         menu = True
         #self.__som.iniciar(1)
@@ -79,8 +78,7 @@ class GameController:
             self.__player = Sapo(30, 30, 3, 300, 300, 7)
             collisions = Collisions(self.__mapa, self.__player)
             if self.__construtor.gerar_fase(collisions, fase_atual) == "Finished!":
-                vitoria = True
-                break
+                self.venceu()
             sprites = self.__mapa.all_sprites
             sprites.add(self.__player)
             movimentacao = Movimentacao(self.__screen, self.__player, self.__mapa)
@@ -123,9 +121,26 @@ class GameController:
                     self.__screen.fechar()
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_RETURN:
-                        print("TEsteeee")
                         return self.restart()
+    
+    def venceu(self):
+        self.__ranking.atualiza_ranking(self.__usuario, self.__relogio.timer_sec)
+        venceu = True
+        #self.__som.iniciar(3)
+        while venceu:
+            self.__clock.tick(40)
+            self.__screen.update()
+            self.__screen.venceu()
+            for event in self.__screen.ler():
+                if event.type == pygame.QUIT:
+                    self.__screen.fechar()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == K_RETURN:
+                        return self.start()
+
 
     def restart(self):
         self.__mapa.reset()
         self.start()
+    
+    

@@ -32,7 +32,6 @@ class Collisions():
             self.__consequences.player_e_parceiro(self.__player)
 
         #código feio pra caralho? sim
-        #pelo menos funciona kkkkk
         player_tiles = self.colisao_tiles(self.__player, tiles)
         for hit in player_tiles:
             if hit[1] == "void":
@@ -60,6 +59,7 @@ class Collisions():
     def colisao_com_inimigos(self):
         inimigos = self.__mapa.enemies
         tile = self.__mapa.tile_rects
+        teste = 0
         
         for inimigo in inimigos:
             colisao_inimigo = self.colisao_tiles(inimigo, tile)
@@ -67,21 +67,24 @@ class Collisions():
             for colisao in colisao_inimigo:
                 if colisao[1] == "ground" and isinstance(inimigo, Jacare):
                     self.__consequences.enemy_x(inimigo, colisao[0])
-
+                    
                 elif colisao[1] == "void" and isinstance(inimigo, Jacare):
                     if colisao[0].right == 0:
                         self.__consequences.enemy_x(inimigo, colisao[0])
                     else:
                         self.__consequences.enemy_y(inimigo, colisao[0])
                     
+                    
                 elif colisao[1] == "void" and isinstance(inimigo, Cobra):
                     if colisao[0].right == 0:
                         self.__consequences.enemy_x(inimigo, colisao[0])
                     else:
                         self.__consequences.enemy_y(inimigo, colisao[0])
+                    
 
                 elif colisao[1] == "water" and isinstance(inimigo, Cobra):
                     self.__consequences.enemy_x(inimigo, colisao[0])
+                
 
 
     def reset(self):

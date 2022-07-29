@@ -3,6 +3,7 @@ from game.menus.button import Button
 from game.GameScreen import GameScreen
 from game.ranking.Ranking import Ranking
 from game.menus.input_box import InputBox
+from game.som.Som import Som
 
 class GerenciarBotoes():
     def __init__(self):
@@ -10,6 +11,7 @@ class GerenciarBotoes():
         self.__buttonSair = Button(470,250,280,60)
         self.__buttonSom = Button(470,335,280,60)
         self.__buttonRanking = Button(470,425,280,60)
+        self.__som = Som()
     
     @property
     def usuario(self):
@@ -59,9 +61,9 @@ class GerenciarBotoes():
                     return 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if buttonDesligado.rect.collidepoint(event.pos):
-                        print("Som Desligado")
+                        self.__som.pause()
                     elif buttonLigado.rect.collidepoint(event.pos):
-                        print("Som Ligado")
+                        self.__som.unpause()
             self.__tela.update()
         pygame.time.Clock().tick(30)
     

@@ -5,9 +5,9 @@ from game.imageLibrary.ImageLibrary import ImageLibrary
 
 #site pras cores https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb
 PRETO = (0, 0, 0)
-# o player será branco
+# o jogador será branco
 BRANCO = (255, 255, 255)
-#o crush do player será roxo
+#o crush do jogador será roxo
 ROXO = (72, 61, 139)
 #o inimigo 1 (cobra) será vermelho
 VERMELHO = 	(139, 0, 0)
@@ -35,6 +35,7 @@ class GameScreen:
         self.__som = pygame.image.load(self.__imagens.som).convert()
         self.__ranking = pygame.image.load(self.__imagens.ranking).convert()
         self.__nome = pygame.image.load(self.__imagens.nome).convert()
+        self.__venceu = pygame.image.load(self.__imagens.venceu).convert()
 
         self.tamanho_display = self.__largura, self.__altura
         self.display = pygame.display.set_mode(
@@ -58,6 +59,9 @@ class GameScreen:
     
     def ranking(self):
         self.__tela.blit(self.__ranking, (0,0))
+    
+    def venceu(self):
+        self.__tela.blit(self.__venceu, (0,0))
         
     def nome(self,box,):
         self.__tela.blit(self.__nome, (0,0))
@@ -86,11 +90,11 @@ class GameScreen:
         exit()
     
     def draw_map(self, imagens, lista_coordenadas):
-        for image in imagens:
-            sprite = pygame.image.load(imagens[image])
+        for imagem in imagens:
+            sprite = pygame.image.load(imagens[imagem])
             sprite = pygame.transform.scale(sprite,(100,100))
             for coordenada in lista_coordenadas:
-                if coordenada == image:
+                if coordenada == imagem:
                     for coord in lista_coordenadas[coordenada]:
                         self.__tela.blit(sprite, coord)
 
@@ -98,16 +102,15 @@ class GameScreen:
         image = pygame.image.load(image)
         image = pygame.transform.scale(image,(altura,largura))
         self.__tela.blit(image, (x, y))
-
     
-    def image_relogio(self,image,x,y):
-        self.__tela.blit(image, (x, y))
+    def image_relogio(self,imagem,x,y):
+        self.__tela.blit(imagem, (x, y))
     
     def tela_ranking(self, ranking):
         fonte = pygame.font.SysFont("Arial", 25, True, False)
-        lugar = 100
+        lugar = 90
         for posicao in ranking:
-            texto = fonte.render("%s, com %s pontos" % (ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
+            texto = fonte.render("%s: %s, com %s pontos" % (posicao, ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
             lugar += 85
             self.__tela.blit(texto, (450, lugar))
 

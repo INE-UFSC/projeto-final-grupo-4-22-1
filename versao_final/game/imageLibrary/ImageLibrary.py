@@ -3,6 +3,7 @@ import os
 
 class ImageLibrary():
     def __init__(self):
+        self.__venceu = os.path.join("game/imageLibrary/Menus_botoes/ganhou.png")
         self.__inicial = os.path.join("game/imageLibrary/Menus_botoes/inicial.png")
         self.__perdeu = os.path.join("game/imageLibrary/Menus_botoes/perdeu.png")
         self.__ranking = os.path.join("game/imageLibrary/Menus_botoes/ranking.png")
@@ -25,6 +26,10 @@ class ImageLibrary():
         self.__ra = os.path.join("game/imageLibrary/images/ra.png")
         self.__sapo_esquerda = os.path.join("game/imageLibrary/images/sapo_esquerda.png")
 
+    @property
+    def venceu(self):
+        return self.__venceu
+    
     @property
     def ranking(self):
         return self.__ranking
