@@ -20,16 +20,29 @@ class Player(Character):
         return self.__velocidade
     
     def carry(self, v):
-        if self.__velocidade - v > 1:
-            if v:
-                self.__velocidade -= v
-                self.__velocidade_normal = self.__velocidade
-                return True
+        if self.__envenenado == False:
+            if self.__velocidade - v > 1:
+                if v:
+                    self.__velocidade -= v
+                    self.__velocidade_normal = self.__velocidade
+                    return True
+                else:
+                    self.__velocidade -= 1
+                    self.__velocidade_normal = self.__velocidade
             else:
-                self.__velocidade -= 1
-                self.__velocidade_normal = self.__velocidade
+                return False
         else:
-            return False
+            if self.__velocidade + v < -1:
+                if v:
+                    self.__velocidade += v
+                    self.__velocidade_normal = self.__velocidade
+                    return True
+                else:
+                    self.__velocidade += 1
+                    self.__velocidade_normal = self.__velocidade
+            else:
+                return False
+
 
     def aumenta_velocidade(self, v):
         if v:
@@ -38,7 +51,7 @@ class Player(Character):
         else:
             self.__velocidade += 1
             self.__velocidade_normal = self.__velocidade
-    
+
     @property
     def flores(self):
         return self.__flores

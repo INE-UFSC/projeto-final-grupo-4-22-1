@@ -77,13 +77,13 @@ class GameController:
         while game:
             self.__relogio.iniciar_clock()
             self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
-            if self.__construtor.gerar_fase(fase_atual) == "Finished!":
+            collisions = Collisions(self.__mapa, self.__jogador)
+            if self.__construtor.gerar_fase(collisions, fase_atual) == "Finished!":
                 vitoria = True
                 break
             sprites = self.__mapa.all_sprites
             sprites.add(self.__jogador)
             movimentacao = Movimentacao(self.__screen, self.__jogador, self.__mapa)
-            collisions = Collisions(self.__mapa, self.__jogador)
             while rodando:
                 for event in self.__screen.ler():
                     if event.type == pygame.QUIT:
@@ -103,7 +103,6 @@ class GameController:
                     break
                 collisions.colisao_com_inimigos()
                 movimentacao.mover_personagens()
-                print(self.__jogador.velocidade)
                 self.__screen.update()
             if game == False:
                 break

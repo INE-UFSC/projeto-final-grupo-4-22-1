@@ -2,7 +2,6 @@ import time
 
 from game.items.efeitosnojogador import EfeitosNoJogador
 from game.imageLibrary.ImageLibrary import ImageLibrary
-
 marrom = (75, 54, 33)
 efeito = 0
 

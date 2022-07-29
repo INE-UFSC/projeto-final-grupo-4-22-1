@@ -42,6 +42,13 @@ class Collisions():
             elif hit[1] == "ground":
                 self.__consequences.jogador_e_ground(self.__jogador)
 
+    def colisao_itens(self, item, tiles):
+        item_tiles = self.colisao_tiles(item, tiles)
+        for hit in item_tiles:
+            if hit[1] != "ground":
+                return False
+        return True
+
     def colisao_tiles(self, personagem, tiles):
         hits = []
         for tile in tiles:
@@ -74,6 +81,7 @@ class Collisions():
 
                 elif colisao[1] == "water" and isinstance(inimigo, Cobra):
                     self.__consequences.enemy_x(inimigo, colisao[0])
+
 
     def reset(self):
         self.__colisoes_parceiro = None

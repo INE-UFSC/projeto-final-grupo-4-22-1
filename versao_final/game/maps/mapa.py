@@ -19,6 +19,8 @@ from game.items.collectibles.jasminen import Jasminen
 from game.items.coordinates.coordenada import Coordenada
 from game.GameScreen import GameScreen
 
+from game.collisions.Collisions import Collisions
+
 from game.maps.MapsLibrary import MapsLibrary
 
 
@@ -38,6 +40,7 @@ class Mapa:
         self.__water = Water()
         self.__ground = Ground()
         self.__dict_sprites_mapa = {"ground": self.__ground.sprite, "water": self.__water.sprite}
+        self.__tipos_de_flores = {"sunflower", "jasmine"}
 
         self.__c1 = Coordenada(0,0)
         self.__screen = GameScreen(self)
@@ -61,12 +64,20 @@ class Mapa:
                     self.__original_map[tile_name].append((x*100-100,y*100-100))
                     self.__tile_rects.append((pygame.Rect(x*100-100,y*100-100, 100, 100), tile_name))
 
-    def spawn_flores(self, quantidade):
+    def spawn_flores(self, colisoes, quantidade):
         for i in range (quantidade):
-            self.__c1.coordenadas('coletavel')
-            sunflower = Sunflower(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__c1.coordenadas('coletavel')
-            jasminen = Jasminen(self.__c1.coordenadax,self.__c1.coordenaday)
+            while True:
+                self.__c1.coordenadas('coletavel')
+                sunflower = Sunflower(self.__c1.coordenadax,self.__c1.coordenaday)
+                if colisoes.colisao_itens(sunflower, self.__tile_rects):
+                    self.__lista_apples.add(sunflower)
+                    break
+            while True:
+                self.__c1.coordenadas('coletavel')
+                jasminen = Jasminen(self.__c1.coordenadax,self.__c1.coordenaday)
+                if colisoes.colisao_itens(jasminen, self.__tile_rects):
+                    self.__lista_apples.add(jasminen)
+                    break
             self.__lista_flores.add(sunflower, jasminen)
             self.__all_sprites.add(sunflower, jasminen)
 
@@ -86,19 +97,28 @@ class Mapa:
                 self.__enemies.add(jacare)
                 break
 
-    def spawn_consumiveis(self, quant_apple, quant_thorn, quant_mushroom):
+    def spawn_consumiveis(self, colisoes, quant_apple, quant_thorn, quant_mushroom):
         for i in range (quant_apple):
-            self.__c1.coordenadas('consumivel')
-            apple = Apple(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_apples.add(apple)
+            while True:
+                self.__c1.coordenadas('consumivel')
+                apple = Apple(self.__c1.coordenadax,self.__c1.coordenaday)
+                if colisoes.colisao_itens(apple, self.__tile_rects):
+                    self.__lista_apples.add(apple)
+                    break
         for i in range (quant_thorn):
-            self.__c1.coordenadas('consumivel')
-            thorn = Thorn(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_thorns.add(thorn)
+            while True:
+                self.__c1.coordenadas('consumivel')
+                thorn = Thorn(self.__c1.coordenadax,self.__c1.coordenaday)
+                if colisoes.colisao_itens(thorn, self.__tile_rects):
+                    self.__lista_thorns.add(thorn)
+                    break
         for i in range (quant_mushroom):
-            self.__c1.coordenadas('consumivel')
-            mushroom = Mushroom(self.__c1.coordenadax,self.__c1.coordenaday)
-            self.__lista_mushrooms.add(mushroom)
+            while True:
+                self.__c1.coordenadas('consumivel')
+                mushroom = Mushroom(self.__c1.coordenadax,self.__c1.coordenaday)
+                if colisoes.colisao_itens(mushroom, self.__tile_rects):
+                    self.__lista_mushrooms.add(mushroom)
+                    break
 
         self.__all_sprites.add(apple, thorn,mushroom)
         self.__lista_itens.add(apple, thorn, mushroom)
@@ -108,12 +128,12 @@ class Mapa:
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
 
-    def spawn_all(self, quant_apple, quant_thorn, quant_mushroom, quant_flores):
+    def spawn_all(self, colisoes, quant_apple, quant_thorn, quant_mushroom, quant_flores):
         self.spawn_ra()
-        self.spawn_consumiveis(quant_apple, quant_thorn, quant_mushroom)
+        self.spawn_consumiveis(colisoes, quant_apple, quant_thorn, quant_mushroom)
         self.spawn_jacares()
         self.spawn_cobras()
-        self.spawn_flores(quant_flores)
+        self.spawn_flores(colisoes, quant_flores)
 
     def reset(self):
         self.__lista_parceiro = pygame.sprite.Group()
