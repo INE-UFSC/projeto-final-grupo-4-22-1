@@ -3,9 +3,9 @@ import os
 
 class ImageLibrary():
     def __init__(self):
-        self.__inicial = os.path.join("game/imageLibrary/Menus_botoes/Layout_completo_menu_inicial.png")
+        self.__inicial = os.path.join("game/imageLibrary/Menus_botoes/2.png")
         self.__perdeu = os.path.join("game/imageLibrary/Menus_botoes/perdeu.png")
-        self.__ranking = os.path.join("game/imageLibrary/Menus_botoes/Layout_completo_ranking.png")
+        self.__ranking = os.path.join("game/imageLibrary/Menus_botoes/4.png")
         self.__cobra_direita = os.path.join("game/imageLibrary/images/cobra_direita.png")
         self.__cobra_baixo = os.path.join("game/imageLibrary/images/cobra_baixo.png")
         self.__cobra_esquerda = os.path.join("game/imageLibrary/images/cobra_esquerda.png")

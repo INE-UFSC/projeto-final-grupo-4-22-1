@@ -86,11 +86,11 @@ class GameScreen:
     def tela_ranking(self, ranking):
         self.__tela.blit(self.__ranking, (0,0))
         fonte = pygame.font.SysFont("Times New Roman", 30, True, False)
-        lugar = 165
+        lugar = 180
         for posicao in ranking:
             texto = fonte.render("%s: %s, com %s pontos" % (posicao, ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
-            self.__tela.blit(texto, (350, lugar))
-            lugar += 95
+            self.__tela.blit(texto, (450, lugar))
+            lugar += 84
 
     @property
     def largura(self):
