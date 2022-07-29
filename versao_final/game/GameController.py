@@ -59,10 +59,10 @@ class GameController:
             self.__screen.menu()
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
-                    self.__screen.fechar() 
+                    self.__screen.fechar()
                 inicio = button.handle_event(event)
                 if inicio == 0:
-                    self.__usuario = input_box.texto
+                    self.__usuario = button.usuario
                     pygame.time.set_timer(pygame.USEREVENT,310)
                     return self.iniciar()
             self.__screen.update()

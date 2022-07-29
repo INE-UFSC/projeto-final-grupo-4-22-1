@@ -40,8 +40,9 @@ class GerenciarBotoes():
                     self.__tela.fechar()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if buttonIniciar.rect.collidepoint(event.pos):
+                        self.__usuario = input_box.texto
                         return 0
-                self.__usuario = input_box.handle_event(event)
+                input_box.handle_event(event)
             self.__tela.update()
         pygame.time.Clock().tick(30)
     
