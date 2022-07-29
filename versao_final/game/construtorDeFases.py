@@ -3,9 +3,8 @@ class ConstrutorDeFases:
         self.__mapa = mapa
 
     def gerar_fase(self, nivel):
-        if nivel == 1:
+        try:
             self.__mapa.load_map(nivel)
             self.__mapa.spawn_all(1, 1, 1, 1)
-        if nivel == 2:
-            self.__mapa.load_map(nivel)
-            self.__mapa.spawn_all(5, 5, 5, 10)
+        except:
+            return "Finished!"

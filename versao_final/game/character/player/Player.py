@@ -54,6 +54,8 @@ class Player(Character):
     def alterar_velocidade(self, fator_alteracao):
         self.__velocidade = self.__velocidade*fator_alteracao
         self.__velocidade_normal = self.__velocidade
+        if fator_alteracao < 0:
+            self.__velocidade_na_agua = self.__velocidade_na_agua*fator_alteracao
 
     def mover_cima(self):
         self.set_direction_y(1)

@@ -73,10 +73,13 @@ class GameController:
         rodando = True
         #self.__som.iniciar(0)
         game = True
+        vitoria = False
         while game:
             self.__relogio.iniciar_clock()
             self.__jogador = Sapo(30, 30, 3, 300, 300, 7)
-            self.__construtor.gerar_fase(fase_atual)
+            if self.__construtor.gerar_fase(fase_atual) == "Finished!":
+                vitoria = True
+                break
             sprites = self.__mapa.all_sprites
             sprites.add(self.__jogador)
             movimentacao = Movimentacao(self.__screen, self.__jogador, self.__mapa)
