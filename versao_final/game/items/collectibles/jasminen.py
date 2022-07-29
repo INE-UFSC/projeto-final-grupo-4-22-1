@@ -3,5 +3,5 @@ from game.imageLibrary.ImageLibrary import ImageLibrary
 
 class Jasminen(Collectibles):
     def __init__(self,coordenadax,coordenaday):
-        super().__init__("jasminen", 15, 10,
+        super().__init__("jasminen", 20, 20,
                          coordenadax, coordenaday, 1, ImageLibrary().jasminen)

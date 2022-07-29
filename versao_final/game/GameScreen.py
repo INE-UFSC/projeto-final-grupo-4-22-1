@@ -35,7 +35,7 @@ class GameScreen:
         self.__som = pygame.image.load(self.__imagens.som).convert()
         self.__ranking = pygame.image.load(self.__imagens.ranking).convert()
         self.__nome = pygame.image.load(self.__imagens.nome).convert()
-        
+
         self.tamanho_display = self.__largura, self.__altura
         self.display = pygame.display.set_mode(
             self.tamanho_display, pygame.HWSURFACE)
@@ -43,7 +43,10 @@ class GameScreen:
     def desenhar_input_box(self, box):
         self.__tela.blit(box.txt_surface, (box.rect.x+5, box.rect.y+5))
         pygame.draw.rect(self.__tela, box.cor, box.rect, 2)
-        
+
+    def draw_screen(self, tela):
+        self.__tela.blit(tela, (0,0))
+
     def menu(self):
         self.__tela.blit(self.__menu, (0,0))
 
@@ -71,9 +74,6 @@ class GameScreen:
             image = sprite.sprite
             image = pygame.transform.scale(image,(sprite.altura,sprite.largura))
             self.__tela.blit(image, (sprite.rect.x, sprite.rect.y))
-
-    def desenhar(self, sprites):
-        sprites.draw(self.__tela)
 
     def ler(self):
         return pygame.event.get()

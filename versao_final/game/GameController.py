@@ -21,7 +21,6 @@ from game.items.collectibles.sunflower import Sunflower
 from game.items.collectibles.jasminen import Jasminen
 
 from game.items.Apple import Apple
-from game.items.Thorn import Thorn
 from game.items.Mushroom import Mushroom
 
 from game.maps.mapa import Mapa
@@ -99,7 +98,7 @@ class GameController:
                 self.__screen.image_relogio(self.__relogio.timer_text,1050,20)
                 if self.__mapa.checar_flores() == "Acabou!" and self.__player.flores_coletadas == {}:
                     break
-                if collisions.checar_colisoes_com_player(self.__mapa.tile_rects) == 'Perdeu!':
+                if collisions.checar_colisoes_com_player(self.__mapa.tile_rects) == 'Perdeu!' or self.__relogio.timer_sec == 0:
                     game = False
                     break
                 collisions.colisao_com_inimigos()

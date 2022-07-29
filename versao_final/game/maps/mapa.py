@@ -9,7 +9,6 @@ from game.character.enemies.cobra import Cobra
 from game.character.enemies.jacare import Jacare
 
 from game.items.Apple import Apple
-from game.items.Thorn import Thorn
 from game.items.Mushroom import Mushroom
 from game.collisions.Collisions import Collisions
 
@@ -33,7 +32,6 @@ class Mapa:
         self.__lista_flores = pygame.sprite.Group()
         self.__lista_apples = pygame.sprite.Group()
         self.__lista_mushrooms = pygame.sprite.Group()
-        self.__lista_thorns = pygame.sprite.Group()
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_itens = pygame.sprite.Group()
@@ -103,7 +101,7 @@ class Mapa:
                 self.__enemies.add(jacare)
                 break
 
-    def spawn_consumiveis(self, colisoes, quant_apple, quant_thorn, quant_mushroom):
+    def spawn_consumiveis(self, colisoes, quant_apple, quant_mushroom):
         for i in range (quant_apple):
             while True:
                 self.__c1.coordenadas('consumivel')
@@ -112,17 +110,6 @@ class Mapa:
                     self.__lista_apples.add(apple)
                     self.__all_sprites.add(apple)
                     self.__lista_itens.add(apple)
-                    break
-                else:
-                    self.__c1.remover_item('consumivel')
-        for i in range (quant_thorn):
-            while True:
-                self.__c1.coordenadas('consumivel')
-                thorn = Thorn(self.__c1.coordenadax,self.__c1.coordenaday)
-                if colisoes.colisao_itens(thorn, self.__tile_rects):
-                    self.__lista_thorns.add(thorn)
-                    self.__all_sprites.add(thorn)
-                    self.__lista_itens.add(thorn)
                     break
                 else:
                     self.__c1.remover_item('consumivel')
@@ -143,9 +130,9 @@ class Mapa:
         self.__lista_parceiro.add(ra)
         self.__all_sprites.add(ra)
 
-    def spawn_all(self, colisoes, quant_apple, quant_thorn, quant_mushroom, quant_flores):
+    def spawn_all(self, colisoes, quant_apple, quant_mushroom, quant_flores):
         self.spawn_ra()
-        self.spawn_consumiveis(colisoes, quant_apple, quant_thorn, quant_mushroom)
+        self.spawn_consumiveis(colisoes, quant_apple, quant_mushroom)
         self.spawn_jacares()
         self.spawn_cobras()
         self.spawn_flores(colisoes, quant_flores)
@@ -158,7 +145,6 @@ class Mapa:
         self.__lista_flores = pygame.sprite.Group()
         self.__lista_apples = pygame.sprite.Group()
         self.__lista_mushrooms = pygame.sprite.Group()
-        self.__lista_thorns = pygame.sprite.Group()
         self.__lista_terreno_water = pygame.sprite.Group()
         self.__all_sprites = pygame.sprite.Group()
         self.__lista_itens = pygame.sprite.Group()
@@ -195,10 +181,6 @@ class Mapa:
     @property
     def lista_apples(self):
         return self.__lista_apples
-
-    @property
-    def lista_thorns(self):
-        return self.__lista_thorns
 
     @property
     def lista_mushrooms(self):

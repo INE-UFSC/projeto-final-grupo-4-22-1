@@ -32,8 +32,3 @@ class Clock():
         else:
             tempo = True
             return tempo
-            
-
-
-
-            

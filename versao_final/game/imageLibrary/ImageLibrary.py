@@ -22,7 +22,6 @@ class ImageLibrary():
         self.__mushroom = os.path.join("game/imageLibrary/images/mushroom.png")
         self.__sunflower = os.path.join("game/imageLibrary/images/sunflower.png")
         self.__jasminen = os.path.join("game/imageLibrary/images/jasminen.png")
-        self.__thorn = os.path.join("game/imageLibrary/images/thorn.png")
         self.__ra = os.path.join("game/imageLibrary/images/ra.png")
         self.__sapo_esquerda = os.path.join("game/imageLibrary/images/sapo_esquerda.png")
 
@@ -101,10 +100,6 @@ class ImageLibrary():
     @property
     def jasminen(self):
         return self.__jasminen
-
-    @property
-    def thorn(self):
-        return self.__thorn
 
     @property
     def ra(self):
