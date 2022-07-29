@@ -11,6 +11,7 @@ from game.character.enemies.jacare import Jacare
 from game.items.Apple import Apple
 from game.items.Thorm import Thorm
 from game.items.Mushroom import Mushroom
+from game.collisions.Collisions import Collisions
 
 from game.items.collectibles.sunflower import Sunflower
 from game.items.collectibles.jasminen import Jasminen
@@ -70,14 +71,20 @@ class Mapa:
             self.__all_sprites.add(sunflower, jasminen)
 
     def spawn_cobras(self):
-        cobra = Cobra(50,30,100,100,2,2,'ground')
-        self.__lista_cobras.add(cobra)
-        self.__enemies.add(cobra)
+        for tile in self.__original_map:
+            if tile == "ground":
+                cobra = Cobra(50,30,self.__original_map[tile][0][0]+100,self.__original_map[tile][0][1]+100,2,2,'ground')
+                self.__lista_cobras.add(cobra)
+                self.__enemies.add(cobra)
+                break
 
     def spawn_jacares(self):
-        jacare = Jacare(70,40,500,60,10,3,'water')
-        self.__lista_jacares.add(jacare)
-        self.__enemies.add(jacare)
+        for tile in self.__original_map:
+            if tile == "water":
+                jacare = Jacare(70,40,self.__original_map[tile][0][0]+100,self.__original_map[tile][0][1]+100,10,3,'water')
+                self.__lista_jacares.add(jacare)
+                self.__enemies.add(jacare)
+                break
 
     def spawn_consumiveis(self, quant_apple, quant_thorm, quant_mushroom):
         for i in range (quant_apple):

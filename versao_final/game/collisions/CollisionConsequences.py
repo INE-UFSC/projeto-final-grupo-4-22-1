@@ -55,5 +55,5 @@ class CollisionConsequences:
             enemy.set_counter(3)
 
         elif enemy.direction_y == -1:
-            enemy.rect.bottom = tile.top - enemy.rect.h
+            enemy.rect.bottom = tile.top
             enemy.set_counter(1)
