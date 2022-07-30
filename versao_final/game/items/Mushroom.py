@@ -1,6 +1,5 @@
 from game.items.efeitosnoplayer import EfeitosNoJogador
 from game.imageLibrary.ImageLibrary import ImageLibrary
-from game.character.player.Player import Player
 
 class Mushroom(EfeitosNoJogador):
     def __init__(self, coordenadax, coordenaday):

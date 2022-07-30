@@ -1,6 +1,7 @@
 import pygame
+from abc import ABC
 
-class Character(pygame.sprite.Sprite):
+class Character(pygame.sprite.Sprite, ABC):
     def __init__(self, altura, largura, coordenadax, coordenaday):
         pygame.sprite.Sprite.__init__(self)
         self.__altura = altura

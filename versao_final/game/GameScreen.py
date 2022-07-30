@@ -76,7 +76,7 @@ class GameScreen:
         fonte = pygame.font.SysFont("Arial", 25, True, False)
         lugar = 90
         for posicao in ranking:
-            texto = fonte.render("%s: %s, com %s pontos" % (posicao, ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
+            texto = fonte.render("%s, com %s pontos" % (ranking[posicao][0], ranking[posicao][1]), False, (255,255,255))
             lugar += 85
             self.__tela.blit(texto, (450, lugar))
 

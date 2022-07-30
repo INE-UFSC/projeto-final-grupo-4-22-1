@@ -1,6 +1,7 @@
 from game.character.Character import Character
+from abc import ABC
 
-class Player(Character):
+class Player(Character, ABC):
     def __init__(self, altura, largura, vida, coordenadax, coordenaday, velocidade):
         super().__init__(altura, largura, coordenadax, coordenaday)
         self.__vida = vida

@@ -79,7 +79,6 @@ class GameController:
             if self.__construtor.gerar_fase(collisions, fase_atual) == "Finished!":
                 self.venceu()
             sprites = self.__mapa.all_sprites
-            print(self.__ranking.ranking)
             sprites.add(self.__player)
             movimentacao = Movimentacao(self.__screen, self.__player, self.__mapa)
             while rodando:
@@ -137,9 +136,6 @@ class GameController:
                     if event.key == K_RETURN:
                         return self.start()
 
-
     def restart(self):
         self.__mapa.reset()
         self.start()
-    
-    

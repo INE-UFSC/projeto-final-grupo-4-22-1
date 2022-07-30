@@ -1,9 +1,9 @@
-import random, pygame, math, time
-
+import random, math
+from abc import ABC
 from game.GameScreen import GameScreen
 from game.character.Character import Character
 
-class Enemy(Character):
+class Enemy(Character, ABC):
     def __init__(self, altura, largura, coordenadax, coordenaday, velocidade, dano, terreno):
         super().__init__(altura, largura, coordenadax, coordenaday)
         self.__dano = dano
