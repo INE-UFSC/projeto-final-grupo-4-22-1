@@ -8,7 +8,7 @@ class Ranking:
             self.__ranking = {'primeiro': ['', 0], 'segundo': ['', 0], 'terceiro': ['', 0], 'quarto': ['', 0], 'quinto': ['', 0]}
         else:
             self.__ranking = self.__rankingDAO.get_ranking()
-
+ 
     def atualiza_ranking(self, usuario, pontuacao):
         if pontuacao > self.__ranking['primeiro'][1]:
             self.__ranking['quinto'] = self.__ranking['quarto']
@@ -35,7 +35,6 @@ class Ranking:
     def reset_ranking(self):
         self.__ranking = {'primeiro': ['', 0], 'segundo': ['', 0], 'terceiro': ['', 0], 'quarto': ['', 0], 'quinto': ['', 0]}
         self.__rankingDAO.replace(self.__ranking)
-        print(self.__ranking)
 
     @property
     def ranking(self):

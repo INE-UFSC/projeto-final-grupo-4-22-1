@@ -47,9 +47,6 @@ class Enemy(Character, ABC):
         self.set_direction_x(1)
         self.rect.x += self.velocidade
         
-    def stopped(self):
-        self.set_direction_x(0)
-        self.set_direction_y(0)
 
     def movimento(self, player_position):
         imagem = 0

@@ -19,6 +19,6 @@ class RankingDAO:
     def get_ranking(self):
         return self.__object_cache
 
-    def replace(self, ranking):
+    def replace(self, ranking): 
         self.__object_cache = ranking
         self.__dump()

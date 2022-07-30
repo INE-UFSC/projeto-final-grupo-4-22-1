@@ -51,7 +51,7 @@ class GameController:
         self.__usuario = ''
         button = GerenciarBotoes()
         menu = True
-        self.__som.iniciar(1)
+        self.__som.iniciar(0)
         while menu:
             self.__screen.draw_screen("menu")
             for event in self.__screen.ler():
