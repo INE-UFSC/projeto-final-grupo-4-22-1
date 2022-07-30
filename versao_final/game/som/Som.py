@@ -4,10 +4,10 @@ import os
 
 class Som():
     def __init__(self):
-        self.__SomFundo = os.path.join("game\som\musica\musica_fundo.mp3")
-        self.__SomInicial = os.path.join("game\som\musica\musica_inicial.wav")
-        self.__SomPerdeu = os.path.join("game\som\musica\musica_final_perdeu.mp3")
-        self.__SomGanhou = os.path.join("game\som\musica\musica_final_ganhou.ogg")
+        self.__SomFundo = os.path.join("game/som/musica/musica_fundo.mp3")
+        self.__SomInicial = os.path.join("game/som/musica/musica_inicial.wav")
+        self.__SomPerdeu = os.path.join("game/som/musica/musica_final_perdeu.mp3")
+        self.__SomGanhou = os.path.join("game/som/musica/musica_final_ganhou.ogg")
 
     def iniciar(self,musica):
         mixer.init()

@@ -9,7 +9,7 @@ class Collisions():
     def __init__(self, mapa, player):
         self.__mapa = mapa
         self.__player = player
-        self.__consequences = CollisionConsequences(self)
+        self.__consequences = CollisionConsequences(self.__player)
 
     def checar_colisoes_com_player(self, tiles):
         self.__colisoes_flores = pygame.sprite.spritecollide(self.__player, self.__mapa.lista_flores, True)
@@ -18,29 +18,29 @@ class Collisions():
         self.__colisoes_inimigos = pygame.sprite.spritecollide(self.__player, self.__mapa.enemies, False)
 
         if self.__colisoes_inimigos:
-            return self.__consequences.player_e_inimigo(self.__player)
+            return self.__consequences.player_e_inimigo()
 
         elif self.__colisoes_flores:
             flor = self.__colisoes_flores[0]
-            self.__consequences.player_e_flor(self.__player, flor)
+            self.__consequences.player_e_flor(flor)
 
         elif self.__colisoes_itens:
             item = self.__colisoes_itens[0]
-            self.__consequences.player_e_item(self.__player, item)
+            self.__consequences.player_e_item(item)
 
         elif self.__colisoes_parceiro:
-            self.__consequences.player_e_parceiro(self.__player)
+            self.__consequences.player_e_parceiro()
 
         #código feio pra caralho? sim
         player_tiles = self.colisao_tiles(self.__player, tiles)
         for hit in player_tiles:
             if hit[1] == "void":
-                self.__consequences.player_e_barreira_x(self.__player, hit[0])
-                self.__consequences.player_e_barreira_y(self.__player, hit[0])
+                self.__consequences.player_e_barreira_x(hit[0])
+                self.__consequences.player_e_barreira_y(hit[0])
             elif hit[1] == "water":
-                self.__consequences.player_e_water(self.__player)
+                self.__consequences.player_e_water()
             elif hit[1] == "ground":
-                self.__consequences.player_e_ground(self.__player)
+                self.__consequences.player_e_ground()
 
     def colisao_itens(self, item, tiles):
         item_tiles = self.colisao_tiles(item, tiles)

@@ -1,8 +1,8 @@
 from game.character.Character import Character
 
 class Player(Character):
-    def __init__(self, altura, largura, vida, coordenadax, coordenaday, velocidade, COR):
-        super().__init__(altura, largura, coordenadax, coordenaday, COR)
+    def __init__(self, altura, largura, vida, coordenadax, coordenaday, velocidade):
+        super().__init__(altura, largura, coordenadax, coordenaday)
         self.__vida = vida
         self.__velocidade_inicial = velocidade
         self.__velocidade = velocidade

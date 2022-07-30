@@ -11,4 +11,4 @@ class Mushroom(EfeitosNoJogador):
             player.envenenado = False
         else:
             player.envenenado = True
-        player.alterar_velocidade(self.__efeito)
+        player.alterar_velocidade(self.efeito)

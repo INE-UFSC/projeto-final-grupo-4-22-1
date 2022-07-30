@@ -45,7 +45,6 @@ class GameController:
         self.__relogio = Clock()
         self.__teste = False
         self.__som = Som()
-        
 
     def start(self):
         self.__screen.start()
@@ -102,6 +101,7 @@ class GameController:
                 collisions.colisao_com_inimigos()
                 movimentacao.mover_personagens()
                 self.__screen.update()
+                print(self.__player.velocidade)
             if game == False:
                 break
             self.__mapa.reset()

@@ -1,24 +1,21 @@
 import pygame
 
-
 class Character(pygame.sprite.Sprite):
-    def __init__(self, altura, largura, coordenadax, coordenaday, COR):
+    def __init__(self, altura, largura, coordenadax, coordenaday):
+        pygame.sprite.Sprite.__init__(self)
         self.__altura = altura
         self.__largura = largura
         self.__coordenadax = coordenadax
         self.__coordenaday = coordenaday
-        pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface([altura, largura])
-        self.image.fill(COR)
         self.rect = self.image.get_rect()
         self.rect.center = [coordenadax, coordenaday]
-        
+
         # coordenadas x: 1-direita, 0-parado, -1-esquerda e y: 1-cima, 0-parado, -1-baixo
         self.__direction = pygame.math.Vector2(0, 0)
-        
+
         self.__direcao_vertical = 0
         self.__direcao_horizontal = 0
-        
 
     @property
     def altura(self):

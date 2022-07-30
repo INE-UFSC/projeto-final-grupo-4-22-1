@@ -5,7 +5,7 @@ from game.character.Character import Character
 
 class Enemy(Character):
     def __init__(self, altura, largura, coordenadax, coordenaday, velocidade, dano, terreno):
-        super().__init__(altura, largura, coordenadax, coordenaday, (0,0,0))
+        super().__init__(altura, largura, coordenadax, coordenaday)
         self.__dano = dano
         self.__terreno = terreno
         self.__velocidade = velocidade
