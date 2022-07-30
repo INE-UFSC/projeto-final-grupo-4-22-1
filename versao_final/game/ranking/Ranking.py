@@ -30,13 +30,12 @@ class Ranking:
             self.__ranking['quarto'] = [usuario, pontuacao]
         elif pontuacao > self.__ranking['quinto'][1]:
             self.__ranking['quinto'] = [usuario, pontuacao]
-
         self.__rankingDAO.replace(self.__ranking)
-        print(self.__ranking)
 
     def reset_ranking(self):
         self.__ranking = {'primeiro': ['', 0], 'segundo': ['', 0], 'terceiro': ['', 0], 'quarto': ['', 0], 'quinto': ['', 0]}
         self.__rankingDAO.replace(self.__ranking)
+        print(self.__ranking)
 
     @property
     def ranking(self):

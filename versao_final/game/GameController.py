@@ -101,7 +101,6 @@ class GameController:
                 collisions.colisao_com_inimigos()
                 movimentacao.mover_personagens()
                 self.__screen.update()
-                print(self.__player.velocidade)
             if game == False:
                 break
             self.__mapa.reset()
@@ -109,7 +108,6 @@ class GameController:
         self.game_over()
 
     def game_over(self):
-        self.__ranking.atualiza_ranking(self.__usuario, self.__relogio.timer_sec)
         game_over = True
         self.__som.iniciar(2)
         while game_over:

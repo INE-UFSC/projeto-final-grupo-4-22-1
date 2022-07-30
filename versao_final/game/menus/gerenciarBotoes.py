@@ -71,7 +71,7 @@ class GerenciarBotoes():
         menu = True
         while menu:
             self.__tela.draw_screen("ranking")
-            ranking  = Ranking()
+            ranking = Ranking()
             self.__tela.tela_ranking(ranking.ranking)
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
