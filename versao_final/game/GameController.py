@@ -57,7 +57,7 @@ class GameController:
             for event in self.__screen.ler():
                 if event.type == pygame.QUIT:
                     self.__screen.fechar()
-                inicio = button.handle_event(event)
+                inicio = button.handle_event(self.__ranking, event)
                 if inicio == 0:
                     self.__usuario = button.usuario
                     pygame.time.set_timer(pygame.USEREVENT,310)
@@ -79,6 +79,7 @@ class GameController:
             if self.__construtor.gerar_fase(collisions, fase_atual) == "Finished!":
                 self.venceu()
             sprites = self.__mapa.all_sprites
+            print(self.__ranking.ranking)
             sprites.add(self.__player)
             movimentacao = Movimentacao(self.__screen, self.__player, self.__mapa)
             while rodando:
@@ -120,7 +121,7 @@ class GameController:
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_RETURN:
                         return self.restart()
-    
+
     def venceu(self):
         self.__ranking.atualiza_ranking(self.__usuario, self.__relogio.timer_sec)
         venceu = True

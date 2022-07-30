@@ -17,7 +17,7 @@ class GerenciarBotoes():
     def usuario(self):
         return self.__usuario
 
-    def handle_event(self, event):
+    def handle_event(self, ranking, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.__buttonSair.rect.collidepoint(event.pos):
                 teste = self.tela_inicial()
@@ -28,7 +28,7 @@ class GerenciarBotoes():
                 self.tela_som()
 
             if self.__buttonRanking.rect.collidepoint(event.pos):
-                self.tela_ranking()
+                self.tela_ranking(ranking)
 
     def tela_inicial(self):
         buttonIniciar = Button(490,350,220,50)
@@ -67,11 +67,10 @@ class GerenciarBotoes():
             self.__tela.update()
         pygame.time.Clock().tick(30)
 
-    def tela_ranking(self):
+    def tela_ranking(self, ranking):
         menu = True
         while menu:
             self.__tela.draw_screen("ranking")
-            ranking = Ranking()
             self.__tela.tela_ranking(ranking.ranking)
             for event in self.__tela.ler():
                 if event.type == pygame.QUIT:
